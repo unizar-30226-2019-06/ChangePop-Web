@@ -1,24 +1,11 @@
 language: python
 python:
-<<<<<<< HEAD
-- 2.7
-- 3.5
-- 3.6
-=======
   - 3.6
 
->>>>>>> 42cc30d53e586b9ac6007d39fe77502e1a18b098
 install:
 - pip install -r requirements/dev.txt
 - pip install codecov
 script:
-<<<<<<< HEAD
-- python -m unittest discover
-- behave
-- coverage erase
-- coverage run test_webapp.py && coverage html
-- pylint --output-format=text webapp.py
-=======
   - python -m unittest discover
   #- behave
   - coverage erase
