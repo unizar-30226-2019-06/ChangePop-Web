@@ -1,16 +1,23 @@
 language: python
+
 python: 3.6
+
 install:
 - pip install -r requirements/dev.txt
 - pip install codecov
+
 script:
 - python -m unittest discover
 - coverage erase
+- coverage run test_webapp.py && coverage html
+
 after_success:
 - codecov
+
 branches:
   only:
   - master
+  
 deploy:
   - provider: heroku
     api_key:
