@@ -1,30 +1,21 @@
 language: python
-python:
-  - 3.6
-
+python: 3.6
 install:
 - pip install -r requirements/dev.txt
 - pip install codecov
 script:
-  - python -m unittest discover
-  #- behave
-  - coverage erase
-  #- coverage run test_webapp.py && coverage html
-  #- pylint --output-format=text webapp.py
-
+- python -m unittest discover
+- coverage erase
 after_success:
 - codecov
-
-
-# Deployment to Heroku
 branches:
   only:
-    - master
-
+  - master
 deploy:
+  matrix:
   - provider: heroku
     api_key:
-      secure: Hl0wvbBuWlkxFsBaowhO9/FQ3A2BjOFuv7SuzsUKLpXTLdVYr/y9JSaVTqYKS5JqM9bZK1Gt8Jbts4ziU/VK4oIQtmtPsIyx/YY9hEqLFWsI+Pc4T23uLgNJb/5/Xs4DE6RyZOLmTcTCPLHhzLun084vaqK0MXblAJGCyAQeMpek2LxmMrPdxHl3LxLmLlK7OVmY33Z5vDjgT/AaSkGU6SoV95OZMBcLQq9nP2SxDz66kRv1WuVzfkYfoBosWZRRWl9b7XGjxrR1RYkQe2/JSZFQ4tJaAY70q2354ePf9H7Lyu+20asIir4OPz7vGMZl+dI1eNkjPSOr6sQkHiHXZ+xtGiE4hl4EomI0d7+kfMp14ZvekTtgGmw8WfOeDvmup/mEPDUIMLEaMEQEepN8ZQTu0SbCneJkym6keRXsaOJs946fiKQlksewuy4QsUZeT8cIJXVNYP66g9fym/RLdhygNj+ZT6wHdCxhYchVDtUzpoKIasnqZNXb13bpOD8GzN7K71m19nuLFTgQ+D1xS6ApZkSKn0NzcCiuNQS6miMwBEHzoFJXB+vaXbkzwdkwkFre5KFnlhfi298q7QMHYBdtxIpVlTescdVWIPom1eK6fUdWdB8j3W4dlnw8ARJG+iTe/76YdiizGZmubBojCYQWVJbb8GDLPZJdBLdOgYA=
+        secure: uQENf2OyKKUJrGx03b+k6Gg8iWX8zNsU4HGTtDe/Ic75pUWSm0k0o8MGoSaU1HY51GUsYCdXC+Nys1HNZivqI9qr4D6rZi6FG39QpEVWCXlmhCUjSPd0zLOLkfyNapP+/Uz4kxeXRY8ggMkxGqGcdGuJf1bR9wqC4MfRllcUqIGLAWKhbxN3vz5EnFi4oh+Le92osDFoJf0SyW0AtsuwzxT+EBPYG5olyWz7U7Mt9G3JUSSVpceB0RYo8beXTE/ekkkq+ZxoHmy9hztnbF+C9LqAmCYzcozHqLCN+P+qCz1Dwvyvy3USgVNne8sFx9mK/T8PVwukLsClBzY4C22QDDWynEnVty/hqoK5I23uGrGlJIKHPKLCT2alReq+kQp1ds9lUvL/q8R7H4iDLBL99E+l6fojtWKQ9o8y8n8V1YPkLMYYzxT3R85pKZApQ/BqgQZbnaCKeCX1TQGkMYz8UH5XpJ5NMW3CHmZ5VTxl+SfQyglIEIKvs9E2nGvtjvtyoUZNz7u1uJMARPkT1pCUCtJvsvR1SfZs1JxxGrc4Si9vJJutoykHMpGT+1xM5nFTwi9umLE+FX01I0ADyWNs5h7S4vHRaMBBlbJS9Emd1QX2EKhqI6GWljDZ7v7k/9dPEeVrEtEYVO+xoXaQNJm0hQ9veGtRQU/GX9xvbVxr6a4=
     app: changepop-fw
     on:
-python: 3.6
+        python: 3.6
