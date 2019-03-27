@@ -14,9 +14,17 @@ script:
 
 after_success:
 - codecov
+
+
+# Deployment to Heroku
+branches:
+  only:
+    - master
+
 deploy:
-  matrix:
   - provider: heroku
     api_key:
-        secure: Hl0wvbBuWlkxFsBaowhO9/FQ3A2BjOFuv7SuzsUKLpXTLdVYr/y9JSaVTqYKS5JqM9bZK1Gt8Jbts4ziU/VK4oIQtmtPsIyx/YY9hEqLFWsI+Pc4T23uLgNJb/5/Xs4DE6RyZOLmTcTCPLHhzLun084vaqK0MXblAJGCyAQeMpek2LxmMrPdxHl3LxLmLlK7OVmY33Z5vDjgT/AaSkGU6SoV95OZMBcLQq9nP2SxDz66kRv1WuVzfkYfoBosWZRRWl9b7XGjxrR1RYkQe2/JSZFQ4tJaAY70q2354ePf9H7Lyu+20asIir4OPz7vGMZl+dI1eNkjPSOr6sQkHiHXZ+xtGiE4hl4EomI0d7+kfMp14ZvekTtgGmw8WfOeDvmup/mEPDUIMLEaMEQEepN8ZQTu0SbCneJkym6keRXsaOJs946fiKQlksewuy4QsUZeT8cIJXVNYP66g9fym/RLdhygNj+ZT6wHdCxhYchVDtUzpoKIasnqZNXb13bpOD8GzN7K71m19nuLFTgQ+D1xS6ApZkSKn0NzcCiuNQS6miMwBEHzoFJXB+vaXbkzwdkwkFre5KFnlhfi298q7QMHYBdtxIpVlTescdVWIPom1eK6fUdWdB8j3W4dlnw8ARJG+iTe/76YdiizGZmubBojCYQWVJbb8GDLPZJdBLdOgYA=
-        app: changepop-fw
+      secure: Hl0wvbBuWlkxFsBaowhO9/FQ3A2BjOFuv7SuzsUKLpXTLdVYr/y9JSaVTqYKS5JqM9bZK1Gt8Jbts4ziU/VK4oIQtmtPsIyx/YY9hEqLFWsI+Pc4T23uLgNJb/5/Xs4DE6RyZOLmTcTCPLHhzLun084vaqK0MXblAJGCyAQeMpek2LxmMrPdxHl3LxLmLlK7OVmY33Z5vDjgT/AaSkGU6SoV95OZMBcLQq9nP2SxDz66kRv1WuVzfkYfoBosWZRRWl9b7XGjxrR1RYkQe2/JSZFQ4tJaAY70q2354ePf9H7Lyu+20asIir4OPz7vGMZl+dI1eNkjPSOr6sQkHiHXZ+xtGiE4hl4EomI0d7+kfMp14ZvekTtgGmw8WfOeDvmup/mEPDUIMLEaMEQEepN8ZQTu0SbCneJkym6keRXsaOJs946fiKQlksewuy4QsUZeT8cIJXVNYP66g9fym/RLdhygNj+ZT6wHdCxhYchVDtUzpoKIasnqZNXb13bpOD8GzN7K71m19nuLFTgQ+D1xS6ApZkSKn0NzcCiuNQS6miMwBEHzoFJXB+vaXbkzwdkwkFre5KFnlhfi298q7QMHYBdtxIpVlTescdVWIPom1eK6fUdWdB8j3W4dlnw8ARJG+iTe/76YdiizGZmubBojCYQWVJbb8GDLPZJdBLdOgYA=
+    app: changepop-fw
+    on:
+python: 3.6
