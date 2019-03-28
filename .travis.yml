@@ -25,7 +25,7 @@ deploy:
   - provider: heroku
     api_key:
       secure: fnCLT2Xcrsxk3BmGnIUtmj5+MmSS8GNoZNIcpJOKnfu5me7IkSJ4jCSmH9eW++fkJteFglmhH4EDbe+dNjaPjKil6TTMsJOS2jgcaE5UhuATAYn6E7DZipbwt8N/CTUdEPwC85l9humxgsXsTYXPakW+fJczflsVg7adUWZaQWl/nqr9m85t4jPIBUL6T9ObKjDqUTTIXlQxy+jiivMrqjTChq437csVKH7ue3lew35hOcQg/Iqqh+zVkivKTe8Kr+grkoLD/KkC6oy4CCd0sFCdLs7G2f1AD8dY+fa863Ywu66i5A7u0dOPOTWHcktzXbv6R0dJKBNvIUrtU3A5j8nIzWYvbKLvftTZMgN/6KN9MYbPYmfWPLdvm/tkuHY/850Gww7xxkiNe3BAFNkB5591Pg9qcBFC2cXgEjyJwseO1jXjcBdfFPgGZCbaqFWxsNLFJASoyoWPnq1bDsnnk99PJZv2osHUz3vnVMVR1skc0djrJVS7OByCEYNg/UgRBgTCO0q3y/GXEqSIVyFaF5Bf/YA1F6QsTwkYjGn5W9Us2evVq2p0b2BVuIPDGzsEkCrSWHfPSn+tSVm8ZKWqrHPq+9CEDks/OPkAm5yUBG63bpBS7gX6AX7CR9EZXEkLVBRUy9jBknUuR4qy+UXfSvgSzqBvpAOgDy+IEgK5PDo=
-      app: changepop-fw
+    app: changepop-fw
     on:
       python: 3.6
       branch: master
