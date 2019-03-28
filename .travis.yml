@@ -1,30 +1,24 @@
 language: python
-
 python: 3.6
-
 install:
 - pip install -r requirements/dev.txt
 - pip install codecov
-
 script:
 - python -m unittest discover
 - coverage erase
 - coverage run --source=ChangePop test_webapp.py
 - ls
 - coverage html
-
 after_success:
 - codecov
-
 branches:
   only:
   - master
   - develop
-  
 deploy:
   - provider: heroku
-    api_key:
-        secure: h8xt0EpLEu67fxIzC/IKDpZHvkEY5whtNZdgcs118MhWK52oUj0oKK50ur9xel9m5GeDc7McQ9I06MemPB9cqgIFj7eQFqgjiVIN4rHvsJsY3hYO1hxorfQIy50yE3rsz0TxJrMZVibnOx9Q1Vu2xULw7+PTNsN5Kq2Fdge8R5UiSibCg/Fz1IVpLXv18SSwa6vgwaU0mqp6CszD0xaB1iSjuFDZGw3TSuXFkiQm9dTviXsT4St7uyYJCHweE58zZLB1rFL54uuV+d8DQlggTunpXT/xWERFcO75YddHWdauXAsio9DQRdm7GfFcVeHkNgUoZ/5oGlkBbOQ/iI2FXhyoCk5GvbFVibD4CTvFM2vHOxmGUN5slW1cXbRVJjyUtPiaQ0Bc5H/IkeaYEFuFRzEU72xo53DUvjt9PuKDHhoz7pBak4Xi9Bh+oA4l1IAzrvG2ZjaOjbFSvxpcc8mL75Dt13i1+E4PPTvcgsLYqLUpP5KTDExTYzrAWgrDlQyS9ZDLBwA9rKUbhP67CA9ViiOMXM7+i7iXk7S1Xjsfff4qca9AwdEHyqgPb8Pdw5HKOqmZyf1CQx1IJjhemlNOtMsKTPMgxfV63VvbMNnVe2iFp2h3WQFuMBSyF5YOGdCbDdvoQHZ4peGVCj0EW+eg4fr/IjmjGwTMi2vJU08nQLY=
+      api_key:
+        secure: XzMcZeVL/mT1RBKRdsG+n68MJHNUhV9l3r6lMAAQ6VI9bZ2Au65g2VUj8lZzcaY80Xezb3ThXThwZ/ohIekrTKvff8P3pQgJI4Y9YWm1PtykOIQOQMoHq8t+A00yzfeZpl5g70WR4jWAHEu6/LWkgmYk6qentjgjwLkglmudNjobaQxJXWj7SSfV7coA8z5LK44hDKAdGk2E4RyAdu86YontYDDi2gKKFvGWMLmYRkd3Ok4suiOKrojn0Lxgv46yDvhkk/V1ygoCXfGpFXboJxhB9lhN1+e4g+ZtTZbMCmbtjCKn/r6uSvrZ5E+P0KxsOLNoeIrusZRp6WEtWa5x5JmTCemJ1girgcGeL0XngvFjDTMMrYr9rOrlImY1sCuaa8ybeYkyw1DfxWQrpUD7MoL/C7k0VCjKmIEkUWxz3BODEz1rtV/+GpBFi1fhXuS2+diMKqQIuGLI17DXY4NCNU/SDBZ+ucwTBR2RxqakkVtXf0sZk5RbsoQTBua4UrPxf93R2QYE59sw7X+4uWtxE1CrrC043V70x6GVbE0H3txOlQBioU5jU3hFzw/BMqGsfeECa+FGtBBFCK2yA9ZMpPBqxGJNmm2+kFYR6sSsKxU3ebOVaAycJA5W2CXSsElai55Q0WMIzBZeTWLKJf6BkO8uKUKZwAcMPhiZw9RWNYA=
     app: changepop-fw
     on:
       python: 3.6
