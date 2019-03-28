@@ -10,6 +10,7 @@ script:
 - python -m unittest discover
 - coverage erase
 - coverage run --source=ChangePop test_webapp.py
+- ls
 - coverage html
 
 after_success:
@@ -22,7 +23,7 @@ branches:
   
 deploy:
   - provider: heroku
-      api_key:
+    api_key:
         secure: XzMcZeVL/mT1RBKRdsG+n68MJHNUhV9l3r6lMAAQ6VI9bZ2Au65g2VUj8lZzcaY80Xezb3ThXThwZ/ohIekrTKvff8P3pQgJI4Y9YWm1PtykOIQOQMoHq8t+A00yzfeZpl5g70WR4jWAHEu6/LWkgmYk6qentjgjwLkglmudNjobaQxJXWj7SSfV7coA8z5LK44hDKAdGk2E4RyAdu86YontYDDi2gKKFvGWMLmYRkd3Ok4suiOKrojn0Lxgv46yDvhkk/V1ygoCXfGpFXboJxhB9lhN1+e4g+ZtTZbMCmbtjCKn/r6uSvrZ5E+P0KxsOLNoeIrusZRp6WEtWa5x5JmTCemJ1girgcGeL0XngvFjDTMMrYr9rOrlImY1sCuaa8ybeYkyw1DfxWQrpUD7MoL/C7k0VCjKmIEkUWxz3BODEz1rtV/+GpBFi1fhXuS2+diMKqQIuGLI17DXY4NCNU/SDBZ+ucwTBR2RxqakkVtXf0sZk5RbsoQTBua4UrPxf93R2QYE59sw7X+4uWtxE1CrrC043V70x6GVbE0H3txOlQBioU5jU3hFzw/BMqGsfeECa+FGtBBFCK2yA9ZMpPBqxGJNmm2+kFYR6sSsKxU3ebOVaAycJA5W2CXSsElai55Q0WMIzBZeTWLKJf6BkO8uKUKZwAcMPhiZw9RWNYA=
     app: changepop-fw
     on:
