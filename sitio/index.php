@@ -61,32 +61,124 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Poner formulario de busqueda aqui !</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        <h1>Buscar :</h1> 
+            <p class="lead"></p>
+
+                <form method="post" action="contact.php" enctype="multipart/form-data" class="form-horizontal">
+                <fieldset>
+
+                <div class="row">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Qué buscas ?</label>  
+                    <div class="col-md-3">
+                    <input id="busqueda" name="busqueda" class="form-control input-md" required="" type="text">
+                    </div>
+                    <label class="col-md-2 control-label">Dondé ?</label>  
+                    <div class="col-md-3">
+                    <input id="lugar" name="lugar" class="form-control input-md" required="" type="text">
+                    </div>
+                    </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                    <div class="form-group">
+                    <label class="col-md-2 control-label">Precio Min :</label>  
+                    <div class="col-md-1">
+                        <input id="busqueda" name="busqueda" class="form-control input-md" required="" type="number">
+                    </div>
+                    <label class="col-md-1 control-label">Max :</label>  
+                    <div class="col-md-1">
+                        <input id="lugar" name="lugar" class="form-control input-md" required="" type="number">
+                    </div>
+                    
+                    <label class="col-md-2 control-label">Categoría :</label>  
+                    <div class="col-md-1">
+                        <select name="categoria" id="categoria">
+                                <option value="todas">Todas</option>
+                                <option value="tec">Tecnologia</option>
+                                <option value="al">Alojamiento</option>
+                                <option value="otra">Otra</option>
+                                        
+                        </select>
+                    </div>
+                    
+                </div>
+                </div>
+                <br>
+                    <button class="col-md-offset-5 btn btn-info" type="submit"><span class="glyphicon glyphicon-ok-sign"></span> Envoyer !</button>
+                </fieldset>
+                </form>
+
       </div>
     </div>
 
     <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-      </div>
+      
+      <!--primera linea -->
+        <div class="row">
+            <a href="anuncio.php" class="anuncio"><div class="col-md-6">
+            <h2>Heading</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <em>Precio : 550€</em>
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    </div>
+                        
+                    <div class="col-md-6">
+                        <img src="anuncioEjemplo.png" style="border: solid 2px white; width:100%;">
+                    </div>
+                </div>
+                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div></a>
+            
+            <a href="anuncio.php" class="anuncio"><div class="col-md-6">
+            <h2>Heading</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <em>Precio : 250€</em>
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    </div>
+                        
+                    <div class="col-md-6">
+                        <img src="anuncioEjemplo2.png" style="border: solid 2px white; width:100%;">
+                    </div>
+                </div>
+            </div>
+        </div></a>
 
+        <!-- segunda linea, etc -->
+        <div class="row">
+            <a href="anuncio.php" class="anuncio"><div class="col-md-6">
+            <h2>Heading</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <em>Precio : 350€</em>
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    </div>
+                        
+                    <div class="col-md-6">
+                        <img src="anuncioEjemplo2.png" style="border: solid 2px white; width:100%;">
+                    </div>
+                </div>
+            </div></a>
+             
+            <a href="anuncio.php" class="anuncio"><div class="col-md-6">
+            <h2>Heading</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <em>Precio : 200€</em>
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    </div>
+                        
+                    <div class="col-md-6">
+                        <img src="anuncioEjemplo.png" style="border: solid 2px white; width:100%;">
+                    </div>
+                </div>
+            </div></a>
+        </div>
+        
+        
       <hr>
 
       <footer>
