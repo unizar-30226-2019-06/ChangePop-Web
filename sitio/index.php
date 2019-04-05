@@ -114,14 +114,14 @@
     </div>
 
     <div class="container">
-      
+      <h1>Anuncios :</h1>
       <!--primera linea -->
         <div class="row">
             <a href="anuncio.php" class="anuncio"><div class="col-md-6">
-            <h2>Heading</h2>
+            <h2>Vendo mi play</h2>
                 <div class="row">
                     <div class="col-md-6">
-                        <em>Precio : 550€</em>
+                        <em>Precio : 550€ - Puesto hace 3 horas</em> 
                         <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
                     </div>
                         
@@ -133,10 +133,10 @@
             </div></a>
             
             <a href="anuncio.php" class="anuncio"><div class="col-md-6">
-            <h2>Heading</h2>
+            <h2>movil</h2>
                 <div class="row">
                     <div class="col-md-6">
-                        <em>Precio : 250€</em>
+                        <em>Precio : 250€ - Puesto hace 5 horas</em> 
                         <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
                     </div>
                         
@@ -150,10 +150,10 @@
         <!-- segunda linea, etc -->
         <div class="row">
             <a href="anuncio.php" class="anuncio"><div class="col-md-6">
-            <h2>Heading</h2>
+            <h2>play 4</h2>
                 <div class="row">
                     <div class="col-md-6">
-                        <em>Precio : 350€</em>
+                        <em>Precio : 350€ - Puesto hace 7 horas</em> 
                         <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
                     </div>
                         
@@ -164,10 +164,10 @@
             </div></a>
              
             <a href="anuncio.php" class="anuncio"><div class="col-md-6">
-            <h2>Heading</h2>
+            <h2>movil barrato</h2>
                 <div class="row">
                     <div class="col-md-6">
-                        <em>Precio : 200€</em>
+                        <em>Precio : 100€ - Puesto hace 8 horas</em> 
                         <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
                     </div>
                         
