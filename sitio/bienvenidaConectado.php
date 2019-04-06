@@ -33,28 +33,27 @@
 
   <body>
 
+        
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
+       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <div class="navbar-header">
+            <a class="navbar-brand" href="#">Bienvenida</a>
+            <a class="navbar-brand" href="#">Mis anuncios</a>
+            <a class="navbar-brand" href="#">Mis mensajes</a>
+            <a class="navbar-brand" href="#">Mi perfil</a>
+            </div>
+            <form class="navbar-form navbar-right">
+                <button type="submit" class="btn btn-danger">Disconnectarse</button>
+            </form>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Tu correo" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Contrasena" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Connectarse</button>
-          </form>
-        </div><!--/.navbar-collapse -->
       </div>
     </nav>
 
