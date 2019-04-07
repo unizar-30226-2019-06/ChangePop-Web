@@ -34,39 +34,68 @@
   <body>
     <!-- Barra de menu superior -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Project name</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <form class="navbar-form navbar-right">
-              <div class="form-group">
-                <input type="text" placeholder="Tu correo" class="form-control">
-              </div>
-              <div class="form-group">
-                <input type="password" placeholder="Contrasena" class="form-control">
-              </div>
-              <button type="submit" class="btn btn-success">Connectarse</button>
-            </form>
-          </div><!--/.navbar-collapse -->
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
         </div>
-      </nav>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Tu correo" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Contrasena" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Connectarse</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
 
 
-      <!-- Imagen de producto -->
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-12">
-              <img src="anuncioEjemplo.png" style="border: solid 2px white; margin-top:30px;" class="img-rounded center-block">
-          </div>
+    <!-- Imagen de producto -->
+    <div class="container top bottom" style="width: 90%; background-color: rgba(230, 240, 245, 0.9);margin-top:80px;">
+      <div class="row" style="margin-left:10%;">
+        <a href="perfil_vendedor.php"><img class="col-md-4 img-circle" src="icono.jpg" style="width: 8%; vertical-align: middle; margin-bottom:;"></a>
+        <a href="perfil_vendedor.php"><label class="col-md-4 control-label"style="vertical-align: middle;font-size: 2em;">Manuel_56</label></a>  <!-- nombre del vendedor -->
+        <a href="chat.php" style="vertical-align: middle;  margin-top:2px; width: 100px; margin-left:40%;" type="submit" class="btn btn-success col-md-4">chat</a>
+      </div>     
+      <div class="row">
+        <div class="col-sm-12">
+            <img src="anuncioEjemplo.png" style="width: 80%; border: solid 2px white; margin-top:30px; margin-bottom:30px;" class="img-rounded center-block">
         </div>
       </div>
+      <div>
+        <label style="font-size: 2em; margin-left:10%;">550 €</label>  <!-- precio -->
+      </div>
+      <div>
+        <label style="font-size: 2em; margin-left:10%;">Vendo mi play</label>  <!-- titulo -->
+      </div>
+      
+      <hr style="width:85%; border-color:black;">
+      <p style="font-size: 1.25em; margin-left:10%; margin-right:10%;">Vendo play station 4 casi sin uso, buena, bonita y barata. No tiene marcas de uso. Incluye un mando y cables necesarios para conectarla a la televisión. </p>
+      <hr style="width:85%; border-color:black;">
+      <div>
+        <label style="font-size: 1.25em; margin-left:10%;">Publicado: 10 enero 2019</label>  <!-- titulo -->
+      </div>
+      <hr style="width:85%; border-color:black;">
+      <div>
+        <label style="font-size: 1.25em; margin-left:10%;">Categorias:</label>
+        <label style="font-size: 1.25em; margin-left:5%; border: Solid #0f0fef 2px; padding: 0.5em;">Videojuegos</label>  
+        <label style="font-size: 1.25em; margin-left:5%; border: Solid #0f0fef 2px; padding: 0.5em;">Electronica</label>  
+      </div>
+      <hr style="width:85%; border-color:black;">
+      <div style="margin-bottom: 30px;">
+        <label style="font-size: 1.25em; margin-left:10%;">Ubicacion:</label>
+        <label style="font-size: 1.25em; margin-left:5%;">50001, Zaragoza:</label>
+      </div>
+    </div>
 
 
     <!-- Bootstrap core JavaScript
