@@ -59,7 +59,7 @@
     </nav>
 
     <div class="row" style="margin-left:10%; margin-top:50px; margin-bottom:40px">
-        <a href="perfil_vendedor.php"><img class="col-md-4 img-circle" src="icono.jpg" style="width: 8%; vertical-align: middle; margin-bottom:;"></a>
+        <a href="perfil_vendedor.php"><img class="col-md-4 img-circle" src="icono.jpg" style="width: 8%; vertical-align: middle;"></a>
         <a href="perfil_vendedor.php"><label class="col-md-4 control-label"style="vertical-align: middle;font-size: 2em;">Manuel_56</label></a>  <!-- nombre del vendedor -->
     </div>     
     
