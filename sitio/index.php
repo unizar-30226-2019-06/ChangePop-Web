@@ -53,6 +53,7 @@
               <input type="password" placeholder="Contrasena" class="form-control">
             </div>
             <button type="submit" class="btn btn-success">Connectarse</button>
+          <a href="suscribir.php">No tienes cuenta ?</a>
           </form>
         </div><!--/.navbar-collapse -->
       </div>
