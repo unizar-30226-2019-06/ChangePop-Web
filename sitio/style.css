@@ -61,3 +61,12 @@ background-image:linear-gradient(#233, #146);
 {
     color:black;
 }
+
+.top {
+  border-top-left-radius:40px;
+  border-top-right-radius:40px;
+}
+.bottom {
+  border-bottom-left-radius:40px;
+  border-bottom-right-radius:40px;
+}
