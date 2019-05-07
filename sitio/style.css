@@ -45,10 +45,19 @@ body > .container {
   padding-left: 15px;
 }
 
+.glyphicon.glyphicon-heart {
+  font-size:20px;
+}
+
+.glyphicon.glyphicon-comment {
+  font-size:20px;
+}
+
 
 .navbar
 {
-background-image:linear-gradient(#233, #146);
+
+  background-image:linear-gradient(#233, #146);
 }
 
 .jumbotron

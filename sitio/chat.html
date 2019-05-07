@@ -34,29 +34,44 @@
   <body>
     <!-- Barra de menu superior -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+      <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#"><img src="logo.png" width="35px" /></a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Tu correo" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Contrasena" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Connectarse</button>
-          </form>
-        </div><!--/.navbar-collapse -->
+        <div class="collapse navbar-collapse" id="myNavbar">
+              <form class="navbar-form navbar-left" action="/action_page.php">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                  </div>
+                  <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                  <button type="submit" class="btn btn-success">Subir producto</button>
+                </form>
+                
+
+          <ul class="nav navbar-nav navbar-right" id="in_line" >
+              
+                  <div class="dropdown"> 
+                          <a data-toggle="dropdown" style="color:rgb(0, 0, 0);" >
+                              <span style="color:blue;font-weight:bold" >PEDRITO</span>
+                          <img src="icono.jpg" class='img-circle' height="42" width="42"  > </img>
+                              <ul class="dropdown-menu">
+                                  <li><a href="chat.html">Mensajes <span class="glyphicon glyphicon-envelope"></span> <span class="badge">10</span></li>
+                                 <li><a href="#">Mi carrito  <span class="glyphicon glyphicon-shopping-cart my-cart-icon"></span> <span class="badge">10</span></li>
+                                 <li><a href="perfil_vendedor.html">Mi perfil <span class="glyphicon glyphicon-user"></span></a></li>
+                               <li><a href="#">Configuracion <span class="glyphicon glyphicon-cog"></span></a></li>
+                                <li><a href="index.html">Desconectarse <span class="glyphicon glyphicon-off"></span></a></li>
+                                
+                             </ul>
+                      </div>
+                  </a>
+                  
+              
+                  </div>
+                  
+          </ul>
+        </div>
       </div>
-    </nav>
+  </nav>
 
     <div class="row" style="margin-left:10%; margin-top:50px; margin-bottom:40px">
         <a href="perfil_vendedor.php"><img class="col-md-4 img-circle" src="icono.jpg" style="width: 8%; vertical-align: middle;"></a>
