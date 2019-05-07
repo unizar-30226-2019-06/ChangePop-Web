@@ -131,3 +131,10 @@ body > .container {
   float: left;
   color: #999;
 }
+
+hr
+{
+	border: none;
+	border-bottom: 1px solid #151;
+}
+
