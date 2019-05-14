@@ -9,23 +9,23 @@
     <meta name="author" content="">
    <!-- <link rel="icon" href="../../favicon.ico">-->
 
-    <title>Publicar anuncio</title>
+    <title>Editar anuncio</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="/static/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="style.css" rel="stylesheet">
+    <link href="/static/style.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="assets/js/ie-emulation-modes-warning.js"></script>
-    <script src="/jquery.mycart-master/js/bootstrap.min.js"></script>
-    <script src="/jquery.mycart-master/js/jquery-2.2.3.min.js"></script>
-    <script src="/jquery.mycart-master/js/jquery.mycart.js"></script>
+    <script src="/static/assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="/static/jquery.mycart-master/js/bootstrap.min.js"></script>
+    <script src="/static/jquery.mycart-master/js/jquery-2.2.3.min.js"></script>
+    <script src="/static/jquery.mycart-master/js/jquery.mycart.js"></script>
 
 
 
@@ -84,7 +84,7 @@
   <!-- Panel de Subir Cartel -->
   <div class="container" id="subirCartel">
         <div class="card card-register mx-auto mt-5" style="width: 100%;">
-        <div class="card-header"><h3>Crear nuevo anuncio</h3></div>
+        <div class="card-header"><h3>Editar anuncio</h3></div>
         <div class="card-body">         
             <div class="file-field">
               <div class="mb-4">
@@ -96,13 +96,13 @@
               </div>
             
             <div class="input-group" style="width:200px;">
-                <label for="precio">Precio</label>
-                <input type="number" class="form-control" id="precio" aria-describedby="emailHelp" placeholder="Introduzca precio">
+                <label for="precio">Cambiar precio</label>
+                <input type="number" class="form-control" id="precio" aria-describedby="emailHelp" placeholder="200€">
                 
               </div>
               <div class="input-group">
-                <label for="nombreProducto">Nombre del producto</label>
-                <input type="text" class="form-control" id="nombreProducto" placeholder="Introduzca nombre del producto">
+                <label for="nombreProducto">Cambiar nombre del producto</label>
+                <input type="text" class="form-control" id="nombreProducto" placeholder="Playstasion 3">
               </div>
             <br/>
              <div class="form-group "  style="width:800px;">
@@ -130,20 +130,19 @@
              <br/>
              <br/>
              <div class="input-group">
-                <label for="lugarRecogida">Lugar de recogida</label>
-                <input type="text" class="form-control" id="lugarRecogida" placeholder="Introduzca el lugar de recogida">
+                <label for="lugarRecogida">Cambiar lugar de recogida</label>
+                <input type="text" class="form-control" id="lugarRecogida" placeholder="Campus rio Ebro">
               </div>
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.704773694934!2d-0.8918526858511633!3d41.68371898553728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd59135c386ec533%3A0x79c6654aa2335b79!2sCampus+R%C3%ADo+Ebro!5e0!3m2!1ses!2ses!4v1554572506767!5m2!1ses!2ses" 
                width="300" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>   
                <br/>
                   <button onclick="getLocation()" class="btn btn-primary">Localizame!</button>
-                  
             <br/>
               
             
               <br/>
               <div class="text-right">
-              <button type="submit" class="btn btn-success btn-lg">Publicar Anuncio </button>
+              <button type="submit" class="btn btn-success btn-lg">Editar anuncio </button>
             </div>  
                 <script>
                   var x = document.getElementById("demo");
@@ -168,8 +167,8 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="/static/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="/static/assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
