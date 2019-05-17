@@ -23,6 +23,8 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
+    
+    <script type="text/javascript" src="httpGet.js"></script> 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -77,21 +79,27 @@
 
     <div class="container top bottom" style="width: 90%; background-color: rgba(230, 240, 245, 0.9);margin-top:80px;">
         <div>
-            <img class="img-circle" src="../static/icono.jpg" style="width: 30%; margin-left:35%;">
+            <img id="avatar" class="img-circle" src="../static/icono.jpg" style="width: 30%; margin-left:35%;">
         </div>
         <div>
-            <label class="control-label"style="font-size: 2em; margin-left: 45%; margin-top: 20px">Manuel_56</label>  <!-- nombre del vendedor -->
+            <label id="nick" class="control-label"style="font-size: 2em; margin-left: 45%; margin-top: 20px"></label>  <!-- nombre del vendedor -->
+            <br />
+            <strong> Apellido - nombre </strong> : <span id="first_name"></span> - <span id="last_name"></span> <br />
+            <strong> Ciudad </strong> : <span id="place"></span><br />
+            <strong> Correo </strong> : <span id="mail"></span><br />
+            <strong> Phone </strong> : <span id="phone"></span><br />
+            <strong> Fecha de nacimiento </strong> : <span id="fnac"></span><br />
         </div>
         <hr style="width:85%; border-color:black;">
 
         <label class="control-label"style="font-size: 2em; border: Solid #0f0fef 2px; padding: 0.5em;">Mis anuncios</label>
         
         <div class="row" style="margin-bottom:50px">
-            <div class="col-md-3 " style="border: solid 2px white;">
+            <div class="col-md-3 " style="border: solid 2px white; margin-left:10px;">
                 <h2>Vendo mi play  </h2>
               <a href="anuncio.html" class="anuncio">
                       
-                      <img src="anuncioEjemplo.png" style="border: solid 2px white; width:250px; height:200px ">
+                      <img src="../static/anuncioEjemplo.png" style="border: solid 2px white; width:250px; height:200px ">
                   </br>
                       <em>Precio <strong>300€</strong>  Puesto hace 3 horas</span> </em> 
                       <p>vendo ps3 80 gb en buen estado, la vendo por no usarla. la entrego con su cable de alimentacion y mando original con su cable de carga también.
@@ -101,7 +109,7 @@
               <h3><a href="perfil_vendedor.html">Editar <span class="glyphicon glyphicon-edit "></span></a>
                 <a href="perfil_vendedor.html">Borrar <span class="glyphicon glyphicon-remove"></span></a></h3>
             </div>
-            
+        </div>
 
 
         <hr style="width:85%; border-color:black;">
@@ -143,16 +151,31 @@
             </div>
 
             <button style="vertical-align: middle;  margin-top:20px; width: 200px; margin-left:40%; margin-bottom:40px;" type="submit" class="btn btn-success btn-lg" data-toggle="modal" data-target="#miModal">Añadir comentario</button>
-                
+                 
+
+    <div id="descripcion">yoo
+    </div>
         </div>
-    </div>   
-
-
+    </div>  
+<script>
+var urlObtenerCartel = "http://kelpa-api.herokuapp.com/profile/borja"
+  //Necesario para parsear el json
+      var jsonCartel = JSON.parse(httpGet(urlObtenerCartel));
+  //Darle una id al campo que obtienes para mostrarla en html 
+      document.getElementById("first_name").innerHTML = jsonCartel.first_name;
+      document.getElementById("fnac").innerHTML = jsonCartel.fnac;
+      document.getElementById("last_name").innerHTML = jsonCartel.last_name;
+      document.getElementById("nick").innerHTML = jsonCartel.nick;
+      document.getElementById("place").innerHTML = jsonCartel.place;
+      document.getElementById("mail").innerHTML = jsonCartel.mail;
+      document.getElementById("phone").innerHTML = jsonCartel.phone;
+      document.getElementById("avatar").setAttribute("src", jsonCartel.avatar);
+</script>
    <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="../static/assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../static/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../static/assets/js/ie10-viewport-bug-workaround.js"></script>
