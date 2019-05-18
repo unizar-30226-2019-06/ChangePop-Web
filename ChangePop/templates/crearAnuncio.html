@@ -12,21 +12,21 @@
     <title>Publicar anuncio</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/static/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="/static/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="../static/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/static/style.css" rel="stylesheet">
+    <link href="../static/style.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="assets/js/ie-emulation-modes-warning.js"></script>
-    <script src="/jquery.mycart-master/js/bootstrap.min.js"></script>
-    <script src="/jquery.mycart-master/js/jquery-2.2.3.min.js"></script>
-    <script src="/jquery.mycart-master/js/jquery.mycart.js"></script>
-
+    <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="../static//jquery.mycart-master/js/bootstrap.min.js"></script>
+    <script src="../static//jquery.mycart-master/js/jquery-2.2.3.min.js"></script>
+    <script src="../static//jquery.mycart-master/js/jquery.mycart.js"></script>
+    
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -43,7 +43,7 @@
             
             <div class="collapse navbar-collapse" id="myNavbar">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="bienvenidaConectado.html"><img src="logo.jpg" width="55px" /></a>
+                    <a class="navbar-brand" href="bienvenidaConectado.html"><img src="../static/logo.jpg" width="55px" /></a>
                   </div>
                   <form class="navbar-form navbar-left" action="/action_page.php">
                       <div class="form-group">
@@ -109,19 +109,27 @@
                 <textarea class="form-control" name="blog_body" id="blog_body" rows="8"  placeholder="Descripcion del producto" ></textarea>
              </div>
              <br/>
-             <label for="Categorias">Categorias</label>
-             <select title="Categorias" class="selectpicker">
-                    <optgroup label="Tecnologia">
-                            <option>Ordenadores</option>
-                            <option>Auriculares</option>
-                            <option>Piezas</option>
-                          </optgroup>
-                    <optgroup label="Ropa">
-                      <option>Hombre</option>
-                      <option>Mujer</option>
-                      <option>Niño/a</option>
-                    </optgroup>
-             </select>
+             <br/>
+<div class="container">
+  <div class="row">
+       <div class="col-lg-12">
+     <div class="button-group">
+        <button type="button"  data-toggle="dropdown">Categorias<span class="glyphicon glyphicon-list-alt"></span> <span class="caret"></span></button>
+<ul class="dropdown-menu">
+      <script> 
+          var jsonCategorias = JSON.parse('{"length": 7, "list": ["Moda", "Complementeos", "Deporte", "Casa", "Juguetes", "Cocina", "Jard\u00edn"]}')
+          for (i in jsonCategorias.list) {
+            
+              document.write('<li>  <a class="small"  data-value=" ' + jsonCategorias.list[i].toString()  + ' " tabIndex="-1"><input type="checkbox">&nbsp;' + jsonCategorias.list[i].toString() +
+              '</a></li>');
+              }   
+      </script>
+
+</ul>
+  </div>
+</div>
+  </div>
+</div>
              <br/>
              <br/>
              <label class="checkbox-inline"><input type="checkbox" value="">Negociable</label>
@@ -168,8 +176,15 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="/static/dist/js/bootstrap.min.js"></script>
+    <script src="../static/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/static/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../static/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //La url
+        //<li><a href="#" class="small" data-value="option1" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 1</a></li>
+      
+     </script>
+
+
   </body>
 </html>

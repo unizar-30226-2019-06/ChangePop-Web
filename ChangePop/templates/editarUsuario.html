@@ -12,20 +12,23 @@
     <title>Editar usuario</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/static/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="/static/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="../static/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/static/style.css" rel="stylesheet">
+    <link href="../static/style.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="/static/assets/js/ie-emulation-modes-warning.js"></script>
-    <script src="/static/jquery.mycart-master/js/bootstrap.min.js"></script>
-    <script src="/static/jquery.mycart-master/js/jquery-2.2.3.min.js"></script>
-    <script src="/static/jquery.mycart-master/js/jquery.mycart.js"></script>
+    <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="../static/jquery.mycart-master/js/bootstrap.min.js"></script>
+    <script src="../static/jquery.mycart-master/js/jquery-2.2.3.min.js"></script>
+    <script src="../static/jquery.mycart-master/js/jquery.mycart.js"></script>
+    
+    
+    <script type="text/javascript" src="httpGet.js"></script> 
 
 
 
@@ -43,7 +46,7 @@
             
             <div class="collapse navbar-collapse" id="myNavbar">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="bienvenidaConectado.html"><img src="logo.jpg" width="55px" /></a>
+                    <a class="navbar-brand" href="bienvenidaConectado.html"><img src="../static/logo.jpg" width="55px" /></a>
                   </div>
                   <form class="navbar-form navbar-left" action="/action_page.php">
                       <div class="form-group">
@@ -84,7 +87,7 @@
         <div class="card bg-light">
           
           <form>
-              <img src="icono.jpg" class="rounded" height="200" width="250">
+              <img id="avatar" src="icono.jpg" class="rounded" height="200" width="250">
               <label class="btn btn-default btn-file">
                   Cambiar imagen <input type="file" style="display: none;">
               </label>
@@ -94,33 +97,33 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Cambiar nombre: <i class="fa fa-user"></i> </span>
              </div>
-                <input name="" class="form-control" placeholder="Pedrito" type="text">
+                <input id="nick" name="" class="form-control" placeholder="Pedrito" type="text">
             </div> <!-- form-group// -->
 
             <div class="form-group input-group">
               <div class="input-group-prepend">
                   <span class="input-group-text">Cambiar primer apellido: <i class="fa fa-user"></i> </span>
                </div>
-                  <input name="" class="form-control" placeholder="Jose" type="text">
+                  <input id="first_name" name="" class="form-control" placeholder="Jose" type="text">
               </div> 
 
               <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Cambiar segundo apellido: <i class="fa fa-user"></i> </span>
                  </div>
-                    <input name="" class="form-control" placeholder="Manuel" type="text">
+                    <input id="last_name" name="" class="form-control" placeholder="Manuel" type="text">
                 </div> 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Cambiar fecha de nacimiento: <i class="fa fa-user"></i> </span>
                      </div>
-                        <input name="" class="form-control"  type="date">
+                        <input id="fnac" name="" class="form-control"  type="date">
                     </div> 
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">Cambiar correo <i class="fa fa-envelope"></i> </span>
              </div>
-                <input name="" class="form-control" placeholder="Pedrito@hotmail.com" type="email">
+                <input id="mail" name="" class="form-control" placeholder="Pedrito@hotmail.com" type="email">
             </div> <!-- form-group// -->
             <div class="form-group input-group">
               <div class="input-group-prepend">
@@ -133,7 +136,7 @@
             </div>
           </br>
             <div>
-                <span class="input-group-text">Cambiar numero: <i class="fa fa-phone"></i> </span>
+                <span id="phone" class="input-group-text">Cambiar numero: <i class="fa fa-phone"></i> </span>
               <input name="" class="form-control" placeholder="Phone number" type="tel">
             </div> <!-- form-group// -->
             
@@ -163,12 +166,19 @@
         </div> <!-- card.// -->
         
         </div> 
+        <script>
+var urlObtenerCartel = "http://kelpa-api.herokuapp.com/profile/borja"
+  //Necesario para parsear el json
+      var jsonCartel = JSON.parse(httpGet(urlObtenerCartel));
+  //Darle una id al campo que obtienes para mostrarla en html 
+      document.getElementById("descripcion").innerHTML = jsonCartel.place;
+</script>
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
-  <script src="/static/dist/js/bootstrap.min.js"></script>
+  <script src="../static/dist/js/bootstrap.min.js"></script>
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <script src="/static/assets/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="../static/assets/js/ie10-viewport-bug-workaround.js"></script>
 
      
         

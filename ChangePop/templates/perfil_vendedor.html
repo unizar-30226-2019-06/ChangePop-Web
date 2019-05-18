@@ -12,17 +12,19 @@
     <title>Perfil vendedor</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/static/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="/static/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="../static/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/static/style.css" rel="stylesheet">
+    <link href="../static/style.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="/static/assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
+    
+    <script type="text/javascript" src="httpGet.js"></script> 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -38,7 +40,7 @@
           
           <div class="collapse navbar-collapse" id="myNavbar">
               <div class="navbar-header">
-                  <a class="navbar-brand" href="bienvenidaConectado.html"><img src="logo.jpg" width="55px" /></a>
+                  <a class="navbar-brand" href="bienvenidaConectado.html"><img src="../static/logo.jpg" width="55px" /></a>
                 </div>
                 <form class="navbar-form navbar-left" action="/action_page.php">
                     <div class="form-group">
@@ -55,7 +57,7 @@
                     <div class="dropdown"> 
                             <a data-toggle="dropdown" style="color:rgb(0, 0, 0);" >
                                 <span style="color:white;font-weight:bold" >Manuel_56</span>
-                            <img src="icono.jpg" class='img-circle' height="42" width="42"  > </img>
+                            <img src="../static/icono.jpg" class='img-circle' height="42" width="42"  > </img>
                                 <ul class="dropdown-menu">
                                     <li><a href="chat.html">Mensajes <span class="glyphicon glyphicon-envelope"></span> <span class="badge">10</span></li>
                                    <li><a href="#">Mi carrito  <span class="glyphicon glyphicon-shopping-cart my-cart-icon"></span> <span class="badge">10</span></li>
@@ -77,21 +79,27 @@
 
     <div class="container top bottom" style="width: 90%; background-color: rgba(230, 240, 245, 0.9);margin-top:80px;">
         <div>
-            <img class="img-circle" src="icono.jpg" style="width: 30%; margin-left:35%;">
+            <img id="avatar" class="img-circle" src="../static/icono.jpg" style="width: 30%; margin-left:35%;">
         </div>
         <div>
-            <label class="control-label"style="font-size: 2em; margin-left: 45%; margin-top: 20px">Manuel_56</label>  <!-- nombre del vendedor -->
+            <label id="nick" class="control-label"style="font-size: 2em; margin-left: 45%; margin-top: 20px"></label>  <!-- nombre del vendedor -->
+            <br />
+            <strong> Apellido - nombre </strong> : <span id="first_name"></span> - <span id="last_name"></span> <br />
+            <strong> Ciudad </strong> : <span id="place"></span><br />
+            <strong> Correo </strong> : <span id="mail"></span><br />
+            <strong> Phone </strong> : <span id="phone"></span><br />
+            <strong> Fecha de nacimiento </strong> : <span id="fnac"></span><br />
         </div>
         <hr style="width:85%; border-color:black;">
 
         <label class="control-label"style="font-size: 2em; border: Solid #0f0fef 2px; padding: 0.5em;">Mis anuncios</label>
         
         <div class="row" style="margin-bottom:50px">
-            <div class="col-md-3 " style="border: solid 2px white;">
+            <div class="col-md-3 " style="border: solid 2px white; margin-left:10px;">
                 <h2>Vendo mi play  </h2>
               <a href="anuncio.html" class="anuncio">
                       
-                      <img src="anuncioEjemplo.png" style="border: solid 2px white; width:250px; height:200px ">
+                      <img src="../static/anuncioEjemplo.png" style="border: solid 2px white; width:250px; height:200px ">
                   </br>
                       <em>Precio <strong>300€</strong>  Puesto hace 3 horas</span> </em> 
                       <p>vendo ps3 80 gb en buen estado, la vendo por no usarla. la entrego con su cable de alimentacion y mando original con su cable de carga también.
@@ -101,26 +109,26 @@
               <h3><a href="perfil_vendedor.html">Editar <span class="glyphicon glyphicon-edit "></span></a>
                 <a href="perfil_vendedor.html">Borrar <span class="glyphicon glyphicon-remove"></span></a></h3>
             </div>
-            
+        </div>
 
 
         <hr style="width:85%; border-color:black;">
         <label class="control-label"style="font-size: 2em; border: Solid #0f0fef 2px; padding: 0.5em;">Comentarios</label>
         <div  style="margin-bottom:50px">
             <div class="container_chat darker">
-                <img class="col-md-4 img-circle" src="icono.jpg" style="width: 8%; vertical-align: middle;"></a>
+                <img class="col-md-4 img-circle" src="../static/icono.jpg" style="width: 8%; vertical-align: middle;"></a>
                 <label class="col-md-3 control-label"style="vertical-align: middle;font-size: 1.5em;">Paco_45</label></a> 
                 <p class="text-left">Excelente vendedor</p>
             </div>
 
             <div class="container_chat darker">
-                <img class="col-md-4 img-circle" src="icono2.jpg" style="width: 8%; vertical-align: middle;"></a>
+                <img class="col-md-4 img-circle" src="../static/icono2.jpg" style="width: 8%; vertical-align: middle;"></a>
                 <label class="col-md-3 control-label"style="vertical-align: middle;font-size: 1.5em;">Carlos_98</label></a> 
                 <p class="text-left">Comora sin ningun problema</p>
             </div>
 
             <div class="container_chat darker">
-                <img class="col-md-4 img-circle" src="icono3.jpg" style="width: 8%; vertical-align: middle;"></a>
+                <img class="col-md-4 img-circle" src="../static/icono3.jpg" style="width: 8%; vertical-align: middle;"></a>
                 <label class="col-md-3 control-label"style="vertical-align: middle;font-size: 1.5em;">Sofia_7473</label></a>  
                 <p class="text-left">Comunicacion con el vendedor excelente</p>
             </div>
@@ -143,18 +151,33 @@
             </div>
 
             <button style="vertical-align: middle;  margin-top:20px; width: 200px; margin-left:40%; margin-bottom:40px;" type="submit" class="btn btn-success btn-lg" data-toggle="modal" data-target="#miModal">Añadir comentario</button>
-                
+                 
+
+    
         </div>
-    </div>   
-
-
+    </div>  
+<script>
+var urlObtenerUsuario = "http://kelpa-api.herokuapp.com/profile/borja"
+  //Necesario para parsear el json
+      var jsonUsuario = JSON.parse(httpGet(urlObtenerUsuario));
+     
+  //Darle una id al campo que obtienes para mostrarla en html 
+      document.getElementById("first_name").innerHTML = jsonUsuario.first_name;
+      document.getElementById("fnac").innerHTML = jsonUsuario.fnac;
+      document.getElementById("last_name").innerHTML = jsonUsuario.last_name;
+      document.getElementById("nick").innerHTML = jsonUsuario.nick;
+      document.getElementById("place").innerHTML = jsonUsuario.place;
+      document.getElementById("mail").innerHTML = jsonUsuario.mail;
+      document.getElementById("phone").innerHTML = jsonUsuario.phone;
+      document.getElementById("avatar").setAttribute("src", jsonUsuario.avatar);
+</script>
    <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="/static/dist/js/bootstrap.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../static/assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../static/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/static/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../static/assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
