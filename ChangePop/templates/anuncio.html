@@ -24,6 +24,16 @@
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
 
+    <script type="text/javascript" src="httpGet.js"></script> 
+
+    
+    <script>
+var urlObtenerUsuario = "http://kelpa-api.herokuapp.com/product/356"
+  //Necesario para parsear el json
+      var jsonUsuario = JSON.parse(httpGet(urlObtenerUsuario));
+     </script>
+     
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -88,38 +98,59 @@
       </div>     
       <div class="row">
         <div class="col-sm-12">
-            <img src="anuncioEjemplo.png" style="width: 80%; border: solid 2px white; margin-top:30px; margin-bottom:30px;" class="img-rounded center-block">
+            <img id="main_img" src="anuncioEjemplo.png" style="width: 80%; border: solid 2px white; margin-top:30px; margin-bottom:30px;" class="img-rounded center-block">
         </div>
       </div>
       <div>
-        <label style="font-size: 2em; margin-left:10%;">550 €</label>  <!-- precio -->
+        <label style="font-size: 2em; margin-left:10%;"><span id="price"></span> €</label>  <!-- precio -->
       </div>
       <div>
-        <label style="font-size: 2em; margin-left:10%;">Vendo mi play</label>  <!-- titulo -->
+        <label id="title" style="font-size: 2em; margin-left:10%;"></label>  <!-- titulo -->
       </div>
       
       <hr style="width:85%; border-color:black;">
-      <p style="font-size: 1.25em; margin-left:10%; margin-right:10%;">Vendo play station 4 casi sin uso, buena, bonita y barata. No tiene marcas de uso. Incluye un mando y cables necesarios para conectarla a la televisión. </p>
+      <p id="descript" style="font-size: 1.25em; margin-left:10%; margin-right:10%;"> </p>
       <hr style="width:85%; border-color:black;">
       <div>
-        <label style="font-size: 1.25em; margin-left:10%;">Publicado: 10 enero 2019</label>  <!-- titulo -->
+        <label style="font-size: 1.25em; margin-left:10%;">Publicado: <span id="publish_date"></span></label>  <!-- titulo -->
       </div>
       <hr style="width:85%; border-color:black;">
       <div>
         <label style="font-size: 1.25em; margin-left:10%;">Categorias:</label>
+        
+              <script> 
+          var jsonCategorias = JSON.parse(jsonUsuario.categories)
+          for (i in jsonCategorias.list) {
+            
+              document.write('<label style="font-size: 1.25em; margin-left:5%; border: Solid #0f0fef 2px; padding: 0.5em;">' + jsonCategorias.list[i].toString()  + '</label>');
+              }   
+      </script>
+        
+        
+        
         <label style="font-size: 1.25em; margin-left:5%; border: Solid #0f0fef 2px; padding: 0.5em;">Videojuegos</label>  
         <label style="font-size: 1.25em; margin-left:5%; border: Solid #0f0fef 2px; padding: 0.5em;">Electronica</label>  
       </div>
       <hr style="width:85%; border-color:black;">
       <div class=container>
           
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.704773694934!2d-0.8918526858511633!3d41.68371898553728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd59135c386ec533%3A0x79c6654aa2335b79!2sCampus+R%C3%ADo+Ebro!5e0!3m2!1ses!2ses!4v1554572506767!5m2!1ses!2ses" 
+          <iframe id="place" src="https://www.google.fr/maps/search/" 
           width="300" height="300" frameborder="0" style="border:0; margin-left:5%" allowfullscreen> </iframe>  
         
         </div>
     </div>
 
+<script>
+  //Darle una id al campo que obtienes para mostrarla en html 
+      document.getElementById("descript").innerHTML = jsonUsuario.descript;
+      document.getElementById("price").innerHTML = jsonUsuario.price;
+      document.getElementById("publish_date").innerHTML = jsonUsuario.publish_date;
+      document.getElementById("title").innerHTML = jsonUsuario.title;
+      document.getElementById("main_img").setAttribute("src", jsonUsuario.main_img);
+      document.getElementById("place").setAttribute("src", "https://www.google.fr/maps/search/" + jsonUsuario.place);
+</script>
 
+    
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
