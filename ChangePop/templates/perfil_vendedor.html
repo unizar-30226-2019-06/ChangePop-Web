@@ -94,6 +94,30 @@
 
         <label class="control-label"style="font-size: 2em; border: Solid #0f0fef 2px; padding: 0.5em;">Mis anuncios</label>
         
+        <script>
+                var urlObtenerAnuncios = "http://kelpa-api.herokuapp.com/products/637"
+                //Necesario para parsear el json              
+                var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios));
+                var anuncios = jsonAnuncios.list;
+                for (i in anuncios) {
+                    document.write(' <a href="anuncio.html" class="anuncio">  <div class="col-md-3 " style="border: solid 2px white;"> '  );
+                    document.write('<h2>'+ anuncios[i].title + '</h2>'   );
+                    document.write('<img src="'+  anuncios[i].main_img  + '" style="border: solid 2px white; width:250px; height:200px ">');
+                    document.write('</br>');
+                    document.write(' <em>Precio <strong>' + anuncios[i].price   + '€</strong> - Fecha publicación:' +   anuncios[i].publish_date  + 
+                    '<span class="glyphicon glyphicon-map-marker " style="color:green;font-size: 20px" >'+ anuncios[i].place +'</span> </em>');
+                    document.write(' <p>'+ anuncios[i].descript  + '</p> ');
+                    document.write('<div class="row">');
+                    document.write('<h3><a href="perfil_vendedor.html">Editar <span class="glyphicon glyphicon-edit "></span></a>');
+                    document.write(' <a href="perfil_vendedor.html">Borrar <span class="glyphicon glyphicon-remove"></span></a></h3>');
+                    document.write('</div> </div> </a>');    
+                 }              
+            
+          
+        
+        </script>
+
+
         <div class="row" style="margin-bottom:50px">
             <div class="col-md-3 " style="border: solid 2px white; margin-left:10px;">
                 <h2>Vendo mi play  </h2>
