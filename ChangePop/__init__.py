@@ -13,6 +13,6 @@ def create_app():
 
     @app.route('/<path:subpath>')
     def show2(subpath):
-        return render_template(subpath+'.html')
+        return render_template(subpath)
 
     return app
