@@ -153,23 +153,23 @@
             <button style="vertical-align: middle;  margin-top:20px; width: 200px; margin-left:40%; margin-bottom:40px;" type="submit" class="btn btn-success btn-lg" data-toggle="modal" data-target="#miModal">Añadir comentario</button>
                  
 
-    <div id="descripcion">yoo
-    </div>
+    
         </div>
     </div>  
 <script>
-var urlObtenerCartel = "http://kelpa-api.herokuapp.com/profile/borja"
+var urlObtenerUsuario = "http://kelpa-api.herokuapp.com/profile/borja"
   //Necesario para parsear el json
-      var jsonCartel = JSON.parse(httpGet(urlObtenerCartel));
+      var jsonUsuario = JSON.parse(httpGet(urlObtenerUsuario));
+     
   //Darle una id al campo que obtienes para mostrarla en html 
-      document.getElementById("first_name").innerHTML = jsonCartel.first_name;
-      document.getElementById("fnac").innerHTML = jsonCartel.fnac;
-      document.getElementById("last_name").innerHTML = jsonCartel.last_name;
-      document.getElementById("nick").innerHTML = jsonCartel.nick;
-      document.getElementById("place").innerHTML = jsonCartel.place;
-      document.getElementById("mail").innerHTML = jsonCartel.mail;
-      document.getElementById("phone").innerHTML = jsonCartel.phone;
-      document.getElementById("avatar").setAttribute("src", jsonCartel.avatar);
+      document.getElementById("first_name").innerHTML = jsonUsuario.first_name;
+      document.getElementById("fnac").innerHTML = jsonUsuario.fnac;
+      document.getElementById("last_name").innerHTML = jsonUsuario.last_name;
+      document.getElementById("nick").innerHTML = jsonUsuario.nick;
+      document.getElementById("place").innerHTML = jsonUsuario.place;
+      document.getElementById("mail").innerHTML = jsonUsuario.mail;
+      document.getElementById("phone").innerHTML = jsonUsuario.phone;
+      document.getElementById("avatar").setAttribute("src", jsonUsuario.avatar);
 </script>
    <!-- Bootstrap core JavaScript
     ================================================== -->
