@@ -28,9 +28,9 @@
 
     
     <script>
-var urlObtenerUsuario = "http://kelpa-api.herokuapp.com/product/356"
-  //Necesario para parsear el json
-      var jsonUsuario = JSON.parse(httpGet(urlObtenerUsuario));
+      var urlObtenerProducto = "http://kelpa-api.herokuapp.com/product/356"
+      //Necesario para parsear el json
+      var jsonProducto = JSON.parse(httpGet(urlObtenerProducto));
      </script>
      
 
@@ -118,18 +118,14 @@ var urlObtenerUsuario = "http://kelpa-api.herokuapp.com/product/356"
       <div>
         <label style="font-size: 1.25em; margin-left:10%;">Categorias:</label>
         
-              <script> 
-          var jsonCategorias = JSON.parse(jsonUsuario.categories)
-          for (i in jsonCategorias.list) {
+      <script> 
+          
+          for (i in jsonProducto.categories) {
             
-              document.write('<label style="font-size: 1.25em; margin-left:5%; border: Solid #0f0fef 2px; padding: 0.5em;">' + jsonCategorias.list[i].toString()  + '</label>');
+              document.write('<label style="font-size: 1.25em; margin-left:5%; border: Solid #0f0fef 2px; padding: 0.5em;">' + jsonProducto.categories[i]  + '</label>');
               }   
       </script>
         
-        
-        
-        <label style="font-size: 1.25em; margin-left:5%; border: Solid #0f0fef 2px; padding: 0.5em;">Videojuegos</label>  
-        <label style="font-size: 1.25em; margin-left:5%; border: Solid #0f0fef 2px; padding: 0.5em;">Electronica</label>  
       </div>
       <hr style="width:85%; border-color:black;">
       <div class=container>
@@ -142,12 +138,12 @@ var urlObtenerUsuario = "http://kelpa-api.herokuapp.com/product/356"
 
 <script>
   //Darle una id al campo que obtienes para mostrarla en html 
-      document.getElementById("descript").innerHTML = jsonUsuario.descript;
-      document.getElementById("price").innerHTML = jsonUsuario.price;
-      document.getElementById("publish_date").innerHTML = jsonUsuario.publish_date;
-      document.getElementById("title").innerHTML = jsonUsuario.title;
-      document.getElementById("main_img").setAttribute("src", jsonUsuario.main_img);
-      document.getElementById("place").setAttribute("src", "https://www.google.fr/maps/search/" + jsonUsuario.place);
+      document.getElementById("descript").innerHTML = jsonProducto.descript;
+      document.getElementById("price").innerHTML = jsonProducto.price;
+      document.getElementById("publish_date").innerHTML = jsonProducto.publish_date;
+      document.getElementById("title").innerHTML = jsonProducto.title;
+      document.getElementById("main_img").setAttribute("src", jsonProducto.main_img);
+      document.getElementById("place").setAttribute("src", "https://www.google.fr/maps/search/" + jsonProducto.place);
 </script>
 
     

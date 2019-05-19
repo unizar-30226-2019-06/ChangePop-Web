@@ -139,6 +139,13 @@
         <hr style="width:85%; border-color:black;">
         <label class="control-label"style="font-size: 2em; border: Solid #0f0fef 2px; padding: 0.5em;">Comentarios</label>
         <div  style="margin-bottom:50px">
+            <script>
+                var urlObtenerComentarioss = "http://kelpa-api.herokuapp.com/comment/637"
+                //Necesario para parsear el json              
+                var jsonComentarios = JSON.parse(httpGet(urlObtenerComentarios));
+                
+            </script>
+
             <div class="container_chat darker">
                 <img class="col-md-4 img-circle" src="../static/icono.jpg" style="width: 8%; vertical-align: middle;"></a>
                 <label class="col-md-3 control-label"style="vertical-align: middle;font-size: 1.5em;">Paco_45</label></a> 
