@@ -28,9 +28,12 @@
 
     
     <script>
-      var urlObtenerProducto = "http://kelpa-api.herokuapp.com/product/356"
+      
+     var id = getParameterByName('idAnuncio');
+     var urlObtenerProducto = "http://kelpa-api.herokuapp.com/product/"+ id;
+      
       //Necesario para parsear el json
-      var jsonProducto = JSON.parse(httpGet(urlObtenerProducto));
+    var jsonProducto = JSON.parse(httpGet(urlObtenerProducto));
      </script>
      
 
@@ -43,6 +46,7 @@
 
   <body>
     <!-- Barra de menu superior -->
+    <script></script>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
           

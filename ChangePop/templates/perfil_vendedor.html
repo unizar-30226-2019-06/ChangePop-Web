@@ -26,6 +26,12 @@
     
     <script type="text/javascript" src="httpGet.js"></script> 
 
+    <script>
+    var nick = getParameterByName('usuario');
+    var urlObtenerUsuario = "http://kelpa-api.herokuapp.com/profile/" +nick;
+    //Necesario para parsear el json
+    var jsonUsuario = JSON.parse(httpGet(urlObtenerUsuario));</script>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -188,9 +194,9 @@
         </div>
     </div>  
 <script>
-var urlObtenerUsuario = "http://kelpa-api.herokuapp.com/profile/borja"
+    var urlObtenerUsuario = "http://kelpa-api.herokuapp.com/profile/borja"
   //Necesario para parsear el json
-      var jsonUsuario = JSON.parse(httpGet(urlObtenerUsuario));
+    var jsonUsuario = JSON.parse(httpGet(urlObtenerUsuario));
      
   //Darle una id al campo que obtienes para mostrarla en html 
       document.getElementById("first_name").innerHTML = jsonUsuario.first_name;
