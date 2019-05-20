@@ -34,7 +34,31 @@
       
       //Necesario para parsear el json
     var jsonProducto = JSON.parse(httpGet(urlObtenerProducto));
-     </script>
+    
+    
+var image = 1;
+var linkImage[];
+linkImage[1] = "https://images.ecosia.org/44YXtmFy--Jy1G2JSrsgjWuYOog=/0x390/smart/https%3A%2F%2Fwww.gettyimages.com.au%2Fgi-resources%2Fimages%2Ffrontdoor%2Fcreative%2FPanoramicImagesRM%2FFD_image.jpg"; 
+linkImage[2] = "https://images.ecosia.org/2HjS97bAARNevtWm3SKHgHLbU-8=/0x390/smart/https%3A%2F%2Fwww.histoire-image.org%2Fsites%2Fdefault%2Favion-stukaf.jpg"; 
+
+function cambiarImagen() {
+   image +=1 ;
+   if(image > texte.length)
+   {
+        image = texte.length;
+   }
+    document.getElementById('0').src = linkImage[image];
+}
+function volverImagen() {
+   image -=1 ;
+   if(image == 0)
+   { 
+	image = 1;
+   }
+    document.getElementById('0').src = linkImage[image];
+}
+
+</script>
      
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -131,6 +155,18 @@
       </script>
         
       </div>
+      
+      
+      <div class="row">
+        <div class="col-xs-1"><button onclick="volverImagen()" type="button" class="btn btn-success" style="margin-top: 250%;"><<</button></div>
+        <div class="col-xs-10"><img id=0 src="photos/1498998460.jpg" style="border: solid 4px white; max-width:100%; max-height: 500px;"/></div>
+        <div class="col-xs-1"><button onclick="cambiarImagen()" type="button" class="btn btn-success" style="margin-top: 250%;">>></button></div>
+      </div>
+      
+      
+      
+      
+      
       <hr style="width:85%; border-color:black;">
       <div class=container>
           
