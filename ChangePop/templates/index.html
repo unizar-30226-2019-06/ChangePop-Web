@@ -36,10 +36,8 @@
       $.ajax({
      type: 'post',
      url: url,
-     Accept: 'application/json',
-     credentials: 'same-origin',
      data: JSON.stringify(params),
-     contentType: "application/json; charset=utf-8",
+     contentType: "application/json",
    
      success: function (data) {
         console.log(data);

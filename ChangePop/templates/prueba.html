@@ -20,9 +20,9 @@
             type: 'post',
             url: url,
             Accept: 'application/json',
-            credentials: 'same-origin',
-            data: JSON.stringify(params),
             contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(params),
+            
           
             success: function (data) {
                console.log(data);
