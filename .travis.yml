@@ -29,4 +29,3 @@ deploy:
     on:
       python: 3.6
       all_branches: true
-    

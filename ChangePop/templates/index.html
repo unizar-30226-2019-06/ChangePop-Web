@@ -24,12 +24,31 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+    <script >
+      var url="http://kelpa-api.herokuapp.com/login"
+      var params = {
+        nick : "Aa",
+        pass : "aaaaaa",
+        remember : true
+      }
+     function conectarse(){
+      $.ajax({
+     type: 'post',
+     url: url,
+     Accept: 'application/json',
+     credentials: 'same-origin',
+     data: JSON.stringify(params),
+     contentType: "application/json; charset=utf-8",
+   
+     success: function (data) {
+        console.log(data);
+        window.location = "bienvenidaConectado.html";
+     }  
+     });
+    }
+    </script>     
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
   </head>
 
   <body>
@@ -51,7 +70,7 @@
                   <p>Contraseña</p>
                   <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%">
                 </div>
-                  <button type="button" class="btn btn-success">Conectar</button>
+                  <button type="button" class="btn btn-success" onclick="conectarse()" >Connection</button>
               </div>
           </div>
           <div class="modal-footer">
