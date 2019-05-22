@@ -18,7 +18,18 @@
           return decodeURIComponent(results[2].replace(/\+/g, ' '));
       }
       function post(url,params){
+        $.ajax({
+            type: 'post',
+            url: url,
+            Accept: 'application/json',
+            data: JSON.stringify(params),
+            contentType: "application/json; charset=utf-8",
           
+            success: function (data) {
+               console.log(data);
+               window.location = "bienvenidaConectado.html";
+            }  
+            });
       }      
 
     
