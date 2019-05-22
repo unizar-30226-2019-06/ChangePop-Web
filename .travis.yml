@@ -28,4 +28,4 @@ deploy:
     app: changepop-fw
     on:
       python: 3.6
-      branch: master
+      all_branches: true
