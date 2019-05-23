@@ -93,10 +93,28 @@
             <div class="file-field">
               <div class="mb-4">
                   
-                <img src="picture.png" class="rounded" height="200" width="250">
+                <img src="../static/picture.png" class="rounded" height="200" width="250" id="mostrar">
                 <label class="btn btn-default btn-file">
-                    Añade imagen <input type="file" style="display: none;">
+                    Añade imagen <input type="file" style="display: none;" id="imagen" value="">
                 </label>
+                <script>
+                  function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('#mostrar').attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+
+                $("#imagen").change(function(){
+                    readURL(this);
+                    change_imagen();
+                });
+                </script>
               </div>
             
             <div class="input-group" style="width:200px;">
@@ -126,21 +144,6 @@
                 add_checkbox(jsonCategorias.list[i].toString());
                 }   
         </script>
-        
-        <!---<button type="button"  data-toggle="dropdown">Categorias<span class="glyphicon glyphicon-list-alt"></span> <span class="caret"></span></button>
-        <ul class="dropdown-menu" id="categorias">
-      <script> 
-          var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
-          var jsonCategorias = JSON.parse(httpGet(urlCategorias));
-          for (i in jsonCategorias.list) {
-            
-              document.write('<li>  <a class="small"  data-value=" ' + jsonCategorias.list[i].toString()  + ' " tabIndex="-1"><input value="" type="checkbox">&nbsp;' + jsonCategorias.list[i].toString() +
-              '</a></li>');
-              }   
-      </script>
-
-</ul>
-  </div>-->
 </div>
   </div>
 </div>
