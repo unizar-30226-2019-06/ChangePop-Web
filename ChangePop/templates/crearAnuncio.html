@@ -10,6 +10,7 @@
    <!-- <link rel="icon" href="../../favicon.ico">-->
 
     <title>Publicar anuncio</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -27,6 +28,9 @@
     <script src="../static//jquery.mycart-master/js/jquery-2.2.3.min.js"></script>
     <script src="../static//jquery.mycart-master/js/jquery.mycart.js"></script>
     <script type="text/javascript" src="httpGet.js"></script> 
+
+    <!-- script para comprobar si los campos son correctos-->
+    <script type="text/javascript" src="anuncio.js"></script> 
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -114,20 +118,29 @@
   <div class="row">
        <div class="col-lg-12">
      <div class="button-group">
-        <button type="button"  data-toggle="dropdown">Categorias<span class="glyphicon glyphicon-list-alt"></span> <span class="caret"></span></button>
-<ul class="dropdown-menu">
+        <script> 
+            var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
+            var jsonCategorias = JSON.parse(httpGet(urlCategorias));
+            for (i in jsonCategorias.list) {
+                document.write('<input type="checkbox" id="'+ jsonCategorias.list[i].toString()+'">'+ jsonCategorias.list[i].toString()+'<br>');
+                add_checkbox(jsonCategorias.list[i].toString());
+                }   
+        </script>
+        
+        <!---<button type="button"  data-toggle="dropdown">Categorias<span class="glyphicon glyphicon-list-alt"></span> <span class="caret"></span></button>
+        <ul class="dropdown-menu" id="categorias">
       <script> 
           var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
           var jsonCategorias = JSON.parse(httpGet(urlCategorias));
           for (i in jsonCategorias.list) {
             
-              document.write('<li>  <a class="small"  data-value=" ' + jsonCategorias.list[i].toString()  + ' " tabIndex="-1"><input type="checkbox">&nbsp;' + jsonCategorias.list[i].toString() +
+              document.write('<li>  <a class="small"  data-value=" ' + jsonCategorias.list[i].toString()  + ' " tabIndex="-1"><input value="" type="checkbox">&nbsp;' + jsonCategorias.list[i].toString() +
               '</a></li>');
               }   
       </script>
 
 </ul>
-  </div>
+  </div>-->
 </div>
   </div>
 </div>
@@ -139,8 +152,8 @@
              <br/>
              <br/>
              <div class="input-group">
-                <label for="lugarRecogida">Lugar de recogida</label>
-                <input type="text" class="form-control" id="lugarRecogida" placeholder="Introduzca el lugar de recogida">
+                <label for="lugarRecogida">Localizacion del producto</label>
+                <input type="text" class="form-control" id="lugarRecogida" placeholder="Introduzca la localización del producto">
               </div>
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.704773694934!2d-0.8918526858511633!3d41.68371898553728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd59135c386ec533%3A0x79c6654aa2335b79!2sCampus+R%C3%ADo+Ebro!5e0!3m2!1ses!2ses!4v1554572506767!5m2!1ses!2ses" 
                width="300" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>   
@@ -152,7 +165,7 @@
             
               <br/>
               <div class="text-right">
-              <button type="submit" class="btn btn-success btn-lg">Publicar Anuncio </button>
+              <button type="submit" class="btn btn-success btn-lg" onclick="validar_campos(['nombreProducto','precio','blog_body','lugarRecogida'])">Publicar Anuncio </button>
             </div>  
                 <script>
                   var x = document.getElementById("demo");
