@@ -36,10 +36,8 @@
       $.ajax({
      type: 'post',
      url: url,
-     Accept: 'application/json',
-     credentials: 'same-origin',
      data: JSON.stringify(params),
-     contentType: "application/json; charset=utf-8",
+     contentType: "application/json;",
    
      success: function (data) {
         console.log(data);
@@ -70,7 +68,7 @@
                   <p>Contraseña</p>
                   <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%">
                 </div>
-                  <button type="button" class="btn btn-success" onclick="conectarse()" >Connection</button>
+                  <button type="button" class="btn btn-success" onclick="conectarse()" >Connectionn</button>
               </div>
           </div>
           <div class="modal-footer">

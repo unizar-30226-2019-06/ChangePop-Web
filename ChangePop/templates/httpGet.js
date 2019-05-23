@@ -21,7 +21,7 @@
         $.ajax({
             type: 'post',
             url: url,
-            Accept: 'application/json',
+           
             data: JSON.stringify(params),
             contentType: "application/json; charset=utf-8",
           
