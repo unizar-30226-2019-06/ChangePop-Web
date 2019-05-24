@@ -101,7 +101,7 @@
         <label class="control-label"style="font-size: 2em; border: Solid #0f0fef 2px; padding: 0.5em;">Mis anuncios</label>
         
         <script>
-                var urlObtenerAnuncios = "http://kelpa-api.herokuapp.com/products/637"
+                var urlObtenerAnuncios = "http://kelpa-api.herokuapp.com/products/" + jsonUsuario.id;
                 //Necesario para parsear el json              
                 var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios));
                 var anuncios = jsonAnuncios.list;
@@ -114,8 +114,8 @@
                     '<span class="glyphicon glyphicon-map-marker " style="color:green;font-size: 20px" >'+ anuncios[i].place +'</span> </em>');
                     document.write(' <p>'+ anuncios[i].descript  + '</p> ');
                     document.write('<div class="row">');
-                    document.write('<h3><a href="perfil_vendedor.html">Editar <span class="glyphicon glyphicon-edit "></span></a>');
-                    document.write(' <a href="perfil_vendedor.html">Borrar <span class="glyphicon glyphicon-remove"></span></a></h3>');
+                    document.write('<h3><a id="editar" href="perfil_vendedor.html">Editar <span class="glyphicon glyphicon-edit "></span></a>');
+                    document.write(' <a id="borrar" href="perfil_vendedor.html">Borrar <span class="glyphicon glyphicon-remove"></span></a></h3>');
                     document.write('</div> </div> </a>');    
                  }              
             
@@ -136,8 +136,8 @@
                           entrego en mano .
                             </p>             
               </a>
-              <h3><a href="perfil_vendedor.html">Editar <span class="glyphicon glyphicon-edit "></span></a>
-                <a href="perfil_vendedor.html">Borrar <span class="glyphicon glyphicon-remove"></span></a></h3>
+              <h3><a  href="perfil_vendedor.html">Editar <span  class="glyphicon glyphicon-edit "></span></a>
+                <a  id='borrar' href="perfil_vendedor.html">Borrar <span class="glyphicon glyphicon-remove"></span></a></h3>
             </div>
         </div>
 
@@ -146,7 +146,7 @@
         <label class="control-label"style="font-size: 2em; border: Solid #0f0fef 2px; padding: 0.5em;">Comentarios</label>
         <div  style="margin-bottom:50px">
             <script>
-                var urlObtenerComentarioss = "http://kelpa-api.herokuapp.com/comment/637"
+                var urlObtenerComentarioss = "http://kelpa-api.herokuapp.com/comment/" + jsonUsuario.id;
                 //Necesario para parsear el json              
                 var jsonComentarios = JSON.parse(httpGet(urlObtenerComentarios));
                 
@@ -207,6 +207,7 @@
       document.getElementById("mail").innerHTML = jsonUsuario.mail;
       document.getElementById("phone").innerHTML = jsonUsuario.phone;
       document.getElementById("avatar").setAttribute("src", jsonUsuario.avatar);
+      
 </script>
    <!-- Bootstrap core JavaScript
     ================================================== -->

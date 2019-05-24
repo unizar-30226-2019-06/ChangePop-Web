@@ -17,19 +17,12 @@
           if (!results[2]) return '';
           return decodeURIComponent(results[2].replace(/\+/g, ' '));
       }
-      function post(url,params){
-        $.ajax({
-            type: 'post',
-            url: url,
-           
-            data: JSON.stringify(params),
-            contentType: "application/json; charset=utf-8",
-          
-            success: function (data) {
-               console.log(data);
-               window.location = "bienvenidaConectado.html";
-            }  
-            });
+      function post(url,params,respuesta){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = respuesta();
+        xhttp.open("POST", url, true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(JSON.stringify(params));
       }      
 
     
