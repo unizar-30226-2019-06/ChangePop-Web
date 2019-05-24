@@ -36,8 +36,8 @@
       
         var xhttp = new XMLHttpRequest();
          xhttp.onreadystatechange = function() {
-          if (this.readyState) {
-            sessionStorage.setItem('usuarioLogeado', this.responseText );
+          if (xhttp.readyState) {
+            sessionStorage.setItem('usuarioLogeado', xhttp.responseText );
             var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
             document.getElementById("icono").src = "/static/logo.jpg" ;
             document.getElementById("nombre").innerHTML = usuarioLog.nick ;
