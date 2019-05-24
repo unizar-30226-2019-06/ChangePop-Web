@@ -32,12 +32,12 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
         <script>
-             var urlObtenerUsuario = "http://kelpa-api.herokuapp.com/user"
+            var jusuario =  httpGet("http://kelpa-api.herokuapp.com/user") ;
+            localStorage.setItem('usuarioLogeado', jusuario ); 
+            var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
              var urlObtenerAnuncios = "http://kelpa-api.herokuapp.com/products"
-         //Necesario para parsear el json
-         
+             //Necesario para parsear el json
              var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios));
-             var usuario = JSON.parse(httpGet(urlObtenerUsuario));
              var anuncios = jsonAnuncios.list;
                
              
@@ -297,8 +297,8 @@
     <script src="/static/jquery.mycart-master/js/jquery.mycart.js"></script>
     <script>
       document.getElementById("icono").src = "/static/logo.jpg" ;
-      document.getElementById("nombre").innerHTML = usuario.nick ;
-      document.getElementById("usuario").href =  "perfil_vendedor.html?usuario=" + usuario.nick ;
+      document.getElementById("nombre").innerHTML = usuarioLog.nick ;
+      document.getElementById("usuario").href =  "perfil_vendedor.html?nick=" + usuarioLog.nick ;
       
         </script>
     <!-- Bootstrap core JavaScript

@@ -29,33 +29,37 @@
     
     <script>
       
-     var id = getParameterByName('idAnuncio');
-     var urlObtenerProducto = "http://kelpa-api.herokuapp.com/product/"+ id;
-      
+     //var id = getParameterByName('idAnuncio');
+     var urlObtenerProducto = "http://kelpa-api.herokuapp.com/product/"+ 1294;
+     var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
       //Necesario para parsear el json
     var jsonProducto = JSON.parse(httpGet(urlObtenerProducto));
     
     
-var image = 1;
-var linkImage[];
-linkImage[1] = "https://images.ecosia.org/44YXtmFy--Jy1G2JSrsgjWuYOog=/0x390/smart/https%3A%2F%2Fwww.gettyimages.com.au%2Fgi-resources%2Fimages%2Ffrontdoor%2Fcreative%2FPanoramicImagesRM%2FFD_image.jpg"; 
-linkImage[2] = "https://images.ecosia.org/2HjS97bAARNevtWm3SKHgHLbU-8=/0x390/smart/https%3A%2F%2Fwww.histoire-image.org%2Fsites%2Fdefault%2Favion-stukaf.jpg"; 
+var image = 0;
+var linkImage =jsonProducto.photo_urls;
+
 
 function cambiarImagen() {
-   image +=1 ;
-   if(image > texte.length)
-   {
-        image = texte.length;
-   }
+  
+  if(image == linkImage.length-1) {
+    image = 0;
+  }
+  else{
+    image +=1 ;
+  }
     document.getElementById('0').src = linkImage[image];
+    console.log(image.toString());
 }
 function volverImagen() {
-   image -=1 ;
-   if(image == 0)
-   { 
-	image = 1;
-   }
+    if(image == 0) {
+      image = linkImage.length-1;
+    }
+    else{
+      image -=1 ;
+    }
     document.getElementById('0').src = linkImage[image];
+    console.log(image.toString());
 }
 
 </script>
@@ -70,13 +74,13 @@ function volverImagen() {
 
   <body>
     <!-- Barra de menu superior -->
-    <script></script>
+   
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
           
           <div class="collapse navbar-collapse" id="myNavbar">
               <div class="navbar-header">
-                  <a class="navbar-brand" href="bienvenidaConectado.html"><img src="../static/logo.jpg" width="55px" /></a>
+                  <a class="navbar-brand" href="bienvenidaConectado.html"><img  src="/static/logo.jpg" width="55px" /></a>
                 </div>
                 <form class="navbar-form navbar-left" action="/action_page.php">
                     <div class="form-group">
@@ -85,20 +89,19 @@ function volverImagen() {
                     <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
                   </form>
                   <form class="navbar-form navbar-left" method="get" action="crearAnuncio.html">
-                  
                         <button type="submit" class="btn btn-success">Subir producto</button>
                     </form>
             <ul class="nav navbar-nav navbar-right" id="in_line" >
                 
                     <div class="dropdown"> 
                             <a data-toggle="dropdown" style="color:rgb(0, 0, 0);" >
-                                <span style="color:white;font-weight:bold" >Manuel_56</span>
-                            <img src="icono.jpg" class='img-circle' height="42" width="42"  > </img>
+                                <span style="color:white;font-weight:bold" id="nombre" >Pedrito</span>
+                            <img id="icono"  class='img-circle' height="42" width="42"  > </img>
                                 <ul class="dropdown-menu">
                                     <li><a href="chat.html">Mensajes <span class="glyphicon glyphicon-envelope"></span> <span class="badge">10</span></li>
-                                   <li><a href="#">Mi carrito  <span class="glyphicon glyphicon-shopping-cart my-cart-icon"></span> <span class="badge">10</span></li>
-                                   <li><a href="perfil_vendedor.html">Mi perfil <span class="glyphicon glyphicon-user"></span></a></li>
-                                 <li><a href="#">Configuracion <span class="glyphicon glyphicon-cog"></span></a></li>
+                                   <li><a href="miCarrito.html">Mi carrito  <span class="glyphicon glyphicon-shopping-cart my-cart-icon"></span> <span class="badge">10</span></li>
+                                   <li><a  id='usuario' href="perfil_vendedor.html">Mi perfil <span class="glyphicon glyphicon-user"></span></a></li>
+                                 <li><a href="editarUsuario.html">Editar perfil <span class="glyphicon glyphicon-cog"></span></a></li>
                                   <li><a href="index.html">Desconectarse <span class="glyphicon glyphicon-off"></span></a></li>
                                   
                                </ul>
@@ -117,9 +120,8 @@ function volverImagen() {
     <!-- Imagen de producto -->
     <div class="container top bottom" style="width: 90%; background-color: rgba(230, 240, 245, 0.9);margin-top:80px;">
       <div class="row" style="margin-left:10%;">
-        <a href="perfil_vendedor.php"><img class="col-md-4 img-circle" src="icono.jpg" style="width: 8%; vertical-align: middle; margin-bottom:;"></a>
-        <a href="perfil_vendedor.php"><label class="col-md-4 control-label"style="vertical-align: middle;font-size: 2em;">Manuel_56</label></a>  <!-- nombre del vendedor -->
-        <a href="chat.html" style="vertical-align: middle;  margin-top:2px; width: 100px; margin-left:40%;" 
+        <a id="refVendedor" href="perfil_vendedor.php"><label id="nombreVendedor" class="col-md-4 control-label"style="vertical-align: middle;font-size: 2em;">Manuel_56</label></a>  <!-- nombre del vendedor -->
+        <a id="refChat" href="chat.html" style="vertical-align: middle;  margin-top:2px; width: 100px; margin-left:40%;" 
         type="submit" class="btn btn-success ">chat</a>
         <a href="chat.php" style="vertical-align: middle;  margin-top:2px; width: 100px; margin-left:40%;" type="submit" 
         class="btn btn-danger ">Reportar </a>
@@ -178,12 +180,14 @@ function volverImagen() {
 
 <script>
   //Darle una id al campo que obtienes para mostrarla en html 
+      document.getElementById("nombreVendedor").innerHTML = jsonProducto.user_nick;
+      document.getElementById("refVendedor").href = "perfil_vendedor.html?nick=" +jsonProducto.user_nick;
       document.getElementById("descript").innerHTML = jsonProducto.descript;
       document.getElementById("price").innerHTML = jsonProducto.price;
       document.getElementById("publish_date").innerHTML = jsonProducto.publish_date;
       document.getElementById("title").innerHTML = jsonProducto.title;
       document.getElementById("main_img").setAttribute("src", jsonProducto.main_img);
-      document.getElementById("place").setAttribute("src", "https://www.google.fr/maps/search/" + jsonProducto.place);
+      document.getElementById("place").setAttribute("src", "https://www.google.es/maps/search/" + jsonProducto.place);
 </script>
 
     

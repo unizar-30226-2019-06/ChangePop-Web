@@ -10,6 +10,7 @@
    <!-- <link rel="icon" href="../../favicon.ico">-->
 
     <title>Publicar anuncio</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -28,6 +29,11 @@
     <script src="../static//jquery.mycart-master/js/jquery.mycart.js"></script>
     <script type="text/javascript" src="httpGet.js"></script> 
 
+    <!-- script para comprobar si los campos son correctos-->
+    <script type="text/javascript" src="anuncio.js"></script> 
+    <script>
+      var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
+    </script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -38,47 +44,46 @@
 
   <body>
 
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container">
-            
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="bienvenidaConectado.html"><img src="../static/logo.jpg" width="55px" /></a>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="bienvenidaConectado.html"><img  src="/static/logo.jpg" width="55px" /></a>
+              </div>
+              <form class="navbar-form navbar-left" action="/action_page.php">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
                   </div>
-                  <form class="navbar-form navbar-left" action="/action_page.php">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                  <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                </form>
+                <form class="navbar-form navbar-left" method="get" action="crearAnuncio.html">
+                      <button type="submit" class="btn btn-success">Subir producto</button>
+                  </form>
+          <ul class="nav navbar-nav navbar-right" id="in_line" >
+              
+                  <div class="dropdown"> 
+                          <a data-toggle="dropdown" style="color:rgb(0, 0, 0);" >
+                              <span style="color:white;font-weight:bold" id="nombre" >Pedrito</span>
+                          <img id="icono"  class='img-circle' height="42" width="42"  > </img>
+                              <ul class="dropdown-menu">
+                                  <li><a href="chat.html">Mensajes <span class="glyphicon glyphicon-envelope"></span> <span class="badge">10</span></li>
+                                 <li><a href="miCarrito.html">Mi carrito  <span class="glyphicon glyphicon-shopping-cart my-cart-icon"></span> <span class="badge">10</span></li>
+                                 <li><a  id='usuario' href="perfil_vendedor.html">Mi perfil <span class="glyphicon glyphicon-user"></span></a></li>
+                               <li><a href="editarUsuario.html">Editar perfil <span class="glyphicon glyphicon-cog"></span></a></li>
+                                <li><a href="index.html">Desconectarse <span class="glyphicon glyphicon-off"></span></a></li>
+                                
+                             </ul>
                       </div>
-                      <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-                    </form>
-                    <form class="navbar-form navbar-left" method="get" action="crearAnuncio.html">
-                    
-                          <button type="submit" class="btn btn-success">Subir producto</button>
-                      </form>
-              <ul class="nav navbar-nav navbar-right" id="in_line" >
+                  </a>
                   
-                      <div class="dropdown"> 
-                              <a data-toggle="dropdown" style="color:rgb(0, 0, 0);" >
-                                  <span style="color:white;font-weight:bold" >Pedrito</span>
-                              <img src="icono.jpg" class='img-circle' height="42" width="42"  > </img>
-                                  <ul class="dropdown-menu">
-                                      <li><a href="chat.html">Mensajes <span class="glyphicon glyphicon-envelope"></span> <span class="badge">10</span></li>
-                                     <li><a href="#">Mi carrito  <span class="glyphicon glyphicon-shopping-cart my-cart-icon"></span> <span class="badge">10</span></li>
-                                     <li><a href="perfil_vendedor.html">Mi perfil <span class="glyphicon glyphicon-user"></span></a></li>
-                                   <li><a href="#">Configuracion <span class="glyphicon glyphicon-cog"></span></a></li>
-                                    <li><a href="index.html">Desconectarse <span class="glyphicon glyphicon-off"></span></a></li>
-                                    
-                                 </ul>
-                          </div>
-                      </a>
-                      
+              
+                  </div>
                   
-                      </div>
-                      
-              </ul>
-            </div>
-          </div>
-      </nav>
+          </ul>
+        </div>
+      </div>
+  </nav>
 
     
   <!-- Panel de Subir Cartel -->
@@ -89,10 +94,28 @@
             <div class="file-field">
               <div class="mb-4">
                   
-                <img src="picture.png" class="rounded" height="200" width="250">
+                <img src="../static/picture.png" class="rounded" height="200" width="250" id="mostrar">
                 <label class="btn btn-default btn-file">
-                    Añade imagen <input type="file" style="display: none;">
+                    Añade imagen <input type="file" style="display: none;" id="imagen" value="">
                 </label>
+                <script>
+                  function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('#mostrar').attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+
+                $("#imagen").change(function(){
+                    readURL(this);
+                    change_imagen();
+                });
+                </script>
               </div>
             
             <div class="input-group" style="width:200px;">
@@ -114,45 +137,54 @@
   <div class="row">
        <div class="col-lg-12">
      <div class="button-group">
-        <button type="button"  data-toggle="dropdown">Categorias<span class="glyphicon glyphicon-list-alt"></span> <span class="caret"></span></button>
-<ul class="dropdown-menu">
-      <script> 
-          var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
-          var jsonCategorias = JSON.parse(httpGet(urlCategorias));
-          for (i in jsonCategorias.list) {
-            
-              document.write('<li>  <a class="small"  data-value=" ' + jsonCategorias.list[i].toString()  + ' " tabIndex="-1"><input type="checkbox">&nbsp;' + jsonCategorias.list[i].toString() +
-              '</a></li>');
-              }   
-      </script>
-
-</ul>
-  </div>
+        <script> 
+            var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
+            var jsonCategorias = JSON.parse(httpGet(urlCategorias));
+            for (i in jsonCategorias.list) {
+                document.write('<input type="checkbox" id="'+ jsonCategorias.list[i].toString()+'">'+ jsonCategorias.list[i].toString()+'<br>');
+                add_checkbox(jsonCategorias.list[i].toString());
+                }   
+        </script>
 </div>
   </div>
 </div>
              <br/>
              <br/>
-             <label class="checkbox-inline"><input type="checkbox" value="">Negociable</label>
+             <!--<label class="checkbox-inline"><input type="checkbox" value="">Negociable</label>
              <label class="checkbox-inline"><input type="checkbox" value="">Se entrega en mano</label>
-             <label class="checkbox-inline"><input type="checkbox" value="">Opcion a trueque</label>
+             <label class="checkbox-inline"><input type="checkbox" value="">Opcion a trueque</label>-->
+             <label class="checkbox-inline"><input type="checkbox" value="" id="subasta" onchange=showContent()>Subasta</label>
              <br/>
              <br/>
+             <p id="text1" style="display: none;">Fecha de finalizacion de subasta</p>
+              <input type="date" id="fecha" style="display: none;">
+              <p id="text2" style="display: none;">Hora de finalizacion de subasta</p>
+              <input type="time" id="hora" style="display: none;">
+              
+              <script>
+                $(document).ready(function() {
+                  var f = new Date();
+                  var date=(f.getFullYear() + "-" + ('0' + (f.getMonth() +1)).slice(-2) + "-" + ('0' + (f.getDate()+1)).slice(-2));
+                  $("#fecha").attr("min",date);
+                });
+              </script>
+
+
              <div class="input-group">
-                <label for="lugarRecogida">Lugar de recogida</label>
-                <input type="text" class="form-control" id="lugarRecogida" placeholder="Introduzca el lugar de recogida">
+                <label for="lugarRecogida">Localizacion del producto</label>
+                <input type="text" class="form-control" id="lugarRecogida" placeholder="Introduzca la localización del producto">
               </div>
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.704773694934!2d-0.8918526858511633!3d41.68371898553728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd59135c386ec533%3A0x79c6654aa2335b79!2sCampus+R%C3%ADo+Ebro!5e0!3m2!1ses!2ses!4v1554572506767!5m2!1ses!2ses" 
                width="300" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>   
                <br/>
-                  <button onclick="getLocation()" class="btn btn-primary">Localizame!</button>
+                  <button onclick="getLocation()" class="btn btn-primary" style="margin-top: 10px">Localizame!</button>
                   
             <br/>
               
             
               <br/>
               <div class="text-right">
-              <button type="submit" class="btn btn-success btn-lg">Publicar Anuncio </button>
+              <button type="submit" class="btn btn-success btn-lg" style="margin-bottom: 20px; margin-right: 20px" onclick="validar_campos(['nombreProducto','precio','blog_body','lugarRecogida'])">Publicar Anuncio </button>
             </div>  
                 <script>
                   var x = document.getElementById("demo");
@@ -171,7 +203,11 @@
                   </script>
                
                 
-
+    <script>
+      //navbar
+      document.getElementById("icono").src = "/static/logo.jpg" ;
+      document.getElementById("nombre").innerHTML = usuarioLog.nick ;
+      document.getElementById("usuario").href =  "perfil_vendedor.html?nick=" + usuarioLog.nick ;</script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
