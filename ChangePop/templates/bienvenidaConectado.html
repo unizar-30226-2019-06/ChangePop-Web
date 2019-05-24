@@ -34,7 +34,7 @@
         <script>
             var jusuario =  httpGet("http://kelpa-api.herokuapp.com/user") ;
             console.log(jusuario);
-            localStorage.setItem('usuarioLogeado', jusuario ); 
+            sessionStorage.setItem('usuarioLogeado', jusuario ); 
             var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
              var urlObtenerAnuncios = "http://kelpa-api.herokuapp.com/products"
              //Necesario para parsear el json
