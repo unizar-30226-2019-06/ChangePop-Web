@@ -29,8 +29,8 @@
     
     <script>
       
-     //var id = getParameterByName('idAnuncio');
-     var urlObtenerProducto = "http://kelpa-api.herokuapp.com/product/"+ 1294;
+     var id = getParameterByName('idAnuncio');
+     var urlObtenerProducto = "http://kelpa-api.herokuapp.com/product/"+ idAnuncio;
      var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
       //Necesario para parsear el json
     var jsonProducto = JSON.parse(httpGet(urlObtenerProducto));

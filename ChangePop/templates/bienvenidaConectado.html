@@ -33,6 +33,7 @@
     <![endif]-->
         <script>
             var jusuario =  httpGet("http://kelpa-api.herokuapp.com/user") ;
+            console.log(jusuario);
             localStorage.setItem('usuarioLogeado', jusuario ); 
             var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
              var urlObtenerAnuncios = "http://kelpa-api.herokuapp.com/products"
@@ -174,31 +175,6 @@
               
             
             </script>
-
-
-
-
-
-
-
-            <a href="anuncio.html" class="anuncio">
-
-                    <div class="col-md-3 " style="border: solid 2px white;">
-                        <h2>Vendo mi play</h2>
-                        <img src="/static/anuncioEjemplo.png" style="border: solid 2px white; width:250px; height:200px ">
-                    </br>
-                        <em>Precio <strong>300€</strong> - Puesto hace 3 horas <span class="glyphicon glyphicon-map-marker " style="color:green;font-size: 20px" >Jaen </span> </em> 
-                        <p>vendo ps3 80 gb en buen estado, la vendo por no usarla. la entrego con su cable de alimentacion y mando original con su cable de carga también.
-                             entrego en mano .
-                              </p>             
-                        <div class="row">
-                          <a class="glyphicon glyphicon-comment" href="#" role="button">Negociar </a>
-                          <a>&nbsp;</a>
-                          <a class="glyphicon glyphicon-heart" href="#" role="button">Favoritos</a>
-                        </div>      
-                    </div>   
-            </a>
-
             
     </div>
     <!--PRODUCTOS A LASUBASTA-->
@@ -227,66 +203,6 @@
                     </div>   
             </a>
 
-            <a href="verAnuncio.php" class="anuncio">
-                    
-                        
-                    <div class="col-md-3 " style="border: solid 2px white;">
-                            <h2>Movil barato</h2>
-                            <img src="anuncioEjemplo2.png" style="border: solid 2px white; width:250px; height:200px">
-                        </br>
-                           <em>Precio <strong>250€</strong> - Puesto hace 5 horas</em> 
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris 
-                                condimentum nibh, ut fermentum massa justo sit amet risus.
-                                 Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-                        </div>         
-            </a>
-
-            <a href="verAnuncio.php" class="anuncio">
-                    
-                        
-                    <div class="col-md-3 " style="border: solid 2px white;">
-                        <h2>Movil barato</h2>
-                        <img src="anuncioEjemplo2.png" style="border: solid 2px white; width:250px; height:200px ">
-                    </br>
-                       <em>Precio <strong>250€</strong>  - Puesto hace 5 horas</em> 
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris 
-                            condimentum nibh, ut fermentum massa justo sit amet risus.
-                             Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-                    </div>         
-        </a>
-
-        <a href="verAnuncio.php" class="anuncio">
-                    
-                        
-                <div class="col-md-3" style="border: solid 2px white;">
-                    <h2>Movil barato</h2>
-                    <img src="anuncioEjemplo2.png" style="border: solid 2px white; width:250px; height:200px ">
-                </br>
-                   <em>Precio <strong>250€</strong> - Puesto hace 5 horas</em> 
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris 
-                        condimentum nibh, ut fermentum massa justo sit amet risus.
-                         Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-                </div>         
-    </a>
-
-    <a href="verAnuncio.php" class="anuncio">
-                    
-                        
-            <div class="col-md-3 " style="border: solid 2px white;">
-                <h2>Movil barato</h2>
-                <img src="/static/anuncioEjemplo2.png" style="border: solid 2px white; width:250px; height:200px ">
-            </br>
-               <em>Precio <strong>250€</strong>  - Puesto hace 5 horas</em> 
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris 
-                    condimentum nibh, ut fermentum massa justo sit amet risus.
-                     Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-               
-            </div>         
-    </a>
 
     </div>         
 
