@@ -20,6 +20,7 @@
 
     <!-- Custom styles for this template -->
     <link href="../static/style.css" rel="stylesheet">
+    <script type="text/javascript" src="httpGet.js"></script> 
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -33,19 +34,10 @@
         remember : true
       }
      function conectarse(){
-      $.ajax({
-     type: 'post',
-     url: url,
-     data: JSON.stringify(params),
-     contentType: "application/json;",
-   
-     success: function (data) {
-        console.log(data);
-        window.location = "bienvenidaConectado.html";
-
-     }  
-     });
-    }
+        post(url,params,function(){
+          window.location = "bienvenidaConectado.html";
+        });
+      };
     </script>     
 
   </head>
