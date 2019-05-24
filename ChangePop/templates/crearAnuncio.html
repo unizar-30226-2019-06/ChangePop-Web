@@ -149,11 +149,26 @@
 </div>
              <br/>
              <br/>
-             <label class="checkbox-inline"><input type="checkbox" value="">Negociable</label>
+             <!--<label class="checkbox-inline"><input type="checkbox" value="">Negociable</label>
              <label class="checkbox-inline"><input type="checkbox" value="">Se entrega en mano</label>
-             <label class="checkbox-inline"><input type="checkbox" value="">Opcion a trueque</label>
+             <label class="checkbox-inline"><input type="checkbox" value="">Opcion a trueque</label>-->
+             <label class="checkbox-inline"><input type="checkbox" value="" id="subasta" onchange=showContent()>Subasta</label>
              <br/>
              <br/>
+             <p id="text1" style="display: none;">Fecha de finalizacion de subasta</p>
+              <input type="date" id="fecha" style="display: none;">
+              <p id="text2" style="display: none;">Hora de finalizacion de subasta</p>
+              <input type="time" id="hora" style="display: none;">
+              
+              <script>
+                $(document).ready(function() {
+                  var f = new Date();
+                  var date=(f.getFullYear() + "-" + ('0' + (f.getMonth() +1)).slice(-2) + "-" + ('0' + (f.getDate()+1)).slice(-2));
+                  $("#fecha").attr("min",date);
+                });
+              </script>
+
+
              <div class="input-group">
                 <label for="lugarRecogida">Localizacion del producto</label>
                 <input type="text" class="form-control" id="lugarRecogida" placeholder="Introduzca la localización del producto">
@@ -161,14 +176,14 @@
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.704773694934!2d-0.8918526858511633!3d41.68371898553728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd59135c386ec533%3A0x79c6654aa2335b79!2sCampus+R%C3%ADo+Ebro!5e0!3m2!1ses!2ses!4v1554572506767!5m2!1ses!2ses" 
                width="300" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>   
                <br/>
-                  <button onclick="getLocation()" class="btn btn-primary">Localizame!</button>
+                  <button onclick="getLocation()" class="btn btn-primary" style="margin-top: 10px">Localizame!</button>
                   
             <br/>
               
             
               <br/>
               <div class="text-right">
-              <button type="submit" class="btn btn-success btn-lg" onclick="validar_campos(['nombreProducto','precio','blog_body','lugarRecogida'])">Publicar Anuncio </button>
+              <button type="submit" class="btn btn-success btn-lg" style="margin-bottom: 20px; margin-right: 20px" onclick="validar_campos(['nombreProducto','precio','blog_body','lugarRecogida'])">Publicar Anuncio </button>
             </div>  
                 <script>
                   var x = document.getElementById("demo");
