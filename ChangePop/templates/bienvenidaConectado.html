@@ -32,10 +32,25 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
         <script>
-            var jusuario =  httpGet("http://kelpa-api.herokuapp.com/user") ;
-            console.log(jusuario);
-            sessionStorage.setItem('usuarioLogeado', jusuario ); 
+
+      
+        var xhttp = new XMLHttpRequest();
+         xhttp.onreadystatechange = function() {
+          if (this.readyState) {
+            sessionStorage.setItem('usuarioLogeado', this.responseText );
             var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
+            document.getElementById("icono").src = "/static/logo.jpg" ;
+            document.getElementById("nombre").innerHTML = usuarioLog.nick ;
+             document.getElementById("usuario").href =  "perfil_vendedor.html?nick=" + usuarioLog.nick ;
+          }
+         };  
+            xhttp.open("GET", "http://kelpa-api.herokuapp.com/user", true);
+            xhttp.send();
+        
+           // var jusuario =  httpGet("http://kelpa-api.herokuapp.com/profile/Aa") ;
+           // console.log(jusuario);
+             
+            
              var urlObtenerAnuncios = "http://kelpa-api.herokuapp.com/products"
              //Necesario para parsear el json
              var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios));
@@ -212,9 +227,7 @@
     <script src="/static/jquery.mycart-master/js/jquery-2.2.3.min.js"></script>
     <script src="/static/jquery.mycart-master/js/jquery.mycart.js"></script>
     <script>
-      document.getElementById("icono").src = "/static/logo.jpg" ;
-      document.getElementById("nombre").innerHTML = usuarioLog.nick ;
-      document.getElementById("usuario").href =  "perfil_vendedor.html?nick=" + usuarioLog.nick ;
+      
       
         </script>
     <!-- Bootstrap core JavaScript

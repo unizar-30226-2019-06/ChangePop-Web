@@ -30,11 +30,11 @@
     <script>
       
      var id = getParameterByName('idAnuncio');
-     var urlObtenerProducto = "http://kelpa-api.herokuapp.com/product/"+ idAnuncio;
+     var urlObtenerProducto = "http://kelpa-api.herokuapp.com/product/"+ id;
      var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
       //Necesario para parsear el json
     var jsonProducto = JSON.parse(httpGet(urlObtenerProducto));
-    
+          
     
 var image = 0;
 var linkImage =jsonProducto.photo_urls;
@@ -188,6 +188,10 @@ function volverImagen() {
       document.getElementById("title").innerHTML = jsonProducto.title;
       document.getElementById("main_img").setAttribute("src", jsonProducto.main_img);
       document.getElementById("place").setAttribute("src", "https://www.google.es/maps/search/" + jsonProducto.place);
+//Navbar
+      document.getElementById("icono").src = "/static/logo.jpg" ;
+      document.getElementById("nombre").innerHTML = usuarioLog.nick ;
+      document.getElementById("usuario").href =  "perfil_vendedor.html?nick=" + usuarioLog.nick ;
 </script>
 
     
