@@ -172,11 +172,15 @@
         <div class="row">
 
             <script>
-                   
+                   var j =0;
                     for (i in anuncios) {
-                        document.write(' <a href="anuncio.html?idAnuncio=' + anuncios[i].id   + ' " class="anuncio">  <div class="col-md-3 " style="border: solid 2px white;"> '  );
+                        if(j%4==0)
+                        {
+                                 document.write('<div class="row" style="margin:0px; border: solid 2px white;">');
+                        }
+                        document.write('<a href="anuncio.html?idAnuncio=' + anuncios[i].id   + ' " class="anuncio">  <div class="col-md-3 " style="border-left: solid 2px white;  height:100%; "> '  );
                         document.write('<h2>'+ anuncios[i].title + '</h2>'   );
-                        document.write('<img src="'+  anuncios[i].main_img  + '" style="border: solid 2px white; width:250px; height:200px ">');
+                        document.write('<img src="'+  anuncios[i].main_img  + '" style="border: solid 2px white; width:100%; max-width:250px; height:auto; ">');
                         document.write('</br>');
                         document.write(' <em>Precio <strong>' + anuncios[i].price   + '€</strong> - Fecha publicación:' +   anuncios[i].publish_date  + 
                         '<span class="glyphicon glyphicon-map-marker " style="color:green;font-size: 20px" >'+ anuncios[i].place +'</span> </em>');
@@ -184,8 +188,17 @@
                         document.write('<div class="row">');
                         document.write('<a class="glyphicon glyphicon-comment" href="#" role="button">Negociar </a> <a>&nbsp;</a>');
                         document.write(' <a class="glyphicon glyphicon-heart" href="#" role="button">Favoritos</a>');
-                        document.write('</div> </div> </a>');    
-                     }              
+                        document.write('</div> </div> </a>');   
+                        if((j+1)%4==0)
+                        {
+                                 document.write('</div>');
+                        }
+                        j++;
+                     }          
+                     if((j-2)%4==0)
+                     {
+                                document.write('</div>');
+                     }
                 
               
             
@@ -195,7 +208,7 @@
     <!--PRODUCTOS A LASUBASTA-->
     <hr style="width:100%; border-color:black;">
     <h2>SE SUBASTA</h2>
-        <div class="row">
+        <div class="row" style="margin:0px;">
             <a href="anuncio.html" class="anuncio">
 
                     <div class="col-md-3 " style="border: solid 2px white;">
