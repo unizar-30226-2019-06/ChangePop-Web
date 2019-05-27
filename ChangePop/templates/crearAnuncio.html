@@ -31,9 +31,7 @@
 
     <!-- script para comprobar si los campos son correctos-->
     <script type="text/javascript" src="anuncio.js"></script> 
-    <script>
-      var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
-    </script>
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -44,46 +42,47 @@
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="bienvenidaConectado.html"><img  src="/static/logo.jpg" width="55px" /></a>
-              </div>
-              <form class="navbar-form navbar-left" action="/action_page.php">
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="bienvenidaConectado.html"><img src="../static/logo.jpg" width="55px" /></a>
                   </div>
-                  <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-                </form>
-                <form class="navbar-form navbar-left" method="get" action="crearAnuncio.html">
-                      <button type="submit" class="btn btn-success">Subir producto</button>
-                  </form>
-          <ul class="nav navbar-nav navbar-right" id="in_line" >
-              
-                  <div class="dropdown"> 
-                          <a data-toggle="dropdown" style="color:rgb(0, 0, 0);" >
-                              <span style="color:white;font-weight:bold" id="nombre" >Pedrito</span>
-                          <img id="icono"  class='img-circle' height="42" width="42"  > </img>
-                              <ul class="dropdown-menu">
-                                  <li><a href="chat.html">Mensajes <span class="glyphicon glyphicon-envelope"></span> <span class="badge">10</span></li>
-                                 <li><a href="miCarrito.html">Mi carrito  <span class="glyphicon glyphicon-shopping-cart my-cart-icon"></span> <span class="badge">10</span></li>
-                                 <li><a  id='usuario' href="perfil_vendedor.html">Mi perfil <span class="glyphicon glyphicon-user"></span></a></li>
-                               <li><a href="editarUsuario.html">Editar perfil <span class="glyphicon glyphicon-cog"></span></a></li>
-                                <li><a href="index.html">Desconectarse <span class="glyphicon glyphicon-off"></span></a></li>
-                                
-                             </ul>
+                  <form class="navbar-form navbar-left" action="/action_page.php">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
                       </div>
-                  </a>
+                      <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                    </form>
+                    <form class="navbar-form navbar-left" method="get" action="crearAnuncio.html">
+                    
+                          <button type="submit" class="btn btn-success">Subir producto</button>
+                      </form>
+              <ul class="nav navbar-nav navbar-right" id="in_line" >
                   
-              
-                  </div>
+                      <div class="dropdown"> 
+                              <a data-toggle="dropdown" style="color:rgb(0, 0, 0);" >
+                                  <span style="color:white;font-weight:bold" >Pedrito</span>
+                              <img src="icono.jpg" class='img-circle' height="42" width="42"  > </img>
+                                  <ul class="dropdown-menu">
+                                      <li><a href="chat.html">Mensajes <span class="glyphicon glyphicon-envelope"></span> <span class="badge">10</span></li>
+                                     <li><a href="#">Mi carrito  <span class="glyphicon glyphicon-shopping-cart my-cart-icon"></span> <span class="badge">10</span></li>
+                                     <li><a href="perfil_vendedor.html">Mi perfil <span class="glyphicon glyphicon-user"></span></a></li>
+                                   <li><a href="#">Configuracion <span class="glyphicon glyphicon-cog"></span></a></li>
+                                    <li><a href="index.html">Desconectarse <span class="glyphicon glyphicon-off"></span></a></li>
+                                    
+                                 </ul>
+                          </div>
+                      </a>
+                      
                   
-          </ul>
-        </div>
-      </div>
-  </nav>
+                      </div>
+                      
+              </ul>
+            </div>
+          </div>
+      </nav>
 
     
   <!-- Panel de Subir Cartel -->
@@ -203,11 +202,7 @@
                   </script>
                
                 
-    <script>
-      //navbar
-      document.getElementById("icono").src = "/static/logo.jpg" ;
-      document.getElementById("nombre").innerHTML = usuarioLog.nick ;
-      document.getElementById("usuario").href =  "perfil_vendedor.html?nick=" + usuarioLog.nick ;</script>
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
