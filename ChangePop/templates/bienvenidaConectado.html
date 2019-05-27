@@ -116,11 +116,11 @@
 
                 <div class="row">
                 <div class="form-group">
-                    <label class="col-md-2 control-label">¿Qué buscas ?</label>  
+                    <label class="col-md-2 control-label">¿Qué buscas?</label>  
                     <div class="col-md-3">
                     <input id="busqueda" name="busqueda" class="form-control input-md" required="" type="text">
                     </div>
-                    <label class="col-md-2 control-label">¿Dondé ?</label>  
+                    <label class="col-md-2 control-label">Ubicacion</label>  
                     <div class="col-md-3">
                     <input id="lugar" name="lugar" class="form-control input-md" required="" type="text">
                     </div>
@@ -140,27 +140,21 @@
                     </div>
                     
                     <label class="col-md-2 control-label">Categoría :</label>  
-                    <div class="col-md-1">
-                        <select name="categoria" id="categoria">
-                                <option value="todas">Todas</option>
-                                <script> 
-                                        var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
-                                        var jsonCategorias = JSON.parse(httpGet(urlCategorias));
-                                        for (i in jsonCategorias.list) {
-                                            
-                                            document.write('<option value="' + jsonCategorias.list[i].toString()  + '">' + 
-                                                    jsonCategorias.list[i].toString() +' </option>');
-                                            }   
-                              </script>
-                               
-                                        
-                        </select>
+                    <div class="col-md-3">
+                        <script> 
+                            var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
+                            var jsonCategorias = JSON.parse(httpGet(urlCategorias));
+                            for (i in jsonCategorias.list) {
+                                document.write('<input type="checkbox" id="'+ jsonCategorias.list[i].toString()+'">'+ jsonCategorias.list[i].toString()+'<br>');
+                                
+                            }   
+                        </script>
                     </div>
                     
                 </div>
                 </div>
                 <br>
-                    <button class="col-md-offset-5 btn btn-info" type="submit"><span class="glyphicon glyphicon-ok-sign"></span> Envoyer !</button>
+                    <button class="col-md-offset-5 btn btn-info" type="submit"><span class="glyphicon glyphicon-ok-sign"></span> Buscar!</button>
                 </fieldset>
                 </form>
 

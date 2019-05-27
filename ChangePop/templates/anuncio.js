@@ -25,7 +25,6 @@ function validar_campos(names) {
         var price=document.getElementById("precio").value;
         var title=document.getElementById("nombreProducto").value;
         var bid_date=document.getElementById("fecha").value + " " + document.getElementById("hora").value;
-        console.log(bid_date);
         var main_img=document.getElementById("mostrar").src;
         var place=document.getElementById("lugarRecogida").value;
         var data = JSON.stringify({"descript": descript, "price": price, "categories": categories, "title": title, "bid_date": bid_date, "main_img": main_img, "photo_urls": main_img, "place": place});

@@ -168,8 +168,19 @@
                             <h4 class="modal-title" id="myModalLabel">Añadir comentario</h4>
                         </div>
                         <div class="modal-body">
-                            <input type="text" class="span2 search-query top bottom"style="width: 95%; margin-left: 2.5%; margin-top: 10px; height:400px">
-                            <button style="margin-top:30px" type="submit" class="btn btn-success btn-lg" data-dismiss="modal" aria-label="Close">Enviar</button>
+                            
+                            <input type="text" class="span2 search-query top bottom"style="width: 95%; margin-left: 2.5%; margin-top: 10px; height:200px" id="comentario">
+                            
+                            <input style="margin-top:30px; width: 60px;" id="val" name="val" class="form-control input-md" required="" type="number" min="0" max="5" value="3">
+                            <button style="margin-top:30px" type="submit" class="btn btn-success btn-lg" data-dismiss="modal" aria-label="Close" id="enviar">Enviar</button>
+                        
+                            <script>
+                                enviar.onclick = function(e) {
+                                    // evitamos la acción por defecto
+                                    e.preventDefault();
+                                    var data = JSON.stringify({"body": document.getElementById("comentario").value, "points": document.getElementById("val").value});
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -200,7 +211,6 @@
       document.getElementById("icono").src = "/static/logo.jpg" ;
       document.getElementById("nombre").innerHTML = usuarioLog.nick ;
       document.getElementById("usuario").href =  "perfil_vendedor.html?nick=" + usuarioLog.nick ;
-      console.log(usuarioLog.nick);
       if(nick.localeCompare(usuarioLog.nick ) != 0  ){
         for(i in anuncios){
             document.getElementById("a" + i ).style.display = "none";
