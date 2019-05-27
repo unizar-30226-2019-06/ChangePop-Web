@@ -244,7 +244,7 @@ var nick = "Aa";
 					{
 						document.write('">');
 					}
-					document.write('<p class="text-left"></p>' + mensajes[i].nick + ' - <em>' + mensajes[i].date + '</em><br/><span class="time-left">' + mensajes[i].body + '</span></div>');
+					document.write('<p class="text-left"></p>' + mensajes[i].nick + ' - <em>' + mensajes[i].body + '</em><br/><span class="time-left">' + mensajes[i].date.slice(0,-16) + '</span></div>');
 				}
 			</script>
 
