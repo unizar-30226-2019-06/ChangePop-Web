@@ -34,7 +34,7 @@
 <script>
 
       
-        var xhttp = new XMLHttpRequest();
+      /*  var xhttp = new XMLHttpRequest();
          xhttp.onreadystatechange = function() {
           if (xhttp.readyState) {
             sessionStorage.setItem('usuarioLogeado', xhttp.responseText );
@@ -45,15 +45,43 @@
           }
          };  
             xhttp.open("GET", "https://kelpa-api.herokuapp.com/user", true);
-            xhttp.send();
+            xhttp.send();*/
         
            // var jusuario =  httpGet("http://kelpa-api.herokuapp.com/profile/Aa") ;
            // console.log(jusuario);
              
              var id = getParameterByName('idMensaje');
-             var urlObtenerMensajes = "http://kelpa-api.herokuapp.com/msgs/" + id;
+             //var urlObtenerMensajes = "http://kelpa-api.herokuapp.com/msgs/" + id;
              //Necesario para parsear el json
-             var jsonMensajes = JSON.parse(httpGet(urlObtenerMensajes));
+            // var jsonMensajes = JSON.parse(httpGet(urlObtenerMensajes));
+var jsonMensajes = JSON.parse('{"length": 5,"list": [{"body": "Hey hola me interesas.","date": "2019-05-27 00:46:50.782675+00:00","nick": "pepe"},{"body": "No el producto,sino tu .Tu me interesas BAKA","date": "2019-05-27 00:46:50.766942+00:00","nick": "pepe"},{"body": "Con que ignorandome eh??.Report 🙂 ","date": "2019-05-27 00:46:50.782675+00:00","nick": "pepe"},{"body": "LOL dat flamer","date": "2019-05-27 00:46:50.766942+00:00","nick": "Aa"},{"body": "Report tu tambien","date": "2019-05-27 00:46:50.766942+00:00","nick": "Aa"}]}');
+var nick = "Aa";
+        /*{
+            "body": "Hey hola me interesas.",
+            "date": "2019-05-27 00:46:50.782675+00:00",
+            "nick": "pepe"
+        },
+        {
+            "body": "No el producto,sino tu .Tu me interesas BAKA",
+            "date": "2019-05-27 00:46:50.766942+00:00",
+            "nick": "pepe"
+        },
+        {
+            "body": "Con que ignorandome eh??.Report :) ",
+            "date": "2019-05-27 00:46:50.782675+00:00",
+            "nick": "pepe"
+        },
+        {
+            "body": "LOL dat flamer",
+            "date": "2019-05-27 00:46:50.766942+00:00",
+            "nick": "Aa"
+        },
+        {
+            "body": "Report tu tambien",
+            "date": "2019-05-27 00:46:50.766942+00:00",
+            "nick": "Aa"
+        }
+    ]);*/
              var mensajes = jsonMensajes.list;
                
              
@@ -205,13 +233,18 @@
 		        <a href="perfil_vendedor.php"><label class="col-xs-4 control-label"style="vertical-align: middle;font-size: 2em;">Manuel_56</label></a>  <!-- nombre del vendedor -->
 		    </div>     
 			<script>
-			    for (i in anuncios) {
+			    for (i in mensajes) {
 					document.write('<div class="container_chat');
-					if(mensajes[i].nick == usuarioLog.nick)
+					//if(mensajes[i].nick == usuarioLog.nick)
+					if(mensajes[i].nick == nick)
 					{
-						document.write('<div class=" darker');
+						document.write(' darker" style="margin-left:20%;">');
 					}
-					document.write('"><p class="text-left"></p>' + mensajes[i].body + '<span class="time-left">' + mensajes[i].body + '</span></div>');
+					else
+					{
+						document.write('">');
+					}
+					document.write('<p class="text-left"></p>' + mensajes[i].nick + ' - <em>' + mensajes[i].date + '</em><br/><span class="time-left">' + mensajes[i].body + '</span></div>');
 				}
 			</script>
 
