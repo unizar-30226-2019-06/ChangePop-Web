@@ -27,6 +27,7 @@
     <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script >
+      
       var urlObtenerAnuncios = "http://kelpa-api.herokuapp.com/products"
              //Necesario para parsear el json
              var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios));
@@ -41,11 +42,11 @@
       }
 
         post(url,params,function(){
-          var urlUser = "https://kelpa-api.herokuapp.com//profile/"+document.getElementById("user").value;
-          var jsonUser = JSON.parse(httpGet(urlUser));
-          var user = jsonAnuncios.list;
-          sessionStorage.setItem('usuarioLogeado', user );
-          window.location = "bienvenidaConectado.html";
+          var urlUser = "https://kelpa-api.herokuapp.com/profile/"+document.getElementById("user").value;
+          sessionStorage.setItem('usuarioLogeado', httpGet(urlUser) );
+          window.location = "index.html";
+        }, function(){
+          alert("Usuario o contraseña incorrecto");
         });
       };
     </script>     
@@ -141,7 +142,7 @@
         </div>
       </div>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="display: none" id="no_reg_var">
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="#"><img src="../static/logo.jpg" width="55px" /></a>
@@ -169,61 +170,107 @@
       </div>
     </nav>
 
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="display: none" id="reg_var">
+        <div class="container">
+          
+          <div class="collapse navbar-collapse" id="myNavbar">
+              <div class="navbar-header">
+                  <a class="navbar-brand" href="index.html"><img  src="/static/logo.jpg" width="55px" /></a>
+                </div>
+                <form class="navbar-form navbar-left" action="/action_page.php">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                  </form>
+                  <form class="navbar-form navbar-left" method="get" action="crearAnuncio.html">
+                        <button type="submit" class="btn btn-success">Subir producto</button>
+                    </form>
+            <ul class="nav navbar-nav navbar-right" id="in_line" >
+                
+                    <div class="dropdown"> 
+                            <a data-toggle="dropdown" style="color:rgb(0, 0, 0);" >
+                                <span style="color:white;font-weight:bold" id="nom" >Pedrito</span>
+                            <img id="icono"  class='img-circle' height="42" width="42"  > </img>
+                                <ul class="dropdown-menu">
+                                    <li><a href="chat.html">Mensajes <span class="glyphicon glyphicon-envelope"></span> <span class="badge">10</span></li>
+                                   <li><a href="miCarrito.html">Mi carrito  <span class="glyphicon glyphicon-shopping-cart my-cart-icon"></span> <span class="badge">10</span></li>
+                                   <li><a  id='usuario' href="perfil_vendedor.html">Mi perfil <span class="glyphicon glyphicon-user"></span></a></li>
+                                 <li><a href="editarUsuario.html">Editar perfil <span class="glyphicon glyphicon-cog"></span></a></li>
+                                  <li><a href="index.html" onclick="logout()">Desconectarse <span class="glyphicon glyphicon-off"></span></a></li>
+                                  <script>
+                                    function logout(){
+                                      sessionStorage.removeItem("usuarioLogeado");
+                                    }
+                                  </script>
+                                  
+                               </ul>
+                        </div>
+                    </a>
+                    
+                
+                    </div>
+                    
+            </ul>
+          </div>
+        </div>
+    </nav>
+
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
         <div class="container">
           <h1>Filtro avanzado :</h1> 
               <p class="lead"></p>
   
-                  <form method="post" action="contact.php" enctype="multipart/form-data" class="form-horizontal">
-                  <fieldset>
-  
-                  <div class="row">
-                  <div class="form-group">
-                      <label class="col-md-2 control-label">¿Qué buscas ?</label>  
-                      <div class="col-md-3">
-                      <input id="busqueda" name="busqueda" class="form-control input-md" required="" type="text">
-                      </div>
-                      <label class="col-md-2 control-label">¿Dondé ?</label>  
-                      <div class="col-md-3">
-                      <input id="lugar" name="lugar" class="form-control input-md" required="" type="text">
-                      </div>
-                      </div>
-                      </div>
-                      <br>
-  
-                      <div class="row">
-                      <div class="form-group">
-                      <label class="col-md-2 control-label">Precio Min :</label>  
-                      <div class="col-md-1">
-                          <input id="busqueda" name="busqueda" class="form-control input-md" required="" type="number">
-                      </div>
-                      <label class="col-md-1 control-label">Max :</label>  
-                      <div class="col-md-1">
-                          <input id="lugar" name="lugar" class="form-control input-md" required="" type="number">
-                      </div>
-                      
-                      <label class="col-md-2 control-label">Categoría :</label>  
-                      <div class="col-md-1">
-                          <select name="categoria" id="categoria">
-                              <script> 
-                                  var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
-                                  var jsonCategorias = JSON.parse(httpGet(urlCategorias));
-                                  for (i in jsonCategorias.list) {
-                                      
-                                      document.write('<option value="todas">'+ jsonCategorias.list[i].toString()+'</option>');
-                                  }   
-                              </script>
-                            </select>
-                          
-                      </div>
-                      
-                  </div>
-                  </div>
-                  <br>
-                      <button class="col-md-offset-5 btn btn-info" type="submit"><span class="glyphicon glyphicon-ok-sign"></span> Buscar!</button>
-                  </fieldset>
-                  </form>
+              <form method="get" action="busqueda.html" enctype="multipart/form-data" class="form-horizontal">
+                <fieldset>
+
+                <div class="row">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">¿Qué buscas ?</label>  
+                    <div class="col-md-3">
+                    <input id="busqueda" name="busqueda" class="form-control input-md" required="" type="text">
+                    </div>
+                    <label class="col-md-2 control-label">¿Dondé ?</label>  
+                    <div class="col-md-3">
+                    <input id="lugar" name="lugar" class="form-control input-md" required="" type="text">
+                    </div>
+                    </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                    <div class="form-group">
+                    <label class="col-md-2 control-label">Precio Min :</label>  
+                    <div class="col-md-1">
+                        <input id="mini" name="mini" class="form-control input-md" required="" type="number">
+                    </div>
+                    <label class="col-md-1 control-label">Max :</label>  
+                    <div class="col-md-1">
+                        <input id="maxi" name="maxi" class="form-control input-md" required="" type="number">
+                    </div>
+                    
+                    <label class="col-md-2 control-label">Categoría :</label>  
+                    <div class="col-md-1">
+                        <select name="categoria" id="categoria">
+                            <script> 
+                                var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
+                                var jsonCategorias = JSON.parse(httpGet(urlCategorias));
+                                for (i in jsonCategorias.list) {
+                                    
+                                    document.write('<option value="'+ jsonCategorias.list[i].toString()+'">'+ jsonCategorias.list[i].toString()+'</option>');
+                                }   
+                            </script>
+                          </select>
+                        
+                    </div>
+                    
+                </div>
+                </div>
+                <br>
+                    <button class="col-md-offset-5 btn btn-info" type="submit"><span class="glyphicon glyphicon-ok-sign"></span> Buscar!</button>
+                </fieldset>
+                </form>
   
         </div>
       </div>
@@ -233,6 +280,18 @@
           <div class="row">
   
               <script>
+                function pujar(id){
+                  var params = {
+                    "bid": document.getElementById("price").value
+                  };
+                  var urlBid="https://kelpa-api.herokuapp.com/bid/"+id;
+                  post(urlBid,params,function(){
+                      alert("Pujar porocesada con exito");
+                    }, function(){
+                      alert("No se ha podido realizar la puja");
+                    });
+                  };
+                
                      var j =0;
                       for (i in anuncios) {
                           if(j%4==0)
@@ -247,9 +306,21 @@
                           '<span class="glyphicon glyphicon-map-marker " style="color:green;font-size: 20px" >'+ anuncios[i].place +'</span> </em>');
                           document.write(' <p>'+ anuncios[i].descript  + '</p> ');
                           document.write('<div class="row">');
-                          document.write('<a class="glyphicon glyphicon-comment" href="#" role="button">Negociar </a> <a>&nbsp;</a>');
-                          document.write(' <a class="glyphicon glyphicon-heart" href="#" role="button">Favoritos</a>');
-                          document.write('</div> </div> </a>');   
+                          if(sessionStorage.getItem('usuarioLogeado') != null){
+                            document.write('<a class="glyphicon glyphicon-comment" href="#" role="button">Negociar </a> <a>&nbsp;</a>');
+                            document.write(' <a class="glyphicon glyphicon-heart" href="#" role="button">Favoritos</a>');
+                          }
+                          document.write('</div>');
+                          if(anuncios[i].bid_date.localeCompare("None") != 0 && sessionStorage.getItem('usuarioLogeado') != null){
+                            document.write('<div class="form-group"> <input type="number" class="form-control width100" id="precio" >' + 
+                                                '<span class="input-group-btn">' +
+                                                '<button class="btn btn-primary" onclick="pujar(anuncios[i].id)">Pujar</button>'+
+                                                '</span></div>');
+                            document.getElementById("precio").value=anuncios[i].price+1;
+                            document.getElementById("precio").min=anuncios[i].price+1;
+                          }    
+                          document.write('</div> </a>');
+                          
                           if((j+1)%4==0)
                           {
                                    document.write('</div>');
@@ -265,45 +336,23 @@
               
               </script>
               
-      </div>
-      <!--PRODUCTOS A LASUBASTA-->
-      <hr style="width:100%; border-color:black;">
-      <h2>SE SUBASTA</h2>
-          <div class="row" style="margin:0px;">
-              <a href="anuncio.html" class="anuncio">
-  
-                      <div class="col-md-3 " style="border: solid 2px white;">
-                          <h2>Vendo mi play</h2>
-                          <img src="anuncioEjemplo.png" style="border: solid 2px white; width:250px; height:200px ">
-                      </br>
-                          <em>Precio <strong>300€</strong> - Puesto hace 3 horas <span class="glyphicon glyphicon-map-marker " style="color:green;font-size: 20px" >Jaen </span> </em> 
-                          <p>vendo ps3 80 gb en buen estado, la vendo por no usarla. la entrego con su cable de alimentacion y mando original con su cable de carga también.
-                               entrego en mano .
-                                </p>             
-                          <div class="row">
-                            <a class="glyphicon glyphicon-comment" style="font-size: 17px" href="#" role="button">Negociar </a>
-                            
-                            <a class="glyphicon glyphicon-heart" href="#"  style="font-size: 17px" role="button">Favoritos</a>   
-                          </div>
-                          <div class="form-group"> <input type="number" class="form-control width100" id="precio" >
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary">Pujar</button>
-                            </span></div>      
-                      </div>   
-              </a>
-  
-  
-      </div>         
+      </div>  
   
       </div> <!-- /container -->
-      <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
-      <script src="../static/jquery.mycart-master/js/bootstrap.min.js"></script>
-      <script src="../static/jquery.mycart-master/js/jquery-2.2.3.min.js"></script>
-      <script src="../static/jquery.mycart-master/js/jquery.mycart.js"></script>
       <script>
+        if(sessionStorage.getItem('usuarioLogeado') == null){
+          document.getElementById("no_reg_var").style.display='block';
+          document.getElementById("reg_var").style.display='none';
+        }else{
+          var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
+          document.getElementById("icono").src = usuarioLog.avatar ;
+          document.getElementById("nom").innerHTML = usuarioLog.nick ;
+          document.getElementById("usuario").href =  "perfil_vendedor.html?nick=" + usuarioLog.nick ;
+          document.getElementById("reg_var").style.display='block';
+          document.getElementById("no_reg_var").style.display='none';
+        }
         
-        
-          </script>
+      </script>
       <!-- Bootstrap core JavaScript
       ================================================== -->
       <!-- Placed at the end of the document so the pages load faster -->
