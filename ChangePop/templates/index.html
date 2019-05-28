@@ -160,7 +160,7 @@
           <h1>Filtro avanzado :</h1> 
               <p class="lead"></p>
   
-                  <form method="get" action="contact.php" enctype="multipart/form-data" class="form-horizontal">
+                  <form method="get" action="busqueda.html" enctype="multipart/form-data" class="form-horizontal">
                   <fieldset>
   
                   <div class="row">
@@ -196,7 +196,7 @@
                                   var jsonCategorias = JSON.parse(httpGet(urlCategorias));
                                   for (i in jsonCategorias.list) {
                                       
-                                      document.write('<option value="todas">'+ jsonCategorias.list[i].toString()+'</option>');
+                                      document.write('<option value="'+ jsonCategorias.list[i].toString()+'">'+ jsonCategorias.list[i].toString()+'</option>');
                                   }   
                               </script>
                             </select>

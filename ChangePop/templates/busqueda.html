@@ -27,9 +27,60 @@
     <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
     <script >
-      var urlObtenerAnuncios = "http://kelpa-api.herokuapp.com/products"
+	var busqueda = getParameterByName("busqueda").value; 
+	var lugar = getParameterByName("lugar").value; 
+	var mini = getParameterByName("mini").value; 
+	var maxi = getParameterByName("maxi").value; 
+	var categoria = getParameterByName("categoria").value; 
+      var urlObtenerAnuncios = 'http://kelpa-api.herokuapp.com/search/products/adv';
+	/*var parametro = {
+    "title": busqueda,
+    "price_min": mini,
+    "price_max": maxi,
+    "descript": busqueda,
+    "category": categoria,
+    "place": lugar
+};*/
+var parametro = {
+    "title": "Aa",
+    "price_min": 1000,
+    "price_max": 6000,
+    "descript": "Aa",
+    "category": "Moda",
+    "place": "Zaragoza"
+};
+	
+function formatParams( params ){
+  return Object
+        .keys(params)
+        .map(function(key){
+          return key+"="+encodeURIComponent(params[key])
+        })
+        .join("&")
+}
+console.log(formatParams(parametro));
+function getLoginj(url,params) {
+       $.ajax({
+  data: formatParams(params),
+  url: url,
+  type: "get", //send it through get method
+  success: function(response) {
+    console.log(response.text);
+  console.log("It works");  
+  },
+  error: function(xhr) {
+    console.log("NOOO");
+    console.log(xhr);
+  }
+});
+ }
+
              //Necesario para parsear el json
-             var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios));
+	/*	             getLoginj(urlObtenerAnuncios, parametro);
+		             getLogin(urlObtenerAnuncios, parametro);
+             var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios, parametro));*/
+var jsonAnuncios = JSON.parse('{"length": 2,"list": [{"id": "2509","price": 5000,"title": "Prueba usuario Aa Anuci","user_nick": "Aa","visits": 30},{"id": "2510","price": 5000,"title": "Prueba usuario Aa Anuci","user_nick": "Aa","visits": 70}]}');
+	     
              var anuncios = jsonAnuncios.list;
       var url="https://kelpa-api.herokuapp.com/login"
       var params = {
@@ -160,7 +211,7 @@
           <h1>Filtro avanzado :</h1> 
               <p class="lead"></p>
   
-                  <form method="post" action="contact.php" enctype="multipart/form-data" class="form-horizontal">
+                  <form method="get" action="busqueda.html" enctype="multipart/form-data" class="form-horizontal">
                   <fieldset>
   
                   <div class="row">
@@ -181,23 +232,26 @@
                       <div class="form-group">
                       <label class="col-md-2 control-label">Precio Min :</label>  
                       <div class="col-md-1">
-                          <input id="busqueda" name="busqueda" class="form-control input-md" required="" type="number">
+                          <input id="mini" name="mini" class="form-control input-md" required="" type="number">
                       </div>
                       <label class="col-md-1 control-label">Max :</label>  
                       <div class="col-md-1">
-                          <input id="lugar" name="lugar" class="form-control input-md" required="" type="number">
+                          <input id="maxi" name="maxi" class="form-control input-md" required="" type="number">
                       </div>
                       
                       <label class="col-md-2 control-label">Categoría :</label>  
-                      <div class="col-md-3">
-                          <script> 
-                              var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
-                              var jsonCategorias = JSON.parse(httpGet(urlCategorias));
-                              for (i in jsonCategorias.list) {
-                                  document.write('<input type="checkbox" id="'+ jsonCategorias.list[i].toString()+'">'+ jsonCategorias.list[i].toString()+'<br>');
-                                  
-                              }   
-                          </script>
+                      <div class="col-md-1">
+                          <select name="categoria" id="categoria">
+                              <script> 
+                                  var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
+                                  var jsonCategorias = JSON.parse(httpGet(urlCategorias));
+                                  for (i in jsonCategorias.list) {
+                                      
+                                      document.write('<option value="'+ jsonCategorias.list[i].toString()+'">'+ jsonCategorias.list[i].toString()+'</option>');
+                                  }   
+                              </script>
+                            </select>
+                          
                       </div>
                       
                   </div>
@@ -211,72 +265,24 @@
       </div>
   <!--PRODUCTOS A LA VENTA-->
       <div class="container">
-          <h2>SE VENDE</h2>
+          <h2>Resultados de la busqueda : </h2><br /><br />
           <div class="row">
   
               <script>
-                     var j =0;
                       for (i in anuncios) {
-                          if(j%4==0)
-                          {
                                    document.write('<div class="row" style="margin:0px; border: solid 2px white;">');
-                          }
-                          console.log(anuncios[i].main_img);
-                          document.write('<a href="anuncio.html?idAnuncio=' + anuncios[i].id   + ' " class="anuncio">  <div class="col-md-3 " style="border-left: solid 2px white;  height:100%; "> '  );
-                          document.write('<h2>'+ anuncios[i].title + '</h2>'   );
-                          document.write('<img src="'+  anuncios[i].main_img  + '" style="border: solid 2px white; width:100%; max-width:250px; height:auto; ">');
-                          document.write('</br>');
-                          document.write(' <em>Precio <strong>' + anuncios[i].price   + '€</strong> - Fecha publicación:' +   anuncios[i].publish_date  + 
-                          '<span class="glyphicon glyphicon-map-marker " style="color:green;font-size: 20px" >'+ anuncios[i].place +'</span> </em>');
-                          document.write(' <p>'+ anuncios[i].descript  + '</p> ');
-                          document.write('<div class="row">');
-                          document.write('<a class="glyphicon glyphicon-comment" href="#" role="button">Negociar </a> <a>&nbsp;</a>');
-                          document.write(' <a class="glyphicon glyphicon-heart" href="#" role="button">Favoritos</a>');
-                          document.write('</div> </div> </a>');   
-                          if((j+1)%4==0)
-                          {
-                                   document.write('</div>');
-                          }
-                          j++;
+                          document.write('<a href="anuncio.html?idAnuncio=' + anuncios[i].id + '"><h1 style="color:blue;">' + anuncios[i].title + '');
+                          document.write(' - ' + anuncios[i].price + '€</h1></a>');
+                          document.write('de <em>' + anuncios[i].user_nick + '</em>');
+                          document.write('<br />Numero de visita : ' + anuncios[i].visits + ' - <a href="anuncio.html?idAnuncio=' + anuncios[i].id + '">Ver</a>');
+                                   document.write('</div><br /><br/>');
                        }          
-                       if((j-2)%4==0)
-                       {
-                                  document.write('</div>');
-                       }
                   
                 
               
               </script>
               
-      </div>
-      <!--PRODUCTOS A LASUBASTA-->
-      <hr style="width:100%; border-color:black;">
-      <h2>SE SUBASTA</h2>
-          <div class="row" style="margin:0px;">
-              <a href="anuncio.html" class="anuncio">
-  
-                      <div class="col-md-3 " style="border: solid 2px white;">
-                          <h2>Vendo mi play</h2>
-                          <img src="anuncioEjemplo.png" style="border: solid 2px white; width:250px; height:200px ">
-                      </br>
-                          <em>Precio <strong>300€</strong> - Puesto hace 3 horas <span class="glyphicon glyphicon-map-marker " style="color:green;font-size: 20px" >Jaen </span> </em> 
-                          <p>vendo ps3 80 gb en buen estado, la vendo por no usarla. la entrego con su cable de alimentacion y mando original con su cable de carga también.
-                               entrego en mano .
-                                </p>             
-                          <div class="row">
-                            <a class="glyphicon glyphicon-comment" style="font-size: 17px" href="#" role="button">Negociar </a>
-                            
-                            <a class="glyphicon glyphicon-heart" href="#"  style="font-size: 17px" role="button">Favoritos</a>   
-                          </div>
-                          <div class="form-group"> <input type="number" class="form-control width100" id="precio" >
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary">Pujar</button>
-                            </span></div>      
-                      </div>   
-              </a>
-  
-  
-      </div>         
+      </div>        
   
       </div> <!-- /container -->
       <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>

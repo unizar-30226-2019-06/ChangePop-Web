@@ -1,11 +1,13 @@
- 
- function httpGet(theUrl){
+
+ function httpGet(theUrl, params){
       
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-      xmlHttp.send( null );
+      xmlHttp.send( JSON.stringify(params) );
       return xmlHttp.responseText;
       }
+
+
 
      
       function getParameterByName(name, url) {
@@ -17,6 +19,7 @@
           if (!results[2]) return '';
           return decodeURIComponent(results[2].replace(/\+/g, ' '));
       }
+
       function post(url,params,respuesta){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -29,4 +32,15 @@
         xhttp.send(JSON.stringify(params));
       }      
 
-    
+   function getLogin(url,parms) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState) {
+            console.log(this.responseText);
+           
+          }
+        };  
+        xhttp.open("GET", url, true);
+        xhttp.send(JSON.stringify(params));
+      }
+
