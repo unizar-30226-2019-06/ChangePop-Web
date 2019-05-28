@@ -190,14 +190,17 @@
                       
                       <label class="col-md-2 control-label">Categoría :</label>  
                       <div class="col-md-3">
-                          <script> 
-                              var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
-                              var jsonCategorias = JSON.parse(httpGet(urlCategorias));
-                              for (i in jsonCategorias.list) {
-                                  document.write('<input type="checkbox" id="'+ jsonCategorias.list[i].toString()+'">'+ jsonCategorias.list[i].toString()+'<br>');
-                                  
-                              }   
-                          </script>
+                          <select name="categoria" id="categoria">
+                              <script> 
+                                  var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
+                                  var jsonCategorias = JSON.parse(httpGet(urlCategorias));
+                                  for (i in jsonCategorias.list) {
+                                      
+                                      document.write('<option value="todas">'+ jsonCategorias.list[i].toString()+'</option>');
+                                  }   
+                              </script>
+                            </select>
+                          
                       </div>
                       
                   </div>
