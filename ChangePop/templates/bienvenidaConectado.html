@@ -41,7 +41,7 @@
             var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
             document.getElementById("icono").src = "/static/logo.jpg" ;
             document.getElementById("nombre").innerHTML = usuarioLog.nick ;
-             document.getElementById("usuario").href =  "perfil_vendedor.html?nick=" + usuarioLog.nick ;
+            document.getElementById("usuario").href =  "perfil_vendedor.html?nick=" + usuarioLog.nick ;
           }
          };  
             xhttp.open("GET", "https://kelpa-api.herokuapp.com/user", true);

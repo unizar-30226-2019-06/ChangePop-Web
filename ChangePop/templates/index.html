@@ -25,20 +25,26 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script >
       var urlObtenerAnuncios = "http://kelpa-api.herokuapp.com/products"
              //Necesario para parsear el json
              var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios));
              var anuncios = jsonAnuncios.list;
       var url="https://kelpa-api.herokuapp.com/login"
+      
+     function conectarse(){
       var params = {
-        nick : "Aa",
-        pass : "aaaaaa",
+        nick : document.getElementById("user").value,
+        pass : document.getElementById("pass").value,
         remember : true
       }
-     function conectarse(){
+
         post(url,params,function(){
+          var urlUser = "https://kelpa-api.herokuapp.com//profile/"+document.getElementById("user").value;
+          var jsonUser = JSON.parse(httpGet(urlUser));
+          var user = jsonAnuncios.list;
+          sessionStorage.setItem('usuarioLogeado', user );
           window.location = "bienvenidaConectado.html";
         });
       };
@@ -60,10 +66,10 @@
               <div class="input-append">
                 <div>
                   <p>Usuario</p>
-                  <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%">
+                  <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="user" required>
 
                   <p>Contraseña</p>
-                  <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%">
+                  <input type="password" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="pass" required>
                 </div>
                   <button type="button" class="btn btn-success" onclick="conectarse();" >Connection</button>
               </div>
@@ -94,34 +100,43 @@
                 <div class="input-append">
                   <div>
                     <p>Nombre</p>
-                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%">
+                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="nombre" required>
   
                     <p>Apellidos</p>
-                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%">
+                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="apellido" required>
 
                     <p>Usuario</p>
-                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%">
+                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="user" required>
+
+                    <p>Contraseña</p>
+                    <input type="password" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="pass" required>
 
                     <p>DNI</p>
-                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%">
+                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="dni" required>
   
-                    <p>Localidas</p>
-                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%">
+                    <p>Localidad</p>
+                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="loc" required>
 
                     <p>Teléfono</p>
-                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%">
+                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="tel" required>
   
                     <p>Mail</p>
-                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%">
+                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="mail" required>
 
                     <p>Fecha de nacimiento</p>
-                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%">
+                    <input type="date" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="fnac" required>
                   </div>
                 </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-success">Conectar</button>
+              <button type="button" class="btn btn-success" onclick="registro()">Registrarse</button>
             </div>
+            <script>
+              function registro(){
+                var data = JSON.stringify({"nick": document.getElementById("user").value, "first_name": document.getElementById("nombre").value, "last_name": document.getElementById("apellido").value, "mail": document.getElementById("mail").value, "pass": document.getElementById("pass").value, "phone": document.getElementById("tel").value, "fnac": document.getElementById("fnac").value, "dni": document.getElementById("dni").value, "place": document.getElementById("loc").value});
+                console.log(data);
+              }
+            </script>
           </div>
         </div>
       </div>
@@ -224,7 +239,6 @@
                           {
                                    document.write('<div class="row" style="margin:0px; border: solid 2px white;">');
                           }
-                          console.log(anuncios[i].main_img);
                           document.write('<a href="anuncio.html?idAnuncio=' + anuncios[i].id   + ' " class="anuncio">  <div class="col-md-3 " style="border-left: solid 2px white;  height:100%; "> '  );
                           document.write('<h2>'+ anuncios[i].title + '</h2>'   );
                           document.write('<img src="'+  anuncios[i].main_img  + '" style="border: solid 2px white; width:100%; max-width:250px; height:auto; ">');
@@ -293,7 +307,6 @@
       <!-- Bootstrap core JavaScript
       ================================================== -->
       <!-- Placed at the end of the document so the pages load faster -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script>window.jQuery || document.write('<script src="..static/assets/js/vendor/jquery.min.js"><\/script>')</script>
       <script src="../static/dist/js/bootstrap.min.js"></script>
       <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
