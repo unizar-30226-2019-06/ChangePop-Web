@@ -31,11 +31,6 @@
       var urlObtenerAnuncios = 'http://kelpa-api.herokuapp.com/search/products?text=' + busqueda;
 	
 	
-
-             //Necesario para parsear el json
-	/*	             getLoginj(urlObtenerAnuncios, parametro);
-		             getLogin(urlObtenerAnuncios, parametro);
-             var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios, parametro));*/
 var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios));
 	     if(jsonAnuncios.length == 0)
 		{alert("aa");}
@@ -51,6 +46,7 @@ var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios));
           window.location = "bienvenidaConectado.html";
         });
       };
+
     </script>     
 
   </head>
