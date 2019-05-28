@@ -222,7 +222,7 @@
           <h1>Filtro avanzado :</h1> 
               <p class="lead"></p>
   
-                  <form method="get" action="busqueda.html" enctype="multipart/form-data" class="form-horizontal">
+                  <form method="post" action="contact.php" enctype="multipart/form-data" class="form-horizontal">
                   <fieldset>
   
                   <div class="row">
@@ -243,11 +243,11 @@
                       <div class="form-group">
                       <label class="col-md-2 control-label">Precio Min :</label>  
                       <div class="col-md-1">
-                          <input id="mini" name="mini" class="form-control input-md" required="" type="number">
+                          <input id="busqueda" name="busqueda" class="form-control input-md" required="" type="number">
                       </div>
                       <label class="col-md-1 control-label">Max :</label>  
                       <div class="col-md-1">
-                          <input id="maxi" name="maxi" class="form-control input-md" required="" type="number">
+                          <input id="lugar" name="lugar" class="form-control input-md" required="" type="number">
                       </div>
                       
                       <label class="col-md-2 control-label">Categoría :</label>  
@@ -258,7 +258,7 @@
                                   var jsonCategorias = JSON.parse(httpGet(urlCategorias));
                                   for (i in jsonCategorias.list) {
                                       
-                                      document.write('<option value="'+ jsonCategorias.list[i].toString()+'">'+ jsonCategorias.list[i].toString()+'</option>');
+                                      document.write('<option value="todas">'+ jsonCategorias.list[i].toString()+'</option>');
                                   }   
                               </script>
                             </select>
@@ -291,6 +291,20 @@
                       alert("No se ha podido realizar la puja");
                     });
                   };
+
+                  function negociar(seller_id, product_id){
+                    var urlTrade="https://kelpa-api.herokuapp.com/trade";
+                    var params = {
+                      "seller_id": seller_id,
+                      "buyer_id": usuarioLog.id,
+                      "product_id": product_id
+                    };
+                    post(urlTrade,params,function(){
+                      window.location = "chat.html";
+                    }, function(){
+                      alert("No se ha podido reslizar la operacion");
+                    });
+                  };
                 
                      var j =0;
                       for (i in anuncios) {
@@ -307,7 +321,7 @@
                           document.write(' <p>'+ anuncios[i].descript  + '</p> ');
                           document.write('<div class="row">');
                           if(sessionStorage.getItem('usuarioLogeado') != null){
-                            document.write('<a class="glyphicon glyphicon-comment" href="#" role="button">Negociar </a> <a>&nbsp;</a>');
+                            document.write('<a class="glyphicon glyphicon-comment" href="#" role="button" onclick="negociar()">Negociar </a> <a>&nbsp;</a>');
                             document.write(' <a class="glyphicon glyphicon-heart" href="#" role="button">Favoritos</a>');
                           }
                           document.write('</div>');

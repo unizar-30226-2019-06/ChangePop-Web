@@ -142,6 +142,27 @@ function volverImagen() {
       </div>
       <div>
         <label style="font-size: 2em; margin-left:10%;"><span id="price"></span> €</label>  <!-- precio -->
+        <script>
+          function pujar(id){
+                  var params = {
+                    "bid": document.getElementById("price").value
+                  };
+                  var urlBid="https://kelpa-api.herokuapp.com/bid/"+id;
+                  post(urlBid,params,function(){
+                      alert("Pujar porocesada con exito");
+                    }, function(){
+                      alert("No se ha podido realizar la puja");
+                    });
+                  };
+          if(jsonProducto.bid_date.localeCompare("None") != 0 && sessionStorage.getItem('usuarioLogeado') != null){
+            document.write('<div class="form-group"> <input type="number" class="form-control width100" id="precio" >' + 
+                                                '<span class="input-group-btn">' +
+                                                '<button class="btn btn-primary" onclick="pujar(jsonProducto.id)">Pujar</button>'+
+                                                '</span></div>');
+            document.getElementById("precio").value=jsonProducto.price+1;
+            document.getElementById("precio").min=jsonProducto.price+1;
+          }
+        </script>
       </div>
       <div>
         <label id="title" style="font-size: 2em; margin-left:10%;"></label>  <!-- titulo -->
