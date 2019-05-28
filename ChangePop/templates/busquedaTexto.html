@@ -27,60 +27,18 @@
     <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
     <script >
-	var busqueda = getParameterByName("busqueda"); 
-	var lugar = getParameterByName("lugar"); 
-	var mini = getParameterByName("mini"); 
-	var maxi = getParameterByName("maxi"); 
-	var categoria = getParameterByName("categoria"); 
-      var urlObtenerAnuncios = 'http://kelpa-api.herokuapp.com/search/products/adv';
-	/*var parametro = {
-    "title": busqueda,
-    "price_min": mini,
-    "price_max": maxi,
-    "descript": busqueda,
-    "category": categoria,
-    "place": lugar
-};*/
-var parametro = {
-    "title": "Aa",
-    "price_min": 1000,
-    "price_max": 6000,
-    "descript": "Aa",
-    "category": "Moda",
-    "place": "Zaragoza"
-};
+	var busqueda = getParameterByName("texto"); 
+      var urlObtenerAnuncios = 'http://kelpa-api.herokuapp.com/search/products?text=' + busqueda;
 	
-function formatParams( params ){
-  return Object
-        .keys(params)
-        .map(function(key){
-          return key+"="+encodeURIComponent(params[key])
-        })
-        .join("&")
-}
-console.log(formatParams(parametro));
-function getLoginj(url,params) {
-       $.ajax({
-  data: formatParams(params),
-  url: url,
-  type: "get", //send it through get method
-  success: function(response) {
-    console.log(response.text);
-  console.log("It works");  
-  },
-  error: function(xhr) {
-    console.log("NOOO");
-    console.log(xhr);
-  }
-});
- }
+	
 
              //Necesario para parsear el json
 	/*	             getLoginj(urlObtenerAnuncios, parametro);
 		             getLogin(urlObtenerAnuncios, parametro);
              var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios, parametro));*/
-var jsonAnuncios = JSON.parse('{"length": 2,"list": [{"id": "2509","price": 5000,"title": "Prueba usuario Aa Anuci","user_nick": "Aa","visits": 30},{"id": "2510","price": 5000,"title": "Prueba usuario Aa Anuci","user_nick": "Aa","visits": 70}]}');
-	     
+var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios));
+	     if(jsonAnuncios.length == 0)
+		{alert("aa");}
              var anuncios = jsonAnuncios.list;
       var url="https://kelpa-api.herokuapp.com/login"
       var params = {
