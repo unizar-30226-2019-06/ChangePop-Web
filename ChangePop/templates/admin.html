@@ -65,16 +65,17 @@ var report = jsonReports.list;
           <script>
           function borrarReport(report)
           {
-                
+                httpGet('http://kelpa-api.herokuapp.com/report/' + report);
           }
           function borrarAnuncio(report, product)
           {
-                
+                httpGet('http://kelpa-api.herokuapp.com/user/' + usuario +'/ban');
                 borrarReport(report);
           }
           function borrarUsuarioYanuncio(report, product, usuario)
           {
-                
+                httpGet('http://kelpa-api.herokuapp.com/user/' + usuario +'/ban'); //para ban
+                //httpGet('http://kelpa-api.herokuapp.com/user/' + usuario; // para borrar
                 borrarAnuncio(report, product);
           }
 		      for (i in report) {
@@ -116,6 +117,22 @@ var id_product = 2509; // à récupérer quand l'api le permettra
 </script>
             
             <hr>
+<script>
+function anadirMod()
+{
+	var nuevoMod = document.getElementById("mod").value; 
+	document.getElementById("mod").value = "";
+	var idNuevoMod = httpGet('http://kelpa-api.herokuapp.com/profile/' + nuevoMod);
+	httpGet('http://kelpa-api.herokuapp.com/user/' + idNuevoMod + '/mod');
+}
+</script>
+<div class="form-group"> <input type="texte" class="form-control" id="mod" style ="width:50%;"><span class="input-group-btn"><button class="btn btn-primary" onclick="anadirMod();">anadir mod</button></div>
+
+
+<hr>
+
+
+
             
             
         </div> <!-- card.// -->
