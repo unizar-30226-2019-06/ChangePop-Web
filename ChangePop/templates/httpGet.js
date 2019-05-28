@@ -1,9 +1,9 @@
 
- function httpGet(theUrl, params){
+ function httpGet(theUrl){
       
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-      xmlHttp.send( JSON.stringify(params) );
+      xmlHttp.send(null );
       return xmlHttp.responseText;
       }
 
@@ -19,12 +19,13 @@
           if (!results[2]) return '';
           return decodeURIComponent(results[2].replace(/\+/g, ' '));
       }
-
-      function post(url,params,respuesta){
+      function post(url,params,respuesta,respuesta2){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
             respuesta();
+          }else if(this.status == 400){
+            respuesta2();
           }
         };  
         xhttp.open("POST", url, true);
