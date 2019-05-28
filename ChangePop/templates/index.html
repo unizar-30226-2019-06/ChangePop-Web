@@ -222,55 +222,56 @@
           <h1>Filtro avanzado :</h1> 
               <p class="lead"></p>
   
-              <form method="get" action="busqueda.html" enctype="multipart/form-data" class="form-horizontal">
-                <fieldset>
-
-                <div class="row">
-                <div class="form-group">
-                    <label class="col-md-2 control-label">¿Qué buscas ?</label>  
-                    <div class="col-md-3">
-                    <input id="busqueda" name="busqueda" class="form-control input-md" required="" type="text">
-                    </div>
-                    <label class="col-md-2 control-label">¿Dondé ?</label>  
-                    <div class="col-md-3">
-                    <input id="lugar" name="lugar" class="form-control input-md" required="" type="text">
-                    </div>
-                    </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                    <div class="form-group">
-                    <label class="col-md-2 control-label">Precio Min :</label>  
-                    <div class="col-md-1">
-                        <input id="mini" name="mini" class="form-control input-md" required="" type="number">
-                    </div>
-                    <label class="col-md-1 control-label">Max :</label>  
-                    <div class="col-md-1">
-                        <input id="maxi" name="maxi" class="form-control input-md" required="" type="number">
-                    </div>
-                    
-                    <label class="col-md-2 control-label">Categoría :</label>  
-                    <div class="col-md-1">
-                        <select name="categoria" id="categoria">
-                            <script> 
-                                var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
-                                var jsonCategorias = JSON.parse(httpGet(urlCategorias));
-                                for (i in jsonCategorias.list) {
-                                    
-                                    document.write('<option value="'+ jsonCategorias.list[i].toString()+'">'+ jsonCategorias.list[i].toString()+'</option>');
-                                }   
-                            </script>
-                          </select>
-                        
-                    </div>
-                    
-                </div>
-                </div>
-                <br>
-                    <button class="col-md-offset-5 btn btn-info" type="submit"><span class="glyphicon glyphicon-ok-sign"></span> Buscar!</button>
-                </fieldset>
-                </form>
+                  <form method="get" action="busqueda.html" enctype="multipart/form-data" class="form-horizontal">
+                  <fieldset>
+  
+                  <div class="row">
+                  <div class="form-group">
+                      <label class="col-md-2 control-label">¿Qué buscas ?</label>  
+                      <div class="col-md-3">
+                      <input id="busqueda" name="busqueda" class="form-control input-md" required="" type="text">
+                      </div>
+                      <label class="col-md-2 control-label">¿Dondé ?</label>  
+                      <div class="col-md-3">
+                      <input id="lugar" name="lugar" class="form-control input-md" required="" type="text">
+                      </div>
+                      </div>
+                      </div>
+                      <br>
+  
+                      <div class="row">
+                      <div class="form-group">
+                      <label class="col-md-2 control-label">Precio Min :</label>  
+                      <div class="col-md-1">
+                          <input id="mini" name="busqueda" class="form-control input-md" required="" type="number">
+                      </div>
+                      <label class="col-md-1 control-label">Max :</label>  
+                      <div class="col-md-1">
+                          <input id="maxi" name="lugar" class="form-control input-md" required="" type="number">
+                      </div>
+                      
+                      <label class="col-md-2 control-label">Categoría :</label>  
+                      <div class="col-md-1">
+                          <select name="categoria" id="categoria">
+                              <script> 
+                                  var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
+                                  var jsonCategorias = JSON.parse(httpGet(urlCategorias));
+                                  for (i in jsonCategorias.list) {
+                                      
+                                      document.write('<option value="'+ jsonCategorias.list[i].toString()+'">'+ jsonCategorias.list[i].toString()+'</option>');
+                                  }   
+                              </script>
+                            </select>
+                          
+                      </div>
+                      
+                  </div>
+                  </div>
+                  <br>
+                      <button class="col-md-offset-5 btn btn-info" type="submit"><span class="glyphicon glyphicon-ok-sign"></span> Buscar!</button>
+                  </fieldset>
+                  </form>
+>>>>>>> f61ea5487c13e71204553fb9ab16daf853401ab7
   
         </div>
       </div>

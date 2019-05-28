@@ -1,11 +1,13 @@
- 
- function httpGet(theUrl){
+
+ function httpGet(theUrl, params){
       
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-      xmlHttp.send( null );
+      xmlHttp.send( JSON.stringify(params) );
       return xmlHttp.responseText;
       }
+
+
 
      
       function getParameterByName(name, url) {
@@ -17,7 +19,12 @@
           if (!results[2]) return '';
           return decodeURIComponent(results[2].replace(/\+/g, ' '));
       }
+<<<<<<< HEAD
       function post(url,params,respuesta,respuesta2){
+=======
+
+      function post(url,params,respuesta){
+>>>>>>> f61ea5487c13e71204553fb9ab16daf853401ab7
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
@@ -31,4 +38,15 @@
         xhttp.send(JSON.stringify(params));
       }      
 
-    
+   function getLogin(url,parms) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState) {
+            console.log(this.responseText);
+           
+          }
+        };  
+        xhttp.open("GET", url, true);
+        xhttp.send(JSON.stringify(params));
+      }
+
