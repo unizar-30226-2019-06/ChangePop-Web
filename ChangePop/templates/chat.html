@@ -129,7 +129,7 @@ var jsonTrades = JSON.parse('{"length": 2,"list": [{"buyer_id": 81,"closed": fal
 	{
 		var product_offer = 'http://kelpa-api.herokuapp.com/product/' + jsonTrades.list[i].products_offer[po];
 		var product_offer = JSON.parse(httpGet(product_offer));
-		document.write('<div class="row"><div class="col-lg-offset-2 col-lg-10"> + Productos ofertas : ' + product_offer.title + '</div></div>');
+		document.write('<div class="row"><div class="col-lg-offset-2 col-lg-10"> + Productos ofertas : <span id="p-actual-' + i + '">' + product_offer.title + '</span></div></div>');
 	}
 	document.write('<div class="row"><a href="#verConversation"><div class="col-lg-offset-2 col-lg-10"><em>Vendedor ' + jsonTrades.list[i].buyer_id + ' con ' + jsonTrades.list[i].seller_id + '</em></div></a></div> ');
 	if(jsonTrades.list[i].buyer_id == usuarioLog.id)
@@ -140,34 +140,41 @@ var jsonTrades = JSON.parse('{"length": 2,"list": [{"buyer_id": 81,"closed": fal
 		{
 			document.write('<option value="' + jsonInter[p].id + '">' + jsonInter[p].title + '</option>');
 		}
-		document.write('</select></p> <button type="submit" onclick="proponerProducto(' + i + ');" class="btn btn-default">Ofrecer</button>');
+		document.write('</select></p> <button type="submit" onclick="proponerProducto(' + i + ', ' + jsonTrades.list[i].id + ');" class="btn btn-default">Ofrecer</button>');
 	}
 	else
 	{
-		document.write('<button type="submit" onclick="aceptar(' + i + ');" class="btn btn-default">Aceptar</button>');
+		document.write('<button type="submit" onclick="aceptar(' + jsonTrades.list[i].id + ');" class="btn btn-default">Aceptar</button>');
 	}
 	document.write('<hr>');
 	}
-	function proponerProducto(i)
+	function proponerProducto(i, id)
 	{
+		
 		
 		var precio = document.getElementById("p-" + i).value; 
 		var intercambio = document.getElementById("i-" + i).value; 
        		 var xhttp = new XMLHttpRequest();
-          	xhttp.open("POST", "https://kelpa-api.herokuapp.com/trade/" + intercambio + "/offer", true);
+          	xhttp.open("PUT", "https://kelpa-api.herokuapp.com/trade/" + intercambio + "/offer", true);
 		params = 'price=' + precio + '&products=' + [intercambio];
 		xhttp.send(params);
-		alert("ok");
+                put("http://kelpa-api.herokuapp.com/trade/" + id + "/confirm",null,function(){
+                  alert("Usuario modificado correctamente");
+
+		//À CONTINUER ICI
+		  document.getElementById("p-actual-" + i).value = document.getElementById("p-actual-" + i).value  + ; 
+	
+                }, function(){
+                  alert("No se pudo modificar el usuario");
+                });
 	}
 	function aceptar(i)
 	{
-		var precio = document.getElementById("p-" + i).value; 
-		var intercambio = document.getElementById("i-" + i).value; 
-       		 var xhttp = new XMLHttpRequest();
-          	xhttp.open("GET", "https://kelpa-api.herokuapp.com/trade/" + intercambio + "/offer", true);
-		params = 'price=' + precio + '&products=' + [intercambio];
-		xhttp.send(null);
-		alert("ok");
+                put("http://kelpa-api.herokuapp.com/trade/" + i + "/confirm",null,function(){
+                  alert("Usuario modificado correctamente");
+                }, function(){
+                  alert("No se pudo modificar el usuario");
+                });
 	}
       </script>
 
