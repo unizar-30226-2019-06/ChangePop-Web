@@ -127,9 +127,10 @@ function volverImagen() {
 		function reportar()
 		{
 			alert("reportado");
+       			 var xhttp = new XMLHttpRequest();
         		xhttp.open("POST", "https://kelpa-api.herokuapp.com/report", true);
 			params = 'user_id=' + jsonProducto.user_id + '&product_id=' + getParameterByName('idAnuncio');
-			http.send(params);
+			xhttp.send(params);
 		}
 	</script>
         <a style="vertical-align: middle;  margin-top:2px; width: 100px; margin-left:40%;"

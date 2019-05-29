@@ -32,23 +32,8 @@
     <![endif]-->
 
 <script>
+	var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
 
-      
-      /*  var xhttp = new XMLHttpRequest();
-         xhttp.onreadystatechange = function() {
-          if (xhttp.readyState) {
-            sessionStorage.setItem('usuarioLogeado', xhttp.responseText );
-            var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
-            document.getElementById("icono").src = "/static/logo.jpg" ;
-            document.getElementById("nombre").innerHTML = usuarioLog.nick ;
-             document.getElementById("usuario").href =  "perfil_vendedor.html?nick=" + usuarioLog.nick ;
-          }
-         };  
-            xhttp.open("GET", "https://kelpa-api.herokuapp.com/user", true);
-            xhttp.send();*/
-        
-           // var jusuario =  httpGet("http://kelpa-api.herokuapp.com/profile/Aa") ;
-           // console.log(jusuario);
              
              var id = getParameterByName('idMensaje');
              //var urlObtenerMensajes = "http://kelpa-api.herokuapp.com/msgs/" + id;
@@ -66,7 +51,7 @@ var nick = "Aa";
       var urlObtenerTrades = 'http://kelpa-api.herokuapp.com/trades';
              var jsonTrades = JSON.parse(httpGet(urlObtenerTrades));
 
-var jsonTrades = JSON.parse('{"length": 2,"list": [{"buyer_id": 81,"closed": false,"id": 342,"last_edit": "2019-05-27 00:46:50.761494+00:00","price": 5000,"product_id": 2509,"product_title": "Prueba usuario Aa Anuci","seller_id": 725},{"buyer_id": 81,"closed": false,"id": 343,"last_edit": "2019-05-27 00:46:50.761494+00:00","price": 5000,"product_id": 2510,"product_title": "Prueba usuario Aa Anuci","seller_id": 725}]}');
+var jsonTrades = JSON.parse('{"length": 2,"list": [{"buyer_id": 81,"closed": false,"id": 342,"last_edit": "2019-05-27 00:46:50.761494+00:00","price": 5000,"product_id": 2509,"product_title": "Prueba usuario Aa Anuci","seller_id": 725},{"buyer_id": 725,"closed": false,"id": 343,"last_edit": "2019-05-27 00:46:50.761494+00:00","price": 5000,"product_id": 2510,"product_title": "Prueba usuario Aa Anuci","seller_id": 81, "products_offer" : [1672]}]}');
 
              </script>
 
@@ -123,22 +108,67 @@ var jsonTrades = JSON.parse('{"length": 2,"list": [{"buyer_id": 81,"closed": fal
             <div class="col-xs-4" style="overflow-y:auto; max-height:600px;">
 
       <script>
-        for (i in jsonTrades.list) {
-	  document.write();
+        var intercambio = 'http://kelpa-api.herokuapp.com/products/' + usuarioLog.id;
+	var jsonInter = JSON.parse(httpGet(intercambio)).list;
 
-      var buyer = 'http://kelpa-api.herokuapp.com/user/' + jsonTrades.list[i].buyer_id;
-var jsonBuyer = JSON.parse(httpGet(buyer));
+        for (i in jsonTrades.list) {
+
+
+      /*var buyer = 'http://kelpa-api.herokuapp.com/user/' + jsonTrades.list[i].buyer_id;
+	var jsonBuyer = JSON.parse(httpGet(buyer));
 	nickBuyer = jsonBuyer.nick;
 
       var seller = 'http://kelpa-api.herokuapp.com/user/' + jsonTrades.list[i].seller_id;
-var jsonSeller = JSON.parse(httpGet(seller));
-	nickSeller = jsonSeller.nick;
+	var jsonSeller = JSON.parse(httpGet(seller));
+	nickSeller = jsonSeller.nick;*/
 
           document.write('<div class="row"><a href="perfil_vendedor.php" class="col-xs-2"><img class="img-circle" src="icono.jpg" style="width: 100%; vertical-align: middle;"></a>');
 	document.write('<a href="chat.html?idMensaje=' + jsonTrades.list[i].id +'"><label class="col-xs-12 control-label"style="vertical-align: middle;font-size: 2em;">' + jsonTrades.list[i].product_title + '</label></a></div> ');
-	document.write('<div class="row"><a href="#verConversation"><div class="col-lg-offset-2 col-lg-10"><em>Precio : ' + jsonTrades.list[i].price + '€</em></div></a></div>');
-	document.write('<div class="row"><a href="#verConversation"><div class="col-lg-offset-2 col-lg-10"><em>Vendedor ' + nickBuyer + ' con ' + nickSeller + '</em></div></a></div> <hr>');
-				}
+	document.write('<div class="row"><a href="#verConversation"><div class="col-lg-offset-2 col-lg-10"><em>Precio : <span id="p-' + i + '">' + jsonTrades.list[i].price + '</span>€</em></div></a></div>');
+	for(po in jsonTrades.list[i].products_offer)
+	{
+		var product_offer = 'http://kelpa-api.herokuapp.com/product/' + jsonTrades.list[i].products_offer[po];
+		var product_offer = JSON.parse(httpGet(product_offer));
+		document.write('<div class="row"><div class="col-lg-offset-2 col-lg-10"> + Productos ofertas : ' + product_offer.title + '</div></div>');
+	}
+	document.write('<div class="row"><a href="#verConversation"><div class="col-lg-offset-2 col-lg-10"><em>Vendedor ' + jsonTrades.list[i].buyer_id + ' con ' + jsonTrades.list[i].seller_id + '</em></div></a></div> ');
+	if(jsonTrades.list[i].buyer_id == usuarioLog.id)
+	{
+		document.write('<p><br /><select name="intercambio" id="i-' + i + '">');
+
+		for(p in jsonInter)
+		{
+			document.write('<option value="' + jsonInter[p].id + '">' + jsonInter[p].title + '</option>');
+		}
+		document.write('</select></p> <button type="submit" onclick="proponerProducto(' + i + ');" class="btn btn-default">Ofrecer</button>');
+	}
+	else
+	{
+		document.write('<button type="submit" onclick="aceptar(' + i + ');" class="btn btn-default">Aceptar</button>');
+	}
+	document.write('<hr>');
+	}
+	function proponerProducto(i)
+	{
+		
+		var precio = document.getElementById("p-" + i).value; 
+		var intercambio = document.getElementById("i-" + i).value; 
+       		 var xhttp = new XMLHttpRequest();
+          	xhttp.open("POST", "https://kelpa-api.herokuapp.com/trade/" + intercambio + "/offer", true);
+		params = 'price=' + precio + '&products=' + [intercambio];
+		xhttp.send(params);
+		alert("ok");
+	}
+	function aceptar(i)
+	{
+		var precio = document.getElementById("p-" + i).value; 
+		var intercambio = document.getElementById("i-" + i).value; 
+       		 var xhttp = new XMLHttpRequest();
+          	xhttp.open("GET", "https://kelpa-api.herokuapp.com/trade/" + intercambio + "/offer", true);
+		params = 'price=' + precio + '&products=' + [intercambio];
+		xhttp.send(null);
+		alert("ok");
+	}
       </script>
 
             </div>
@@ -171,13 +201,12 @@ var jsonSeller = JSON.parse(httpGet(seller));
 			{
 				var msg = document.getElementById("msg").value; 
 				document.getElementById("msg").value = "";
+       			        var xhttp = new XMLHttpRequest();
             			xhttp.open("POST", "https://kelpa-api.herokuapp.com/msgs", true);
 				params = 'trade_id=' + id + '&body=' + msg;
-				http.send(params);
+				xhttp.send(params);
 			}
 			</script>
-		    <!--<script>
-			document.write('<form class="form-search" method="post" action="chat.html?idMensaje=' + id + '"');</script>-->
 			 <form class="form-search" onsubmit="enviar();">
 		        <div class="input-append">
 		            <input id="msg" type="text" class="span2 search-query top bottom"style="width: 40%; margin-left: 25%; margin-top: 20px">
