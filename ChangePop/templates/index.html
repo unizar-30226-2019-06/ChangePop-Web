@@ -20,14 +20,15 @@
 
     <!-- Custom styles for this template -->
     <link href="../static/style.css" rel="stylesheet">
+
     <script type="text/javascript" src="httpGet.js"></script> 
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script >
-      
+
+    <script>
       var urlObtenerAnuncios = "http://kelpa-api.herokuapp.com/products"
              //Necesario para parsear el json
              var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios));
@@ -50,6 +51,34 @@
         });
       };
     </script>     
+
+
+<script>
+
+    function post_j(url,params,respuesta,respuesta2){
+    
+
+    $.ajax({
+          url: url,
+          type: "POST",
+          crossDomain: true,
+          withCredentials: true,
+          data: JSON.stringify(params),
+          dataType: "json",
+          success: function (response) {
+
+              var resp = JSON.parse(response)
+  
+              alert(resp.status);
+  respuesta();
+          },
+          error: function (xhr, status) {
+              alert("error");
+  respuesta2();
+          }
+      });
+  }
+  </script>
 
   </head>
 
