@@ -30,6 +30,13 @@
     
     <script type="text/javascript" src="httpGet.js"></script> 
 
+    <script>
+      var urlUserLog = "http://kelpa-api.herokuapp.com/user";
+      var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
+      //Necesario para parsear el json
+      var jsonUserLog = JSON.parse(httpGet(urlUserLog));
+    </script>
+
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -87,7 +94,10 @@
         <div class="card bg-light">
           
           <form>
-              <img id="avatar" src="icono.jpg" class="rounded" height="200" width="250">
+            <script>
+              document.write('<img id="avatar" src='+jsonUserLog.avatar+ 'class="rounded" height="200" width="250">');
+            </script>
+              
               <label class="btn btn-default btn-file">
                   Cambiar imagen <input type="file" style="display: none;">
               </label>
@@ -97,68 +107,89 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Cambiar nombre: <i class="fa fa-user"></i> </span>
              </div>
-                <input id="nick" name="" class="form-control" placeholder="Pedrito" type="text">
+             <script>
+               document.write('<input id="nick" name=""value='+jsonUserLog.first_name +'class="form-control" placeholder="Pedrito" type="text">');
+             </script>
+                
             </div> <!-- form-group// -->
 
             <div class="form-group input-group">
               <div class="input-group-prepend">
-                  <span class="input-group-text">Cambiar primer apellido: <i class="fa fa-user"></i> </span>
+                  <span class="input-group-text">Cambiar apellido: <i class="fa fa-user"></i> </span>
                </div>
-                  <input id="first_name" name="" class="form-control" placeholder="Jose" type="text">
+                  <script>
+                    document.write('<input id="last_name" name="" class="form-control"  value='+jsonUserLog.last_name+ 'placeholder="Jose" type="text">');
+                  </script>
+                  
               </div> 
 
-              <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Cambiar segundo apellido: <i class="fa fa-user"></i> </span>
-                 </div>
-                    <input id="last_name" name="" class="form-control" placeholder="Manuel" type="text">
-                </div> 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Cambiar fecha de nacimiento: <i class="fa fa-user"></i> </span>
                      </div>
-                        <input id="fnac" name="" class="form-control"  type="date">
+                        <script>
+                          document.write('<input id="fnac" name="" class="form-control"  type="date" value='+jsonUserLog.fnac+'>');
+                        </script>
+                        
                     </div> 
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">Cambiar correo <i class="fa fa-envelope"></i> </span>
              </div>
-                <input id="mail" name="" class="form-control" placeholder="Pedrito@hotmail.com" type="email">
+                <script>
+                  document.write('<input id="mail" name="" class="form-control" placeholder="Pedrito@hotmail.com" type="email" value='+jsonUserLog.mail+'>');
+                </script>
+                
             </div> <!-- form-group// -->
+
             <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Cambiar genero: <i class="fa fa-phone"></i>  <select class="custom-select" style="max-width: 120px;">
-                    <option selected="">Hombre</option>
-                    <option value="1">Mujer</option>
-                    <option value="2">Otros</option>
-                </select></span>
-              
-            </div>
-          </br>
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Cambiar ubicacion <i class="fa fa-envelope"></i> </span>
+               </div>
+                  <script>
+                    document.write('<input id="place" name="" class="form-control" placeholder="mi casa" type="text" value='+jsonUserLog.place+'>');
+                  </script>
+                  
+              </div> <!-- form-group// -->
+            
             <div>
                 <span id="phone" class="input-group-text">Cambiar numero: <i class="fa fa-phone"></i> </span>
-              <input name="" class="form-control" placeholder="Phone number" type="tel">
+                <script>
+                  document.write('<input id="phone" name="" class="form-control" placeholder="Phone number" type="tel" value='+jsonUserLog.phone+'>');
+                </script>
+            <br/>
             </div> <!-- form-group// -->
             
-            <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Cambiar contraseña: <i class="fa fa-lock"></i> </span>
-            </div>
-                <input class="form-control" placeholder="Antigua contraseña" type="password">
-            </div> <!-- form-group// -->
-            
-            <div >
-              <input class="form-control" placeholder="Nueva contraseña" type="password">
-            </div>
-            
-            <div>   
-                <input class="form-control" placeholder="Repita  contraseña" type="password">
-            </div> 
-            
-          
+            <script>
+              function modificar(){
+                var params={
+                  "id": jsonUserLog.id,
+                  "nick": jsonUserLog.nick,
+                  "first_name": document.getElementById('nick').value,
+                  "last_name": document.getElementById('last_name').value,
+                  "mail": document.getElementById('mail').value,
+                  "phone": document.getElementById('phone').value,
+                  "desc": jsonUserLog.desc,
+                  "is_mod": jsonUserLog.is_mod,
+                  "ban_reason": jsonUserLog.ban_reason,
+                  "points": jsonUserLog.points,
+                  "avatar": document.getElementById('avatar').src,
+                  "fnac": document.getElementById('fnac'),
+                  "dni": jsonUserLog.dni,
+                  "place": document.getElementById('place'),value,
+                  "token": jsonUserLog.token
+                };
+                var urlUser = "http://kelpa-api.herokuapp.com/user"
+                put(urlUser,params,function(){
+                  alert("Usuario modificado correctamente");
+                }, function(){
+                  alert("No se pudo modificar el usuario");
+                });
+              }
+            </script>
                                       
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block">Guardar cambios  </button>
+                <button type="submit" class="btn btn-primary btn-block" onclick="modificar()">Guardar cambios  </button>
             </div> <!-- form-group// -->      
                                                   
         </form>

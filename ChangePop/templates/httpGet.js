@@ -31,6 +31,20 @@
         xhttp.open("POST", url, true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(JSON.stringify(params));
+      }   
+      
+      function put(url,params,respuesta,respuesta2){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            respuesta();
+          }else if(this.status == 400){
+            respuesta2();
+          }
+        };  
+        xhttp.open("PUT", url, true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(JSON.stringify(params));
       }      
 
    function getLogin(url,parms) {
