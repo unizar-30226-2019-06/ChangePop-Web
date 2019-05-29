@@ -109,7 +109,7 @@
             <div class="input-group" style="width:200px;">
                 <label for="precio">Cambiar precio</label>
                 <script>
-                  document.write('<input type="number" class="form-control" id="precio" aria-describedby="emailHelp" placeholder="200€" value='+jsonProducto.price+'>');
+                  document.write('<input type="number" class="form-control" id="precio" aria-describedby="emailHelp" value='+jsonProducto.price+'>');
                 </script>
                 
                 
@@ -130,23 +130,14 @@
              </div>
              <br/>
              <label for="Categorias">Categorias</label>
-             <select title="Categorias" class="selectpicker">
-                    <optgroup label="Tecnologia">
-                            <option>Ordenadores</option>
-                            <option>Auriculares</option>
-                            <option>Piezas</option>
-                          </optgroup>
-                    <optgroup label="Ropa">
-                      <option>Hombre</option>
-                      <option>Mujer</option>
-                      <option>Niño/a</option>
-                    </optgroup>
-             </select>
              <br/>
-             <br/>
-             <label class="checkbox-inline"><input type="checkbox" value="">Negociable</label>
-             <label class="checkbox-inline"><input type="checkbox" value="">Se entrega en mano</label>
-             <label class="checkbox-inline"><input type="checkbox" value="">Opcion a trueque</label>
+             <script> 
+                var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
+                var jsonCategorias = JSON.parse(httpGet(urlCategorias));
+                for (i in jsonCategorias.list) {
+                    document.write('<input type="checkbox" id="'+ jsonCategorias.list[i].toString()+'">'+ jsonCategorias.list[i].toString()+'<br>');
+                    }   
+            </script>
              <br/>
              <br/>
              <div class="input-group">
