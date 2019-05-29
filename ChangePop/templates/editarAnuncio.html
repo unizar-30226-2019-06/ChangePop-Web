@@ -10,6 +10,7 @@
    <!-- <link rel="icon" href="../../favicon.ico">-->
 
     <title>Editar anuncio</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -26,6 +27,16 @@
     <script src="../static/jquery.mycart-master/js/bootstrap.min.js"></script>
     <script src="../static/jquery.mycart-master/js/jquery-2.2.3.min.js"></script>
     <script src="../static/jquery.mycart-master/js/jquery.mycart.js"></script>
+    <script type="text/javascript" src="httpGet.js"></script>
+
+    
+
+    <script>
+        //Necesario para parsear el json
+        var id = getParameterByName('idAnuncio');
+        var urlObtenerProducto = "http://kelpa-api.herokuapp.com/product/"+ id;
+        var jsonProducto = JSON.parse(httpGet(urlObtenerProducto));
+    </script>
 
 
 
@@ -97,16 +108,25 @@
             
             <div class="input-group" style="width:200px;">
                 <label for="precio">Cambiar precio</label>
-                <input type="number" class="form-control" id="precio" aria-describedby="emailHelp" placeholder="200€">
+                <script>
+                  document.write('<input type="number" class="form-control" id="precio" aria-describedby="emailHelp" placeholder="200€" value='+jsonProducto.price+'>');
+                </script>
+                
                 
               </div>
               <div class="input-group">
                 <label for="nombreProducto">Cambiar nombre del producto</label>
-                <input type="text" class="form-control" id="nombreProducto" placeholder="Playstasion 3">
+                <script>
+                  document.write('<input type="text"'+ jsonProducto.title+ 'class="form-control" id="nombreProducto" placeholder="Playstasion 3">');
+                </script>
+                
               </div>
             <br/>
              <div class="form-group "  style="width:800px;">
-                <textarea class="form-control" name="blog_body" id="blog_body" rows="8"  placeholder="Descripcion del producto" ></textarea>
+              <script>
+                document.write('<textarea class="form-control" value='+ jsonProducto.descript+ 'name="blog_body" id="blog_body" rows="8"  placeholder="Descripcion del producto" ></textarea>');
+              </script>
+                
              </div>
              <br/>
              <label for="Categorias">Categorias</label>
@@ -133,39 +153,17 @@
                 <label for="lugarRecogida">Cambiar lugar de recogida</label>
                 <input type="text" class="form-control" id="lugarRecogida" placeholder="Campus rio Ebro">
               </div>
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.704773694934!2d-0.8918526858511633!3d41.68371898553728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd59135c386ec533%3A0x79c6654aa2335b79!2sCampus+R%C3%ADo+Ebro!5e0!3m2!1ses!2ses!4v1554572506767!5m2!1ses!2ses" 
-               width="300" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>   
-               <br/>
-                  <button onclick="getLocation()" class="btn btn-primary">Localizame!</button>
-            <br/>
               
-            
-              <br/>
               <div class="text-right">
               <button type="submit" class="btn btn-success btn-lg">Editar anuncio </button>
             </div>  
-                <script>
-                  var x = document.getElementById("demo");
-                  function getLocation() {
-                    if (navigator.geolocation) {
-                      navigator.geolocation.getCurrentPosition(showPosition);
-                    } else {
-                      x.innerHTML = "Geolocation is not supported by this browser.";
-                    }
-                  }
-                  
-                  function showPosition(position) {
-                    x.innerHTML = "Latitude: " + position.coords.latitude + 
-                    "<br>Longitude: " + position.coords.longitude; 
-                  }
-                  </script>
+                
                
                 
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../static/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
