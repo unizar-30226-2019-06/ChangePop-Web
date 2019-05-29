@@ -21,6 +21,7 @@
       }
       function post(url,params,respuesta,respuesta2){
         var xhttp = new XMLHttpRequest();
+        xhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
             respuesta();
