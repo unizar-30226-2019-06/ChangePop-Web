@@ -136,8 +136,11 @@ function volverImagen() {
                     });
                   };
         </script>
-        <a id="refChat" href="chat.html" style="vertical-align: middle;  margin-top:2px; width: 100px; margin-left:40%;" 
-        type="submit" class="btn btn-success " onclick="negociar(jsonProducto.seller_id, jsonProducto.product_id)">Negociar</a>
+        <script>
+          if(sessionStorage.getItem('usuarioLogeado') != null){
+            document.write('<a id="refChat" href="chat.html" style="vertical-align: middle;  margin-top:2px; width: 100px; margin-left:40%;" type="submit" class="btn btn-success " onclick="negociar(jsonProducto.seller_id, jsonProducto.product_id)">Negociar</a>');
+          }
+        </script>
 	<script>
 		function reportar()
 		{
@@ -147,9 +150,13 @@ function volverImagen() {
 			params = 'user_id=' + jsonProducto.user_id + '&product_id=' + getParameterByName('idAnuncio');
 			xhttp.send(params);
 		}
-	</script>
-        <a style="vertical-align: middle;  margin-top:2px; width: 100px; margin-left:40%;"
-        class="btn btn-danger " onclick="reportar();">Reportar </a>
+  </script>
+  <script>
+    if(sessionStorage.getItem('usuarioLogeado') != null){
+      document.write('<a style="vertical-align: middle;  margin-top:2px; width: 100px; margin-left:40%;" class="btn btn-danger " onclick="reportar();">Reportar </a>');
+    }
+  </script>
+        
       </div>     
       <div class="row">
         <div class="col-sm-12">
