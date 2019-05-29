@@ -146,6 +146,7 @@ var jsonTrades = JSON.parse('{"length": 2,"list": [{"buyer_id": 81,"closed": fal
 	{
 		document.write('<button type="submit" onclick="aceptar(' + jsonTrades.list[i].id + ');" class="btn btn-default">Aceptar</button>');
 	}
+	document.write('<button type="submit" onclick="borrar(' + jsonTrades.list[i].id + ');" class="btn btn-default">Borrar</button>');
 	document.write('<hr>');
 	}
 	function proponerProducto(i, id)
@@ -154,27 +155,39 @@ var jsonTrades = JSON.parse('{"length": 2,"list": [{"buyer_id": 81,"closed": fal
 		
 		var precio = document.getElementById("p-" + i).value; 
 		var intercambio = document.getElementById("i-" + i).value; 
-       		 var xhttp = new XMLHttpRequest();
+       		var xhttp = new XMLHttpRequest();
           	xhttp.open("PUT", "https://kelpa-api.herokuapp.com/trade/" + intercambio + "/offer", true);
 		params = 'price=' + precio + '&products=' + [intercambio];
 		xhttp.send(params);
-                put("http://kelpa-api.herokuapp.com/trade/" + id + "/confirm",null,function(){
+                put("http://kelpa-api.herokuapp.com/trade/" + id,null,function(){
                   alert("Usuario modificado correctamente");
 
 		//À CONTINUER ICI
-		  document.getElementById("p-actual-" + i).value = document.getElementById("p-actual-" + i).value  + ; 
+		 var trade = 'http://kelpa-api.herokuapp.com/trade/' + id;
+             var jsonTrades = JSON.parse(httpGet(trade));
+		  document.getElementById("p-actual-" + i).value = document.getElementById("p-actual-" + i).value  + jsonTrades.title; 
 	
                 }, function(){
                   alert("No se pudo modificar el usuario");
                 });
 	}
-	function aceptar(i)
+	function aceptar(id)
 	{
-                put("http://kelpa-api.herokuapp.com/trade/" + i + "/confirm",null,function(){
-                  alert("Usuario modificado correctamente");
+                put("http://kelpa-api.herokuapp.com/trade/" + id + "/confirm",null,function(){
+                  alert("Aceptacion hecha correctamente");
                 }, function(){
-                  alert("No se pudo modificar el usuario");
+                  alert("No se pudo aceptar");
                 });
+		location.reload() ; 
+	}
+	function borrar(id)
+	{
+                put("http://kelpa-api.herokuapp.com/trade/" + id + "/delete",null,function(){
+                  alert("Borrado correctamente");
+                }, function(){
+                  alert("No se pudo borrar");
+                });
+		location.reload() ; 
 	}
       </script>
 

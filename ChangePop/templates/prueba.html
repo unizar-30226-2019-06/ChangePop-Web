@@ -10,28 +10,61 @@
                remember : true
              }
             
-             console.log('Itworks');
+        
  
            </script>     
            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
            <script>
-           
+
+             function conectar(theUrl){
+              $.ajax({
+            type: 'get',
+            url:   theUrl,      
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: true
+             },
+            headers:{    
+               'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*' 
+            },
+            success: function (data) {
+               console.log("Exito en la operacion 2");
+               //data devuelve JSON luego lo parseas
+               console.log(data);
+            }
+
+        });
+
+             }
+
+          function postLOL(url,params) {
            $.ajax({
             type: 'post',
             url: url,
-            Accept: 'application/json',
-            credentials: 'same-origin',
-            data: JSON.stringify(params),
-            contentType: "application/json; charset=utf-8",
-          
+            crossDomain: true,
+            xhrFields: {
+            withCredentials: true
+          },
+            headers:{    
+               'Accept': 'application/json',
+              'Access-Control-Allow-Origin': '*' ,
+              'Content-Type': 'application/json'
+              },
+            data: JSON.stringify(params),          
             success: function (data) {
-               console.log(data);
-               window.location = "prueba2.html";
+               console.log("Exito en la operacionn");
+               
+               conectar("http://kelpa-api.herokuapp.com/user");
+              
             }
 
 
-            
         });
+          }
+
+
         
 
 

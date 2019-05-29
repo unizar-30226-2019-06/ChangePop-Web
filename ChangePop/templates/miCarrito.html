@@ -32,6 +32,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="httpGet.js"></script> 
   </head>
 
   <body>
@@ -82,57 +83,31 @@
     
             <h1>MI CARRITO</h1>
     <div class="container">
+<script>
+	 var follow = 'http://kelpa-api.herokuapp.com/user/follows';
+	var jsonFollow = JSON.parse(httpGet(follow)).list;
+</script>
         <h2>SE VENDE</h2>
-        <div class="row">
-            <a href="anuncio.html" class="anuncio">
+	<script>
+	for(i in jsonFollow.list)
+	{
+		if(jsonFollow.list[i].bid_date == null)
+		{
+		document.write('<div class="row"><a href="anuncio.html?idAnuncio=' + jsonFollow.list[i].id + '" class="anuncio"><div class="col-md-3 " style="border: solid 2px white;"><h2>' + jsonFollow.list[i].title + '</h2><img src="' + jsonFollow.list[i].main_image + '" style="border: solid 2px white; width:250px; height:200px ">');
+		            document.write('</br><em>Precio <strong>' + jsonFollow.list[i].price + '€</strong> </em><p>' + jsonFollow.list[i].descript + '</p></div></a></div>');
+		}
+	}
+    	document.write('<hr style="width:100%; border-color:black;"><h2>SE SUBASTA</h2>');
+	for(i in jsonFollow.list)
+	{
+		if(jsonFollow.list[i].bid_date != null)
+		{
+		document.write('<div class="row"><a href="anuncio.html?idAnuncio=' + jsonFollow.list[i].id + '" class="anuncio"><div class="col-md-3 " style="border: solid 2px white;"><h2>' + jsonFollow.list[i].title + '</h2><img src="' + jsonFollow.list[i].main_image + '" style="border: solid 2px white; width:250px; height:200px ">');
+		            document.write('</br><em>Precio <strong>' + jsonFollow.list[i].price + '€</strong> </em><p>' +  + '</p></div></a></div>');
+		}
+	}
 
-                    <div class="col-md-3 " style="border: solid 2px white;">
-                        <h2>Vendo mi play</h2>
-                        <img src="anuncioEjemplo.png" style="border: solid 2px white; width:250px; height:200px ">
-                    </br>
-                        <em>Precio <strong>300€</strong> - Puesto hace 3 horas <span class="glyphicon glyphicon-map-marker " style="color:green;font-size: 20px" >Jaen </span> </em> 
-                        <p>vendo ps3 80 gb en buen estado, la vendo por no usarla. la entrego con su cable de alimentacion y mando original con su cable de carga también.
-                             entrego en mano .
-                              </p>             
-                        <div class="row">
-                          <a class="glyphicon glyphicon-comment" href="#" role="button">Negociar </a>
-                          <a>&nbsp;</a>
-                          <a class="glyphicon glyphicon-heart" href="#" role="button">Favoritos</a>
-                        </div>      
-                    </div>   
-            </a>
-
-            
-
-    </div>
-    <hr style="width:100%; border-color:black;">
-    <h2>SE SUBASTA</h2>
-        <div class="row">
-            <a href="anuncio.html" class="anuncio">
-
-                    <div class="col-md-3 " style="border: solid 2px white;">
-                        <h2>Vendo mi play</h2>
-                        <img src="anuncioEjemplo.png" style="border: solid 2px white; width:250px; height:200px ">
-                    </br>
-                        <em>Precio <strong>300€</strong> - Puesto hace 3 horas <span class="glyphicon glyphicon-map-marker " style="color:green;font-size: 20px" >Jaen </span> </em> 
-                        <p>vendo ps3 80 gb en buen estado, la vendo por no usarla. la entrego con su cable de alimentacion y mando original con su cable de carga también.
-                             entrego en mano .
-                              </p>             
-                        <div class="row">
-                          <a class="glyphicon glyphicon-comment" style="font-size: 17px" href="#" role="button">Negociar </a>
-                          
-                          <a class="glyphicon glyphicon-heart" href="#"  style="font-size: 17px" role="button">Favoritos</a>   
-                        </div>
-                        <div class="form-group"> <input type="number" class="form-control width100" id="precio" >
-                          <span class="input-group-btn">
-                              <button class="btn btn-primary">Pujar</button>
-                          </span></div>      
-                    </div>   
-            </a>
-
-            
-
-    </div>         
+	</script>   
 
     </div> <!-- /container -->
 

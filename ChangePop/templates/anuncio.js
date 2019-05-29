@@ -35,6 +35,24 @@ function validar_campos(names) {
     if (correct==0 || imagen == 0){
         alert("Hay campos mal rellenados");
     }else{
+
+	//Imagen
+	/*var image = new image();
+        image.src = document.getElementById("mostrar").src;*/
+	
+	var image = new XMLHttpRequest();
+	image.open('POST', document.getElementById("mostrar").src, false);
+	image.send(null);
+	var urlImagenProduct="https://kelpa-api.herokuapp.com/upload";
+	console.log(image.responseText);
+        post(urlProduct,image.responseText,function(){
+            alert("Nuevo articulo añadido");
+          }, function(){
+            alert("No se ha podido añadir el articulo");
+          });
+
+	var main_img = document.getElementById("mostrar").src;
+	//resto 
         var check = document.getElementById("subasta");
 
         var descript=document.getElementById("blog_body").value;
@@ -42,7 +60,6 @@ function validar_campos(names) {
         var title=document.getElementById("nombreProducto").value;
         
         var bid_date=document.getElementById("fecha").value + " " + document.getElementById("hora").value;
-        var main_img=document.getElementById("mostrar").src;
         var place=document.getElementById("lugarRecogida").value;
         
         if(check.checked){
@@ -57,6 +74,8 @@ function validar_campos(names) {
             alert("No se ha podido añadir el articulo");
           });
         };
+	
+
         console.log(data);
     }
 
