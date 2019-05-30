@@ -87,13 +87,12 @@ function postLOL(url,params,respuesta,respuesta2) {
       type: 'post',
       url: url,
       crossDomain: true,
-      xhrFields: {
-      withCredentials: true
-    },
+      
       headers:{    
          'Accept': 'application/json',
         'Access-Control-Allow-Origin': '*' ,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials': true
         },
       data: JSON.stringify(params),          
       success: function (data) {

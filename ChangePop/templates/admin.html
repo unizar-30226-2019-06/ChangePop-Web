@@ -40,22 +40,79 @@ var report = jsonReports.list;
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="display: none" id="no_reg_var">
+      <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#"><img src="../static/logo.jpg" width="55px" /></a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse navbar-right">
-            <div class="btn btn-danger">Admin</div>
-            <a href="index.html"><button type="submit" class="btn btn-success">Ver el sitio</button></a>
-        </div><!--/.navbar-collapse -->
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <form  method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
+            <div class="form-group">
+              <input name="texto" type="text" class="form-control" placeholder="Buscar">
+            </div>
+            <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+          </form>
+
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#Login" data-toggle="modal" role="button"><span
+                  class="glyphicon glyphicon-log-in"></span>Conectarse</a></li>
+
+            <li><a href="#Registro" data-toggle="modal" role="button"><span 
+                class="glyphicon glyphicon-user"></span>Registrarse</a></li>
+          </ul>
+
+          <!-- Modal / Ventana / Overlay en HTML -->
+
+        </div>
       </div>
+    </nav>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="display: none" id="reg_var">
+        <div class="container">
+          
+          <div class="collapse navbar-collapse" id="myNavbar">
+              <div class="navbar-header">
+                  <a class="navbar-brand" href="index.html"><img  src="/static/logo.jpg" width="55px" /></a>
+                </div>
+                <form method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
+                   <form  method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
+            <div class="form-group">
+              <input name="texto" type="text" class="form-control" placeholder="Buscar">
+            </div>
+            <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+          </form>
+                  <form class="navbar-form navbar-left" method="get" action="crearAnuncio.html">
+                        <button type="submit" class="btn btn-success">Subir producto</button>
+                    </form>
+            <ul class="nav navbar-nav navbar-right" id="in_line" >
+                
+                    <div class="dropdown"> 
+                            <a data-toggle="dropdown" style="color:rgb(0, 0, 0);" >
+                                <span style="color:white;font-weight:bold" id="nom" >Pedrito</span>
+                            <img id="icono"  class='img-circle' height="42" width="42"  > </img>
+                                <ul class="dropdown-menu">
+                                    <li><a href="chat.html">Mensajes <span class="glyphicon glyphicon-envelope"></span> <span class="badge">10</span></li>
+                                   <li><a href="miCarrito.html">Mi carrito  <span class="glyphicon glyphicon-shopping-cart my-cart-icon"></span> <span class="badge">10</span></li>
+                                   <li><a  id='usuario' href="perfil_vendedor.html">Mi perfil <span class="glyphicon glyphicon-user"></span></a></li>
+                                 <li><a href="editarUsuario.html">Editar perfil <span class="glyphicon glyphicon-cog"></span></a></li>
+                                  <li><a href="index.html" onclick="logout()">Desconectarse <span class="glyphicon glyphicon-off"></span></a></li>
+                                  <script>
+                                    function logout(){
+                                      sessionStorage.removeItem("usuarioLogeado");
+                                    }
+                                  </script>
+                                  
+                               </ul>
+                        </div>
+                    </a>
+                    
+                
+                    </div>
+                    
+            </ul>
+          </div>
+        </div>
     </nav>
 
       <div class="container">      
@@ -138,6 +195,21 @@ function anadirMod()
         </div> <!-- card.// -->
         
         </div> 
+
+        <script>
+          if(sessionStorage.getItem('usuarioLogeado') == null){
+            document.getElementById("no_reg_var").style.display='block';
+            document.getElementById("reg_var").style.display='none';
+          }else{
+            var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
+            document.getElementById("icono").src = usuarioLog.avatar ;
+            document.getElementById("nom").innerHTML = usuarioLog.nick ;
+            document.getElementById("usuario").href =  "perfil_vendedor.html?nick=" + usuarioLog.nick ;
+            document.getElementById("reg_var").style.display='block';
+            document.getElementById("no_reg_var").style.display='none';
+          }
+          
+        </script>
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="../static/assets/js/vendor/jquery.min.js"><\/script>')</script>

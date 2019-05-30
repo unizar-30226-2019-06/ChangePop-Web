@@ -42,7 +42,7 @@
         remember : true
       }
 
-        post(url,params,function(){
+        postLOL(url,params,function(){
           var urlUser = "https://kelpa-api.herokuapp.com/profile/"+document.getElementById("user").value;
           sessionStorage.setItem('usuarioLogeado', httpGet(urlUser) );
           window.location = "index.html";
@@ -51,34 +51,6 @@
         });
       };
     </script>     
-
-
-<script>
-
-    function post_j(url,params,respuesta,respuesta2){
-    
-
-    $.ajax({
-          url: url,
-          type: "POST",
-          crossDomain: true,
-          withCredentials: true,
-          data: JSON.stringify(params),
-          dataType: "json",
-          success: function (response) {
-
-              var resp = JSON.parse(response)
-  
-              alert(resp.status);
-  respuesta();
-          },
-          error: function (xhr, status) {
-              alert("error");
-  respuesta2();
-          }
-      });
-  }
-  </script>
 
   </head>
 
@@ -312,10 +284,10 @@
               <script>
                 function pujar(id){
                   var params = {
-                    "bid": document.getElementById("price").value
+                    "bid": document.getElementById("precio").value
                   };
                   var urlBid="https://kelpa-api.herokuapp.com/bid/"+id;
-                  post(urlBid,params,function(){
+                  postLOL(urlBid,params,function(){
                       alert("Pujar porocesada con exito");
                     }, function(){
                       alert("No se ha podido realizar la puja");
@@ -329,7 +301,7 @@
                       "buyer_id": usuarioLog.id,
                       "product_id": product_id
                     };
-                    post(urlTrade,params,function(){
+                    postLOL(urlTrade,params,function(){
                       window.location = "chat.html";
                     }, function(){
                       alert("No se ha podido reslizar la operacion");
