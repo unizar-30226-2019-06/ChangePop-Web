@@ -35,7 +35,7 @@
 	var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
 
              
-             var id = getParameterByName('idMensaje');
+             id = getParameterByName('idMensaje');
              //var urlObtenerMensajes = "http://kelpa-api.herokuapp.com/msgs/" + id;
              //Necesario para parsear el json
             // var jsonMensajes = JSON.parse(httpGet(urlObtenerMensajes));
@@ -256,18 +256,26 @@ var jsonTrades = JSON.parse('{"length": 2,"list": [{"buyer_id": 81,"closed": fal
 			{
 				var msg = document.getElementById("msg").value; 
 				document.getElementById("msg").value = "";
-       			        var xhttp = new XMLHttpRequest();
-            			xhttp.open("POST", "https://kelpa-api.herokuapp.com/msgs", true);
-				params = 'trade_id=' + id + '&body=' + msg;
-				xhttp.send(params);
+				var params={
+                                        "trade_id": id,
+                                        "body": msg
+                                    };
+
+                                    var urlNewComent = "https://kelpa-api.herokuapp.com/msgs";
+                                    console.log(params)
+                                    postCookies(urlNewComent,params,function(){ 
+                                        alert("mensaje enviado");
+                                        }, function(){
+                                        alert("No se pudo enviar el mensaje");
+                                    });
 			}
 			</script>
-			 <form class="form-search" onsubmit="enviar();">
+			 <!--<form class="form-search" onsubmit="enviar();">-->
 		        <div class="input-append">
 		            <input id="msg" type="text" class="span2 search-query top bottom"style="width: 40%; margin-left: 25%; margin-top: 20px">
-		            <button type="submit" class="btn btn-info">Enviar</button>
+		            <button type="submit" onclick="enviar();" class="btn btn-info">Enviar</button>
 		        </div>
-		    </form>
+		   <!-- </form>-->
 <br /><br /><br />
         </div>
     </div>
