@@ -1,11 +1,4 @@
 
- function httpGet(theUrl){
-      
-      var xmlHttp = new XMLHttpRequest();
-      xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-      xmlHttp.send(null );
-      return xmlHttp.responseText;
-      }
 
 
 
@@ -34,33 +27,19 @@
         xhttp.send(JSON.stringify(params));
       }   
       
-      function put(url,params,respuesta,respuesta2) {
-        $.ajax({
-         type: 'PUT',
-         url: url,
-         crossDomain: true,
-         xhrFields: {
-          withCredentials: true
-         },
-         headers:{    
-            'Accept': 'application/json',
-           'Access-Control-Allow-Origin': '*' ,
-           'Content-Type': 'application/json',
-   
-           },
-         data: JSON.stringify(params),          
-         success: function (data) {
-            respuesta(data);
-           
-         },
-         error: function(data){
-           console.log(data)
-           respuesta2();
-         }
-   
-   
-     });
-       }  
+      function put(url,params,respuesta,respuesta2){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            respuesta();
+          }else if(this.status == 400){
+            respuesta2();
+          }
+        };  
+        xhttp.open("PUT", url, true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(JSON.stringify(params));
+      }      
 
    function getLogin(url,parms) {
         var xhttp = new XMLHttpRequest();
@@ -74,7 +53,7 @@
         xhttp.send(JSON.stringify(params));
       }
 
-      function getCORS(theUrl,respuesta){
+      function httpGet(theUrl){
         var result=false;
        $.ajax({
       type: 'get',
@@ -91,7 +70,7 @@
       async: false,
       success: function (data) {
         result=data;
-         respuesta(data);
+       
  
       }
   });
@@ -99,28 +78,27 @@
        }
 
 function postLOL(url,params,respuesta,respuesta2) {
-  $.ajax({
-    type: 'post',
-    url: url,
-    crossDomain: true,
-    xhrFields: {
-     withCredentials: true
-    },
-    headers:{    
-       'Accept': 'application/json',
-      'Access-Control-Allow-Origin': '*' ,
-      'Content-Type': 'application/json',
-
-      },
-    data: JSON.stringify(params), 
-    async: false,         
-    success: function (data) {
-       respuesta(data);
+     $.ajax({
+      type: 'post',
+      url: url,
+      crossDomain: true,
       
-    },
-    error: function(data){
-      respuesta2();
-    }
+      headers:{    
+         'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*' ,
+        'Content-Type': 'application/json',
+	      'Access-Control-Allow-Credentials': 'true'
+
+        },
+      data: JSON.stringify(params),          
+      success: function (data) {
+         respuesta(data);
+        
+      },
+      error: function(data){
+        respuesta2();
+      }
+
 
   });
     }
@@ -145,7 +123,6 @@ function postLOL(url,params,respuesta,respuesta2) {
          
        },
        error: function(data){
-         console.log(data)
          respuesta2();
        }
  
@@ -153,30 +130,25 @@ function postLOL(url,params,respuesta,respuesta2) {
    });
      }
 
-     function del(url,params,respuesta,respuesta2) {
-      $.ajax({
-       type: 'DELETE',
-       url: url,
-       crossDomain: true,
-       xhrFields: {
+     function getQuery(theUrl,respuesta){
+     
+     $.ajax({
+    type: 'get',
+    url:   theUrl,      
+    crossDomain: true,
+    xhrFields: {
         withCredentials: true
-       },
-       headers:{    
-          'Accept': 'application/json',
-         'Access-Control-Allow-Origin': '*' ,
-         'Content-Type': 'application/json',
- 
-         },
-       data: JSON.stringify(params),          
-       success: function (data) {
-          respuesta(data);
-         
-       },
-       error: function(data){
-         respuesta2();
-       }
- 
- 
-   });
+     },
+    headers:{    
+       'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*' 
+    }, 
+   
+    success: function (data) {
+       respuesta(data);
+
+    }
+});
      }
 

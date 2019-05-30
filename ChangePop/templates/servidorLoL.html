@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+          <script type="text/javascript" src="httpGet.js"></script>    
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>   
+           <script >
+             var opcion = getParameterByName('opcion');
+             console.log(opcion);
+             getQuery('https://kelpa-api.herokuapp.com/trades',function (data){
+                    sessionStorage.setItem('trades',JSON.stringify(data));
+                    window.location = 'chat.html';
+                });
+            switch (opcion){
+                //trades
+                case "0":
+                    console.log("HOLASAAS");
+                    
+                break;
+            }
+           
+          </script> 
+            </head>
+            <body>
+                
+            </body>
+</html>

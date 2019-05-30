@@ -34,7 +34,7 @@
      var urlObtenerProducto = "http://kelpa-api.herokuapp.com/product/"+ id;
      var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
       //Necesario para parsear el json
-    var jsonProducto = JSON.parse(httpGet(urlObtenerProducto));
+    var jsonProducto = httpGet(urlObtenerProducto);
           
     
 var image = 0;

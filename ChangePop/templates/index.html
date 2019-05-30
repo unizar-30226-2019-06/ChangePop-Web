@@ -39,7 +39,7 @@
       }
 
       //Necesario para parsear el json
-      var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios));
+      var jsonAnuncios = httpGet(urlObtenerAnuncios);
       var anuncios = jsonAnuncios.list;
       var url="https://kelpa-api.herokuapp.com/login"
       
@@ -51,9 +51,11 @@
       }
 
         postCookies(url,params,function(){
-          var urlUser = "https://kelpa-api.herokuapp.com/profile/"+document.getElementById("user").value;
-          sessionStorage.setItem('usuarioLogeado', httpGet(urlUser) );
-          window.location = "index.html";
+          var urlUser = "https://kelpa-api.herokuapp.com/user";
+          getQuery(urlUser,function(data){
+            sessionStorage.setItem('usuarioLogeado', JSON.stringify(data) );
+              window.location = "index.html";
+          });
         }, function(){
           alert("Usuario o contraseña incorrecto");
         });
@@ -273,7 +275,7 @@
                           <select name="categoria" id="categoria">
                               <script> 
                                   var urlCategorias = "http://kelpa-api.herokuapp.com/categories"
-                                  var jsonCategorias = JSON.parse(httpGet(urlCategorias));
+                                  var jsonCategorias = httpGet(urlCategorias);
                                   for (i in jsonCategorias.list) {
                                       
                                       document.write('<option value="todas">'+ jsonCategorias.list[i].toString()+'</option>');
@@ -351,7 +353,7 @@
                                                   '<span class="input-group-btn">' +
                                                   '<button id='+i+'botonPujar class="btn btn-primary" onclick="pujar('+ i +')">Pujar</button>'+
                                                   '</span></div>');
-                              puja = JSON.parse(httpGet("http://kelpa-api.herokuapp.com/bid/"+ anuncios[i].id )); 
+                              puja = httpGet("http://kelpa-api.herokuapp.com/bid/"+ anuncios[i].id ); 
                               
                               document.getElementById(i+"p").value=puja.max_bid+1;
                               document.getElementById(i+"p").min=puja.max_bid+1;
