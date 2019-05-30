@@ -52,7 +52,10 @@
       };
     </script>     
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 208b5fc8d9e1484a742bf9ce60120ec5927f07ba
   </head>
 
   <body>
@@ -285,10 +288,10 @@
               <script>
                 function pujar(id){
                   var params = {
-                    "bid": document.getElementById("price").value
+                    "bid": document.getElementById("precio").value
                   };
                   var urlBid="https://kelpa-api.herokuapp.com/bid/"+id;
-                  post(urlBid,params,function(){
+                  postLOL(urlBid,params,function(){
                       alert("Pujar porocesada con exito");
                     }, function(){
                       alert("No se ha podido realizar la puja");
@@ -302,7 +305,7 @@
                       "buyer_id": usuarioLog.id,
                       "product_id": product_id
                     };
-                    post(urlTrade,params,function(){
+                    postLOL(urlTrade,params,function(){
                       window.location = "chat.html";
                     }, function(){
                       alert("No se ha podido reslizar la operacion");

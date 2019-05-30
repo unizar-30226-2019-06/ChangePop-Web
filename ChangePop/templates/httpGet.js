@@ -61,7 +61,8 @@
       }
 
       function getCORS(theUrl,respuesta){
-        $.ajax({
+        var result=false;
+       $.ajax({
       type: 'get',
       url:   theUrl,      
       crossDomain: true,
@@ -71,15 +72,21 @@
       headers:{    
          'Accept': 'application/json',
         'Content-Type': 'application/json',
+<<<<<<< HEAD
         'Access-Control-Allow-Origin': '*'
       },
+=======
+        'Access-Control-Allow-Origin': '*' 
+      }, 
+      async: false,
+>>>>>>> 208b5fc8d9e1484a742bf9ce60120ec5927f07ba
       success: function (data) {
+        result=data;
          respuesta(data);
-       
+ 
       }
-
   });
-
+  return result;
        }
 
 function postLOL(url,params,respuesta,respuesta2) {
@@ -87,14 +94,16 @@ function postLOL(url,params,respuesta,respuesta2) {
       type: 'post',
       url: url,
       crossDomain: true,
-      xhrFields: {
-      withCredentials: true
-    },
+      
       headers:{    
          'Accept': 'application/json',
         'Access-Control-Allow-Origin': '*' ,
         'Content-Type': 'application/json',
+<<<<<<< HEAD
 	'Access-Control-Allow-Credentials': 'true'
+=======
+        'Access-Control-Allow-Credentials': true
+>>>>>>> 208b5fc8d9e1484a742bf9ce60120ec5927f07ba
         },
       data: JSON.stringify(params),          
       success: function (data) {

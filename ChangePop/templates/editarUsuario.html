@@ -35,7 +35,7 @@
       var urlUserLog = "http://kelpa-api.herokuapp.com/user";
       var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
       //Necesario para parsear el json
-      var jsonUserLog = JSON.parse(httpGet(urlUserLog));
+      var jsonUserLog = getCORS(urlUserLog,function(data){ });
     </script>
 
 
@@ -49,47 +49,80 @@
 
   <body>
 
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container">
-            
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="bienvenidaConectado.html"><img src="../static/logo.jpg" width="55px" /></a>
-                  </div>
-                  <form class="navbar-form navbar-left" action="/action_page.php">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                      </div>
-                      <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-                    </form>
-                    <form class="navbar-form navbar-left" method="get" action="crearAnuncio.html">
-                    
-                          <button type="submit" class="btn btn-success">Subir producto</button>
-                      </form>
-              <ul class="nav navbar-nav navbar-right" id="in_line" >
-                  
-                      <div class="dropdown"> 
-                              <a data-toggle="dropdown" style="color:rgb(0, 0, 0);" >
-                                  <span style="color:white;font-weight:bold" >Pedrito</span>
-                              <img src="icono.jpg" class='img-circle' height="42" width="42"  > </img>
-                                  <ul class="dropdown-menu">
-                                      <li><a href="chat.html">Mensajes <span class="glyphicon glyphicon-envelope"></span> <span class="badge">10</span></li>
-                                     <li><a href="#">Mi carrito  <span class="glyphicon glyphicon-shopping-cart my-cart-icon"></span> <span class="badge">10</span></li>
-                                     <li><a href="perfil_vendedor.html">Mi perfil <span class="glyphicon glyphicon-user"></span></a></li>
-                                   <li><a href="#">Configuracion <span class="glyphicon glyphicon-cog"></span></a></li>
-                                    <li><a href="index.html">Desconectarse <span class="glyphicon glyphicon-off"></span></a></li>
-                                    
-                                 </ul>
-                          </div>
-                      </a>
-                      
-                  
-                      </div>
-                      
-              </ul>
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="display: none" id="no_reg_var">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><img src="../static/logo.jpg" width="55px" /></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <form  method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
+            <div class="form-group">
+              <input name="texto" type="text" class="form-control" placeholder="Buscar">
             </div>
+            <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+          </form>
+
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#Login" data-toggle="modal" role="button"><span
+                  class="glyphicon glyphicon-log-in"></span>Conectarse</a></li>
+
+            <li><a href="#Registro" data-toggle="modal" role="button"><span 
+                class="glyphicon glyphicon-user"></span>Registrarse</a></li>
+          </ul>
+
+          <!-- Modal / Ventana / Overlay en HTML -->
+
+        </div>
+      </div>
+    </nav>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="display: none" id="reg_var">
+        <div class="container">
+          
+          <div class="collapse navbar-collapse" id="myNavbar">
+              <div class="navbar-header">
+                  <a class="navbar-brand" href="index.html"><img  src="/static/logo.jpg" width="55px" /></a>
+                </div>
+                <form method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
+                   <form  method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
+            <div class="form-group">
+              <input name="texto" type="text" class="form-control" placeholder="Buscar">
+            </div>
+            <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+          </form>
+                  <form class="navbar-form navbar-left" method="get" action="crearAnuncio.html">
+                        <button type="submit" class="btn btn-success">Subir producto</button>
+                    </form>
+            <ul class="nav navbar-nav navbar-right" id="in_line" >
+                
+                    <div class="dropdown"> 
+                            <a data-toggle="dropdown" style="color:rgb(0, 0, 0);" >
+                                <span style="color:white;font-weight:bold" id="nom" >Pedrito</span>
+                            <img id="icono"  class='img-circle' height="42" width="42"  > </img>
+                                <ul class="dropdown-menu">
+                                    <li><a href="chat.html">Mensajes <span class="glyphicon glyphicon-envelope"></span> <span class="badge">10</span></li>
+                                   <li><a href="miCarrito.html">Mi carrito  <span class="glyphicon glyphicon-shopping-cart my-cart-icon"></span> <span class="badge">10</span></li>
+                                   <li><a  id='usuario' href="perfil_vendedor.html">Mi perfil <span class="glyphicon glyphicon-user"></span></a></li>
+                                 <li><a href="editarUsuario.html">Editar perfil <span class="glyphicon glyphicon-cog"></span></a></li>
+                                  <li><a href="index.html" onclick="logout()">Desconectarse <span class="glyphicon glyphicon-off"></span></a></li>
+                                  <script>
+                                    function logout(){
+                                      sessionStorage.removeItem("usuarioLogeado");
+                                    }
+                                  </script>
+                                  
+                               </ul>
+                        </div>
+                    </a>
+                    
+                
+                    </div>
+                    
+            </ul>
           </div>
-      </nav>
+        </div>
+    </nav>
 
       <div class="container">      
         <div class="card bg-light">
@@ -102,14 +135,15 @@
               <label class="btn btn-default btn-file">
                   Cambiar imagen <input type="file" style="display: none;">
               </label>
-
+              
 
           <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Cambiar nombre: <i class="fa fa-user"></i> </span>
              </div>
+             
              <script>
-               document.write('<input id="nick" name=""value='+jsonUserLog.first_name +'class="form-control" placeholder="Pedrito" type="text">');
+               document.write('<input id="nick" name="" value='+jsonUserLog.first_name +' class="form-control" type="text">');
              </script>
                 
             </div> <!-- form-group// -->
@@ -119,7 +153,7 @@
                   <span class="input-group-text">Cambiar apellido: <i class="fa fa-user"></i> </span>
                </div>
                   <script>
-                    document.write('<input id="last_name" name="" class="form-control"  value='+jsonUserLog.last_name+ 'placeholder="Jose" type="text">');
+                    document.write('<input id="last_name" name="" class="form-control"  value='+jsonUserLog.last_name+ ' type="text">');
                   </script>
                   
               </div> 
@@ -138,17 +172,17 @@
                 <span class="input-group-text">Cambiar correo <i class="fa fa-envelope"></i> </span>
              </div>
                 <script>
-                  document.write('<input id="mail" name="" class="form-control" placeholder="Pedrito@hotmail.com" type="email" value='+jsonUserLog.mail+'>');
+                  document.write('<input id="mail" name="" class="form-control"  type="email" value='+jsonUserLog.mail+'>');
                 </script>
                 
             </div> <!-- form-group// -->
-
+            
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">Cambiar ubicacion <i class="fa fa-envelope"></i> </span>
                </div>
                   <script>
-                    document.write('<input id="place" name="" class="form-control" placeholder="mi casa" type="text" value='+jsonUserLog.place+'>');
+                    document.write('<input id="place" name="" class="form-control"  type="text" value='+jsonUserLog.place+'>');
                   </script>
                   
               </div> <!-- form-group// -->
@@ -156,7 +190,7 @@
             <div>
                 <span id="phone" class="input-group-text">Cambiar numero: <i class="fa fa-phone"></i> </span>
                 <script>
-                  document.write('<input id="phone" name="" class="form-control" placeholder="Phone number" type="tel" value='+jsonUserLog.phone+'>');
+                  document.write('<input id="phone" name="" class="form-control"  type="tel" value='+jsonUserLog.phone+'>');
                 </script>
             <br/>
             </div> <!-- form-group// -->
@@ -199,11 +233,25 @@
         
         </div> 
         <script>
+          if(sessionStorage.getItem('usuarioLogeado') == null){
+            document.getElementById("no_reg_var").style.display='block';
+            document.getElementById("reg_var").style.display='none';
+          }else{
+            var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
+            document.getElementById("icono").src = usuarioLog.avatar ;
+            document.getElementById("nom").innerHTML = usuarioLog.nick ;
+            document.getElementById("usuario").href =  "perfil_vendedor.html?nick=" + usuarioLog.nick ;
+            document.getElementById("reg_var").style.display='block';
+            document.getElementById("no_reg_var").style.display='none';
+          }
+          
+        </script>
+        <script>
 var urlObtenerCartel = "http://kelpa-api.herokuapp.com/profile/borja"
   //Necesario para parsear el json
       var jsonCartel = JSON.parse(httpGet(urlObtenerCartel));
   //Darle una id al campo que obtienes para mostrarla en html 
-      document.getElementById("descripcion").innerHTML = jsonCartel.place;
+      //document.getElementById("descripcion").innerHTML = jsonCartel.place;
 </script>
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
