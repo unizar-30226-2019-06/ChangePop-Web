@@ -32,6 +32,9 @@
         //Necesario para parsear el json
         var jsonUsuario = JSON.parse(httpGet(urlObtenerUsuario));
         var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
+
+
+        
         
     </script>
 
@@ -76,10 +79,7 @@
                                </ul>
                         </div>
                     </a>
-                    
-                
-                    </div>
-                    
+                </div>       
             </ul>
           </div>
         </div>
@@ -92,11 +92,6 @@
         <div>
             <label id="nick" class="control-label"style="font-size: 2em; margin-left: 45%; margin-top: 20px"></label>  <!-- nombre del vendedor -->
             <br />
-            <strong> Apellido - nombre </strong> : <span id="first_name"></span> - <span id="last_name"></span> <br />
-            <strong> Ciudad </strong> : <span id="place"></span><br />
-            <strong> Correo </strong> : <span id="mail"></span><br />
-            <strong> Phone </strong> : <span id="phone"></span><br />
-            <strong> Fecha de nacimiento </strong> : <span id="fnac"></span><br />
         </div>
         <hr style="width:85%; border-color:black;">
 
@@ -115,10 +110,14 @@
                     document.write(' <em>Precio <strong>' + anuncios[i].price   + '€</strong> - Fecha publicación:' +   anuncios[i].publish_date  + 
                     '<span class="glyphicon glyphicon-map-marker " style="color:green;font-size: 20px" >'+ anuncios[i].place +'</span> </em>');
                     document.write(' <p>'+ anuncios[i].descript  + '</p> ');
-                    document.write('<div class="row">');
-                    document.write('<h3 id=a'+ i  + '><a  href="perfil_vendedor.html">Editar <span class="glyphicon glyphicon-edit "></span></a>');
-                    document.write(' <a href="perfil_vendedor.html">Borrar <span class="glyphicon glyphicon-remove"></span></a></h3>');
-                    document.write('</div> </div> </a>');    
+                    if(usuarioLog != null && jsonUsuario.id == usuarioLog.id ){
+                        document.write('<div class="row">');
+                        document.write('<h3 id=a'+ i  + '><a  href="perfil_vendedor.html">Editar <span class="glyphicon glyphicon-edit "></span></a>');
+                        document.write(' <a href="perfil_vendedor.html">Borrar <span class="glyphicon glyphicon-remove"></span></a></h3>');
+                        document.write('</div>');
+                    }
+                    
+                    document.write('</div> </a>');    
                  }              
             
               
@@ -134,29 +133,17 @@
         <label class="control-label"style="font-size: 2em; border: Solid #0f0fef 2px; padding: 0.5em;">Comentarios</label>
         <div  style="margin-bottom:50px">
             <script>
-                var urlObtenerComentarioss = "http://kelpa-api.herokuapp.com/comment/" + jsonUsuario.id;
+                var urlObtenerComentarios = "http://kelpa-api.herokuapp.com/comment/" + jsonUsuario.id;
                 //Necesario para parsear el json              
                 var jsonComentarios = JSON.parse(httpGet(urlObtenerComentarios));
+                for(i in jsonComentarios){
+                    document.write(' <div class="container_chat darker">');
+                    document.write('<label class="col-md-3 control-label"style="vertical-align: middle;font-size: 1.5em;">'+jsonComentarios.list[i].user+'</label></a> ');
+                    document.write('<p class="text-left">'+jsonComentarios.list[i].body+'</p>');
+                    document.write('</div>');
+                }
                 
             </script>
-
-            <div class="container_chat darker">
-                <img class="col-md-4 img-circle" src="../static/icono.jpg" style="width: 8%; vertical-align: middle;"></a>
-                <label class="col-md-3 control-label"style="vertical-align: middle;font-size: 1.5em;">Paco_45</label></a> 
-                <p class="text-left">Excelente vendedor</p>
-            </div>
-
-            <div class="container_chat darker">
-                <img class="col-md-4 img-circle" src="../static/icono2.jpg" style="width: 8%; vertical-align: middle;"></a>
-                <label class="col-md-3 control-label"style="vertical-align: middle;font-size: 1.5em;">Carlos_98</label></a> 
-                <p class="text-left">Comora sin ningun problema</p>
-            </div>
-
-            <div class="container_chat darker">
-                <img class="col-md-4 img-circle" src="../static/icono3.jpg" style="width: 8%; vertical-align: middle;"></a>
-                <label class="col-md-3 control-label"style="vertical-align: middle;font-size: 1.5em;">Sofia_7473</label></a>  
-                <p class="text-left">Comunicacion con el vendedor excelente</p>
-            </div>
         
             <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="height:600px top bottom">
                 <div class="modal-dialog" role="document">
@@ -168,26 +155,39 @@
                             <h4 class="modal-title" id="myModalLabel">Añadir comentario</h4>
                         </div>
                         <div class="modal-body">
-                            
+                            <script>
+                                function comentario(){
+                                    var params={
+                                        "body": document.getElementById('comentario').value,
+                                        "points": document.getElementById('val').value
+                                    };
+
+                                    var urlNewComent = "http://kelpa-api.herokuapp.com/profile/" + jsonUsuario.id;
+
+                                    post(urlNewComent,params,function(){ 
+                                        alert("Comentario añadido correctamente");
+                                        }, function(){
+                                        alert("No se pudo añadir el comentario");
+                                    });
+                                }    
+                            </script>
+
                             <input type="text" class="span2 search-query top bottom"style="width: 95%; margin-left: 2.5%; margin-top: 10px; height:200px" id="comentario">
                             
                             <input style="margin-top:30px; width: 60px;" id="val" name="val" class="form-control input-md" required="" type="number" min="0" max="5" value="3">
-                            <button style="margin-top:30px" type="submit" class="btn btn-success btn-lg" data-dismiss="modal" aria-label="Close" id="enviar">Enviar</button>
-                        
-                            <script>
-                                enviar.onclick = function(e) {
-                                    // evitamos la acción por defecto
-                                    e.preventDefault();
-                                    var data = JSON.stringify({"body": document.getElementById("comentario").value, "points": document.getElementById("val").value});
-                                }
-                            </script>
+                           
+                                
+                                <button style="margin-top:30px" type="submit" class="btn btn-success btn-lg" data-dismiss="modal" aria-label="Close" id="enviar" onclick="comentario()">Enviar</button>
+                            
                         </div>
                     </div>
                 </div>
             </div>
-
-            <button style="vertical-align: middle;  margin-top:20px; width: 200px; margin-left:40%; margin-bottom:40px;" type="submit" class="btn btn-success btn-lg" data-toggle="modal" data-target="#miModal">Añadir comentario</button>
-                 
+            <script>
+                if(sessionStorage.getItem('usuarioLogeado') != null){
+                    document.write('<button style="vertical-align: middle;  margin-top:20px; width: 200px; margin-left:40%; margin-bottom:40px;" type="submit" class="btn btn-success btn-lg" data-toggle="modal" data-target="#miModal">Añadir comentario</button>');
+                }
+            </script>
 
     
         </div>
@@ -198,24 +198,10 @@
    
      
   //Darle una id al campo que obtienes para mostrarla en html 
-      document.getElementById("first_name").innerHTML = jsonUsuario.first_name;
-      document.getElementById("fnac").innerHTML = jsonUsuario.fnac;
-      document.getElementById("last_name").innerHTML = jsonUsuario.last_name;
+      
       document.getElementById("nick").innerHTML = jsonUsuario.nick;
-      document.getElementById("place").innerHTML = jsonUsuario.place;
-      document.getElementById("mail").innerHTML = jsonUsuario.mail;
-      document.getElementById("phone").innerHTML = jsonUsuario.phone;
       document.getElementById("avatar").setAttribute("src", jsonUsuario.avatar);
 
-      //Barra de nav 
-      document.getElementById("icono").src = "/static/logo.jpg" ;
-      document.getElementById("nombre").innerHTML = usuarioLog.nick ;
-      document.getElementById("usuario").href =  "perfil_vendedor.html?nick=" + usuarioLog.nick ;
-      if(nick.localeCompare(usuarioLog.nick ) != 0  ){
-        for(i in anuncios){
-            document.getElementById("a" + i ).style.display = "none";
-        }
-    }
 </script>
    <!-- Bootstrap core JavaScript
     ================================================== -->
