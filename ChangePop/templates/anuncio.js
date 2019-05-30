@@ -13,7 +13,8 @@ function post(url,params,respuesta,respuesta2){
     };  
     xhttp.open("POST", url, true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(JSON.stringify(params));
+    var ret = xhttp.send(JSON.stringify(params)); 
+    return ret; //a probar...
   }
 
 function validar_campos(names) {
@@ -45,13 +46,13 @@ function validar_campos(names) {
 	image.send(null);
 	var urlImagenProduct="https://kelpa-api.herokuapp.com/upload";
 	console.log(image.responseText);
-        post(urlProduct,image.responseText,function(){
+        var dev = post(urlProduct,image.responseText,function(){
             alert("Nuevo articulo añadido");
           }, function(){
             alert("No se ha podido añadir el articulo");
           });
-
-	var main_img = document.getElementById("mostrar").src;
+	
+	var main_img = dev.list[0];
 	//resto 
         var check = document.getElementById("subasta");
 
