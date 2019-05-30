@@ -71,7 +71,9 @@
       headers:{    
          'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*' 
+        'Access-Control-Allow-Origin': '*' ,
+	'Access-Control-Allow-Credentials': 'true',
+	'withCredentials': 'true'
       },
       success: function (data) {
          respuesta(data);
@@ -93,7 +95,8 @@ function postLOL(url,params,respuesta,respuesta2) {
       headers:{    
          'Accept': 'application/json',
         'Access-Control-Allow-Origin': '*' ,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+	'Access-Control-Allow-Credentials': 'true'
         },
       data: JSON.stringify(params),          
       success: function (data) {

@@ -42,7 +42,7 @@
         remember : true
       }
 
-        post(url,params,function(){
+        postLOL(url,params,function(){
           var urlUser = "https://kelpa-api.herokuapp.com/profile/"+document.getElementById("user").value;
           sessionStorage.setItem('usuarioLogeado', httpGet(urlUser) );
           window.location = "index.html";
@@ -52,33 +52,6 @@
       };
     </script>     
 
-
-<script>
-
-    function post_j(url,params,respuesta,respuesta2){
-    
-
-    $.ajax({
-          url: url,
-          type: "POST",
-          crossDomain: true,
-          withCredentials: true,
-          data: JSON.stringify(params),
-          dataType: "json",
-          success: function (response) {
-
-              var resp = JSON.parse(response)
-  
-              alert(resp.status);
-  respuesta();
-          },
-          error: function (xhr, status) {
-              alert("error");
-  respuesta2();
-          }
-      });
-  }
-  </script>
 
   </head>
 
@@ -379,7 +352,7 @@
                 	function anadirFavoritos(id)
 			{
 				
-				postLOL("https://kelpa-api.herokuapp.com/product/" + id + "/follow,image.responseText,function(){
+				postLOL("https://kelpa-api.herokuapp.com/product/" + id + "/follow",null,function(){
 				    alert("añadido a los favoritos");
 				  }, function(){
 				    alert("No se ha podido añadir el producto a los favoritos");
