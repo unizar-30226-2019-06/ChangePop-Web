@@ -253,7 +253,7 @@
                     document.write(' <p>'+ anuncios[i].descript  + '</p> ');
                     if(usuarioLog != null && jsonUsuario.id == usuarioLog.id ){
                         document.write('<div class="row">');
-                        document.write('<h3 id=a'+ i  + '><a  href="editarAnuncio.html">Editar <span class="glyphicon glyphicon-edit "></span></a>');
+                        document.write('<h3 id=a'+ i  + '><a  href="editarAnuncio.html?idAnuncio=' + anuncios[i].id   + '">Editar <span class="glyphicon glyphicon-edit "></span></a>');
                         document.write(' <a href="perfil_vendedor.html">Borrar <span class="glyphicon glyphicon-remove"></span></a></h3>');
                         document.write('</div>');
                     }

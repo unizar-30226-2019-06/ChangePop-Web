@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-   <!-- <link rel="icon" href="../../favicon.ico">-->
-
-    <title>Editar anuncio</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-    <!-- Bootstrap core CSS -->
-    <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../static/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="../static/style.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
-    <script src="../static/jquery.mycart-master/js/bootstrap.min.js"></script>
-    <script src="../static/jquery.mycart-master/js/jquery-2.2.3.min.js"></script>
-    <script src="../static/jquery.mycart-master/js/jquery.mycart.js"></script>
-    <script type="text/javascript" src="httpGet.js"></script>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- <link rel="icon" href="../../favicon.ico">-->
+  
+      <title>Jumbotron Template for Bootstrap</title>
+  
+      <!-- Bootstrap core CSS -->
+      <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <link href="../static/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  
+      <!-- Custom styles for this template -->
+      <link href="../static/style.css" rel="stylesheet">
+  
+      <script type="text/javascript" src="httpGet.js"></script> 
+  
+      <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+      <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+      <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  
 
     
 
@@ -86,7 +85,7 @@
           
           <div class="collapse navbar-collapse" id="myNavbar">
               <div class="navbar-header">
-                  <a class="navbar-brand" href="index.html"><img  src="/static/logo.jpg" width="55px" /></a>
+                  <a class="navbar-brand" href="index.html"><img  src="../static/logo.jpg" width="55px" /></a>
                 </div>
                 <form method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
                    <form  method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
@@ -149,7 +148,7 @@
               <div class="input-group">
                 <label for="nombreProducto">Cambiar nombre del producto</label>
                 <script>
-                  document.write('<input type="text"'+ jsonProducto.title+ 'class="form-control" id="nombreProducto" placeholder="Playstasion 3">');
+                  document.write('</br><input type="text class="form-control" id="nombreProducto" value="'+ jsonProducto.title+'">');
                 </script>
                 
               </div>
@@ -164,7 +163,7 @@
             <br/>
              <div class="form-group "  style="width:800px;">
               <script>
-                document.write('<textarea class="form-control" value='+ jsonProducto.descript+ 'name="blog_body" id="blog_body" rows="8"  placeholder="Descripcion del producto" ></textarea>');
+                document.write('<textarea class="form-control" name="blog_body" id="blog_body" rows="8"> '+ jsonProducto.descript+ '</textarea>');
               </script>
                 
              </div>
@@ -178,7 +177,7 @@
                     document.write('<input type="checkbox" id="'+ jsonCategorias.list[i].toString()+'">'+ jsonCategorias.list[i].toString()+'<br>');
                     }   
                 for (i in jsonProducto.categories){
-                  document.getElementById(jsonCategorias[i]).checked=true;
+                  document.getElementById(jsonCategorias.list[i]).checked=true;
                 }
             </script>
              <br/>

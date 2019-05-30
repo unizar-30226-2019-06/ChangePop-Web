@@ -1,37 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-   <!-- <link rel="icon" href="../../favicon.ico">-->
-
-    <title>Editar usuario</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-    <!-- Bootstrap core CSS -->
-    <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../static/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="../static/style.css" rel="stylesheet">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
-    <script src="../static/jquery.mycart-master/js/bootstrap.min.js"></script>
-    <script src="../static/jquery.mycart-master/js/jquery-2.2.3.min.js"></script>
-    <script src="../static/jquery.mycart-master/js/jquery.mycart.js"></script>
-    
-    
-    <script type="text/javascript" src="httpGet.js"></script> 
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- <link rel="icon" href="../../favicon.ico">-->
+  
+      <title>Jumbotron Template for Bootstrap</title>
+  
+      <!-- Bootstrap core CSS -->
+      <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <link href="../static/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  
+      <!-- Custom styles for this template -->
+      <link href="../static/style.css" rel="stylesheet">
+  
+      <script type="text/javascript" src="httpGet.js"></script> 
+  
+      <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+      <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+      <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <script>
       var urlUserLog = "http://kelpa-api.herokuapp.com/user";
@@ -52,6 +46,34 @@
   <body>
 
       
+    
+      <nav class="navbar navbar-inverse navbar-fixed-top" style="display: none" id="no_reg_var">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="index.html"><img src="../static/logo.jpg" width="55px" /></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <form  method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
+                <div class="form-group">
+                  <input name="texto" type="text" class="form-control" placeholder="Buscar">
+                </div>
+                <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+              </form>
+    
+    
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#Login" data-toggle="modal" role="button"><span
+                      class="glyphicon glyphicon-log-in"></span>Conectarse</a></li>
+    
+                <li><a href="#Registro" data-toggle="modal" role="button"><span 
+                    class="glyphicon glyphicon-user"></span>Registrarse</a></li>
+              </ul>
+    
+              <!-- Modal / Ventana / Overlay en HTML -->
+    
+            </div>
+          </div>
+        </nav>
     
         <nav class="navbar navbar-inverse navbar-fixed-top" style="display: none" id="reg_var">
             <div class="container">
@@ -101,7 +123,6 @@
               </div>
             </div>
         </nav>
-
       <div class="container">      
         <div class="card bg-light">
           
