@@ -324,7 +324,7 @@
                           document.write('<div class="row">');
                           if(sessionStorage.getItem('usuarioLogeado') != null){
                             document.write('<a class="glyphicon glyphicon-comment" href="#" role="button" onclick="negociar()">Negociar </a> <a>&nbsp;</a>');
-                            document.write(' <a class="glyphicon glyphicon-heart" href="#" role="button">Favoritos</a>');
+                            document.write(' <a class="glyphicon glyphicon-heart" href="#" role="button" onclick="anadirFavoritos('+ anuncios[i].id + ')">Favoritos</a>');
                           }
                           document.write('</div>');
                           if(anuncios[i].bid_date.localeCompare("None") != 0 && sessionStorage.getItem('usuarioLogeado') != null){
@@ -348,7 +348,15 @@
                                   document.write('</div>');
                        }
                   
-                
+                	function anadirFavoritos(id)
+			{
+				
+				postLOL("https://kelpa-api.herokuapp.com/product/" + id + "/follow,image.responseText,function(){
+				    alert("añadido a los favoritos");
+				  }, function(){
+				    alert("No se ha podido añadir el producto a los favoritos");
+				  });
+			}
               
               </script>
               
