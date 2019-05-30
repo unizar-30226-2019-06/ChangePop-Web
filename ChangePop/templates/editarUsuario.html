@@ -35,7 +35,7 @@
       var urlUserLog = "http://kelpa-api.herokuapp.com/user";
       var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
       //Necesario para parsear el json
-      var jsonUserLog = JSON.parse(httpGet(urlUserLog));
+      var jsonUserLog = getCORS(urlUserLog,function(data){ });
     </script>
 
 
@@ -135,14 +135,15 @@
               <label class="btn btn-default btn-file">
                   Cambiar imagen <input type="file" style="display: none;">
               </label>
-
+              
 
           <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Cambiar nombre: <i class="fa fa-user"></i> </span>
              </div>
+             
              <script>
-               document.write('<input id="nick" name=""value='+jsonUserLog.first_name +'class="form-control" placeholder="Pedrito" type="text">');
+               document.write('<input id="nick" name="" value='+jsonUserLog.first_name +' class="form-control" type="text">');
              </script>
                 
             </div> <!-- form-group// -->
@@ -152,7 +153,7 @@
                   <span class="input-group-text">Cambiar apellido: <i class="fa fa-user"></i> </span>
                </div>
                   <script>
-                    document.write('<input id="last_name" name="" class="form-control"  value='+jsonUserLog.last_name+ 'placeholder="Jose" type="text">');
+                    document.write('<input id="last_name" name="" class="form-control"  value='+jsonUserLog.last_name+ ' type="text">');
                   </script>
                   
               </div> 
@@ -171,17 +172,17 @@
                 <span class="input-group-text">Cambiar correo <i class="fa fa-envelope"></i> </span>
              </div>
                 <script>
-                  document.write('<input id="mail" name="" class="form-control" placeholder="Pedrito@hotmail.com" type="email" value='+jsonUserLog.mail+'>');
+                  document.write('<input id="mail" name="" class="form-control"  type="email" value='+jsonUserLog.mail+'>');
                 </script>
                 
             </div> <!-- form-group// -->
-
+            
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">Cambiar ubicacion <i class="fa fa-envelope"></i> </span>
                </div>
                   <script>
-                    document.write('<input id="place" name="" class="form-control" placeholder="mi casa" type="text" value='+jsonUserLog.place+'>');
+                    document.write('<input id="place" name="" class="form-control"  type="text" value='+jsonUserLog.place+'>');
                   </script>
                   
               </div> <!-- form-group// -->
@@ -189,7 +190,7 @@
             <div>
                 <span id="phone" class="input-group-text">Cambiar numero: <i class="fa fa-phone"></i> </span>
                 <script>
-                  document.write('<input id="phone" name="" class="form-control" placeholder="Phone number" type="tel" value='+jsonUserLog.phone+'>');
+                  document.write('<input id="phone" name="" class="form-control"  type="tel" value='+jsonUserLog.phone+'>');
                 </script>
             <br/>
             </div> <!-- form-group// -->
@@ -250,7 +251,7 @@ var urlObtenerCartel = "http://kelpa-api.herokuapp.com/profile/borja"
   //Necesario para parsear el json
       var jsonCartel = JSON.parse(httpGet(urlObtenerCartel));
   //Darle una id al campo que obtienes para mostrarla en html 
-      document.getElementById("descripcion").innerHTML = jsonCartel.place;
+      //document.getElementById("descripcion").innerHTML = jsonCartel.place;
 </script>
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

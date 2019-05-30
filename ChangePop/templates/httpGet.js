@@ -61,7 +61,8 @@
       }
 
       function getCORS(theUrl,respuesta){
-        $.ajax({
+        var result=false;
+       $.ajax({
       type: 'get',
       url:   theUrl,      
       crossDomain: true,
@@ -72,14 +73,15 @@
          'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*' 
-      },
+      }, 
+      async: false,
       success: function (data) {
+        result=data;
          respuesta(data);
-       
+ 
       }
-
   });
-
+  return result;
        }
 
 function postLOL(url,params,respuesta,respuesta2) {
