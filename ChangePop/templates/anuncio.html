@@ -61,7 +61,22 @@ function volverImagen() {
     document.getElementById('0').src = linkImage[image];
     console.log(image.toString());
 }
+var url="https://kelpa-api.herokuapp.com/login"
+function conectarse(){
+      var params = {
+        nick : document.getElementById("user").value,
+        pass : document.getElementById("pass").value,
+        remember : true
+      }
 
+        postLOL(url,params,function(){
+          var urlUser = "https://kelpa-api.herokuapp.com/profile/"+document.getElementById("user").value;
+          sessionStorage.setItem('usuarioLogeado', httpGet(urlUser) );
+          window.location = "index.html";
+        }, function(){
+          alert("Usuario o contraseña incorrecto");
+        });
+      };
 </script>
      
 
@@ -74,11 +89,98 @@ function volverImagen() {
 
   <body>
     <!-- Barra de menu superior -->
+
+    <div id="Login" class="modal fade">
+        <div class="modal-dialog" style="height:40% top bottom">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                aria-label="Close">&times;</button>
+              <h4 class="modal-title">Hola de nuevo!</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-append">
+                  <div>
+                    <p>Usuario</p>
+                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="user" required>
+  
+                    <p>Contraseña</p>
+                    <input type="password" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="pass" required>
+                  </div>
+                    <button type="button" class="btn btn-success" onclick="conectarse();" >Connection</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <div class="row">
+                <div class="col-md-6">
+                  <p style="font-size: 18px"align="left">¿No estás registrado?</p>
+                </div>
+                <div class="col-md-6">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal"  data-toggle="modal" data-target="#Registro">Crear cuenta</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div id="Registro" class="modal fade">
+          <div class="modal-dialog" style="height:40% top bottom">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                  aria-label="Close">&times;</button>
+                <h4 class="modal-title">Bienvenido!</h4>
+              </div>
+              <div class="modal-body">
+                  <div class="input-append">
+                    <div>
+                      <p>Nombre</p>
+                      <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="nombre" required>
+    
+                      <p>Apellidos</p>
+                      <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="apellido" required>
+  
+                      <p>Usuario</p>
+                      <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="user" required>
+  
+                      <p>Contraseña</p>
+                      <input type="password" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="pass" required>
+  
+                      <p>DNI</p>
+                      <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="dni" required>
+    
+                      <p>Localidad</p>
+                      <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="loc" required>
+  
+                      <p>Teléfono</p>
+                      <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="tel" required>
+    
+                      <p>Mail</p>
+                      <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="mail" required>
+  
+                      <p>Fecha de nacimiento</p>
+                      <input type="date" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="fnac" required>
+                    </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="registro()">Registrarse</button>
+              </div>
+              <script>
+                function registro(){
+                  var data = JSON.stringify({"nick": document.getElementById("user").value, "first_name": document.getElementById("nombre").value, "last_name": document.getElementById("apellido").value, "mail": document.getElementById("mail").value, "pass": document.getElementById("pass").value, "phone": document.getElementById("tel").value, "fnac": document.getElementById("fnac").value, "dni": document.getElementById("dni").value, "place": document.getElementById("loc").value});
+                  console.log(data);
+                }
+              </script>
+            </div>
+          </div>
+        </div>
    
     <nav class="navbar navbar-inverse navbar-fixed-top" style="display: none" id="no_reg_var">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#"><img src="../static/logo.jpg" width="55px" /></a>
+          <a class="navbar-brand" href="index.html"><img src="../static/logo.jpg" width="55px" /></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <form  method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
@@ -108,7 +210,7 @@ function volverImagen() {
           
           <div class="collapse navbar-collapse" id="myNavbar">
               <div class="navbar-header">
-                  <a class="navbar-brand" href="index.html"><img  src="/static/logo.jpg" width="55px" /></a>
+                  <a class="navbar-brand" href="index.html"><img  src="../static/logo.jpg" width="55px" /></a>
                 </div>
                 <form method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
                    <form  method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
@@ -135,6 +237,8 @@ function volverImagen() {
                                   <script>
                                     function logout(){
                                       sessionStorage.removeItem("usuarioLogeado");
+                                      var usrLogOut = "http://kelpa-api.herokuapp.com/logout";
+                                          getCORS(urlUserLog,function(data){ });
                                     }
                                   </script>
                                   

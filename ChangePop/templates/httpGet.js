@@ -72,14 +72,10 @@
       headers:{    
          'Accept': 'application/json',
         'Content-Type': 'application/json',
-<<<<<<< HEAD
-        'Access-Control-Allow-Origin': '*'
-      },
-=======
+
         'Access-Control-Allow-Origin': '*' 
       }, 
       async: false,
->>>>>>> 208b5fc8d9e1484a742bf9ce60120ec5927f07ba
       success: function (data) {
         result=data;
          respuesta(data);
@@ -99,11 +95,8 @@ function postLOL(url,params,respuesta,respuesta2) {
          'Accept': 'application/json',
         'Access-Control-Allow-Origin': '*' ,
         'Content-Type': 'application/json',
-<<<<<<< HEAD
-	'Access-Control-Allow-Credentials': 'true'
-=======
-        'Access-Control-Allow-Credentials': true
->>>>>>> 208b5fc8d9e1484a742bf9ce60120ec5927f07ba
+	      'Access-Control-Allow-Credentials': 'true'
+
         },
       data: JSON.stringify(params),          
       success: function (data) {

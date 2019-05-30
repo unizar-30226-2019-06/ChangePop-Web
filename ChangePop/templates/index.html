@@ -51,11 +51,6 @@
         });
       };
     </script>     
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 208b5fc8d9e1484a742bf9ce60120ec5927f07ba
   </head>
 
   <body>
@@ -140,7 +135,6 @@
             <script>
               function registro(){
                 var data = JSON.stringify({"nick": document.getElementById("user").value, "first_name": document.getElementById("nombre").value, "last_name": document.getElementById("apellido").value, "mail": document.getElementById("mail").value, "pass": document.getElementById("pass").value, "phone": document.getElementById("tel").value, "fnac": document.getElementById("fnac").value, "dni": document.getElementById("dni").value, "place": document.getElementById("loc").value});
-                console.log(data);
               }
             </script>
           </div>
@@ -150,7 +144,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" style="display: none" id="no_reg_var">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#"><img src="../static/logo.jpg" width="55px" /></a>
+          <a class="navbar-brand" href="index.html"><img src="../static/logo.jpg" width="55px" /></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <form  method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
@@ -180,7 +174,7 @@
           
           <div class="collapse navbar-collapse" id="myNavbar">
               <div class="navbar-header">
-                  <a class="navbar-brand" href="index.html"><img  src="/static/logo.jpg" width="55px" /></a>
+                  <a class="navbar-brand" href="index.html"><img  src="../static/logo.jpg" width="55px" /></a>
                 </div>
                 <form method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
                    <form  method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
@@ -207,6 +201,8 @@
                                   <script>
                                     function logout(){
                                       sessionStorage.removeItem("usuarioLogeado");
+                                      var usrLogOut = "http://kelpa-api.herokuapp.com/logout";
+                                      getCORS(urlUserLog,function(data){ });
                                     }
                                   </script>
                                   

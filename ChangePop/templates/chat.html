@@ -119,6 +119,8 @@ var jsonTrades = JSON.parse('{"length": 2,"list": [{"buyer_id": 81,"closed": fal
                                   <script>
                                     function logout(){
                                       sessionStorage.removeItem("usuarioLogeado");
+                                      var usrLogOut = "http://kelpa-api.herokuapp.com/logout";
+                                          getCORS(urlUserLog,function(data){ });
                                     }
                                   </script>
                                   

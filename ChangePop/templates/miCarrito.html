@@ -20,6 +20,8 @@
     <!-- Custom styles for this template -->
     <link href="../static/style.css" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
@@ -72,7 +74,7 @@
           
           <div class="collapse navbar-collapse" id="myNavbar">
               <div class="navbar-header">
-                  <a class="navbar-brand" href="index.html"><img  src="/static/logo.jpg" width="55px" /></a>
+                  <a class="navbar-brand" href="index.html"><img  src="../static/logo.jpg" width="55px" /></a>
                 </div>
                 <form method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
                    <form  method="get" class="navbar-form navbar-left" action="busquedaTexto.html">
@@ -99,6 +101,8 @@
                                   <script>
                                     function logout(){
                                       sessionStorage.removeItem("usuarioLogeado");
+                                      var usrLogOut = "http://kelpa-api.herokuapp.com/logout";
+                                          getCORS(urlUserLog,function(data){ });
                                     }
                                   </script>
                                   
@@ -119,7 +123,7 @@
     <div class="container">
 <script>
 	 var follow = 'http://kelpa-api.herokuapp.com/user/follows';
-	var jsonFollow = JSON.parse(httpGet(follow)).list;
+	var jsonFollow = getCORS(follow, function(data){});
 </script>
         <h2>SE VENDE</h2>
 	<script>
@@ -164,7 +168,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

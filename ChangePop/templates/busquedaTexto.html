@@ -191,6 +191,8 @@ var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios));
                                     <script>
                                       function logout(){
                                         sessionStorage.removeItem("usuarioLogeado");
+                                        var usrLogOut = "http://kelpa-api.herokuapp.com/logout";
+                                          getCORS(urlUserLog,function(data){ });
                                       }
                                     </script>
                                     
