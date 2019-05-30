@@ -156,7 +156,8 @@
                 if(jsonProducto.bid_date.localeCompare("None") != 0){
                   document.write('<div class="input-group" style="width:200px;">');
                   document.write('<input type="date" id="fecha" value='+jsonProducto.bid_date.slice(0,-9)+'>');
-                  document.write('<input type="time" id="hora" value='+jsonProducto.bid_date.slice(-11)+'>');
+                  
+                  document.write('<input type="time" id="hora" value='+jsonProducto.bid_date.slice(-8)+'>');
                   document.write('</div>');
                 }
               </script>
@@ -195,41 +196,46 @@
                     var categorias=[];
                     for (i in jsonCategorias.list){
                       if(document.getElementById(jsonCategorias.list[i]).checked==true){
-                        categorias.push(document.getElementById(jsonCategorias.list[i]).toString());
+                        categorias.push(jsonCategorias.list[i].toString());
                       }
                       
                     }
-
+                   
+                    if(jsonProducto.bid_date.localeCompare("None") != 0){
                     var params={
                       "descript": document.getElementById('blog_body').value,
                       "price": document.getElementById('precio').value,
                       "categories": categorias,
                       "title": document.getElementById('nombreProducto').value,
-                      "bid_date": document.getElementById('fecha').value +" "+ document.getElementById('hora'),
+                      "bid_date": document.getElementById('fecha').value +" "+ document.getElementById('hora').value,
                       "main_img": jsonProducto.main_img,
                       "photo_urls": jsonProducto.photo_urls,
                       "place": document.getElementById('lugarRecogida').value
                     };
-
+                  }else{
                     var params2={
                       "descript": document.getElementById('blog_body').value,
                       "price": document.getElementById('precio').value,
                       "categories": categorias,
                       "title": document.getElementById('nombreProducto').value,
+                      "bid_date": jsonProducto.bid_date,
                       "main_img": jsonProducto.main_img,
                       "photo_urls": jsonProducto.photo_urls,
                       "place": document.getElementById('lugarRecogida').value
                     };
+                  }
 
                     var urlProduct = "http://kelpa-api.herokuapp.com/product/"+id;
 
                     if(jsonProducto.bid_date.localeCompare("None") != 0){
+                      console.log("hola")
                       put(urlProduct,params,function(){
                       alert("Producto modificado correctamente");
                     }, function(){
                       alert("No se pudo modificar el producto");
                     });
                     }else{
+                      console.log(params2)
                       put(urlProduct,params2,function(){
                       alert("Producto modificado correctamente");
                     }, function(){

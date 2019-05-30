@@ -127,13 +127,9 @@
         <div class="card bg-light">
           
           <form>
-            <script>
-              document.write('<img id="avatar" src='+jsonUserLog.avatar+ 'class="rounded" height="200" width="250">');
-            </script>
+            
               
-              <label class="btn btn-default btn-file">
-                  Cambiar imagen <input type="file" style="display: none;">
-              </label>
+              
               
 
           <div class="form-group input-group">
@@ -185,49 +181,28 @@
                   </script>
                   
               </div> <!-- form-group// -->
-            
-            <div>
-                <span id="phone" class="input-group-text">Cambiar numero: <i class="fa fa-phone"></i> </span>
-                <script>
-                  document.write('<input id="phone" name="" class="form-control"  type="tel" value='+jsonUserLog.phone+'>');
-                </script>
+              <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Cambiar numero <i class="fa fa-envelope"></i> </span>
+                 </div>
+                    <script>
+                      document.write('<input id="phone" name="" class="form-control" value='+jsonUserLog.phone+'>');
+                    </script>
+                    
+                </div> <!-- form-group// -->
+         
+                
             <br/>
-            </div> <!-- form-group// -->
-            
-            <script>
-              function modificar(){
-                var params={
-                  "id": jsonUserLog.id,
-                  "nick": jsonUserLog.nick,
-                  "first_name": document.getElementById('nick').value,
-                  "last_name": document.getElementById('last_name').value,
-                  "mail": document.getElementById('mail').value,
-                  "phone": document.getElementById('phone').value,
-                  "desc": jsonUserLog.desc,
-                  "is_mod": jsonUserLog.is_mod,
-                  "ban_reason": jsonUserLog.ban_reason,
-                  "points": jsonUserLog.points,
-                  "avatar": document.getElementById('avatar').src,
-                  "fnac": document.getElementById('fnac'),
-                  "dni": jsonUserLog.dni,
-                  "place": document.getElementById('place'),value,
-                  "token": jsonUserLog.token
-                };
-                var urlUser = "http://kelpa-api.herokuapp.com/user"
-                put(urlUser,params,function(){
-                  alert("Usuario modificado correctamente");
-                }, function(){
-                  alert("No se pudo modificar el usuario");
-                });
-              }
-            </script>
                                       
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block" onclick="modificar()">Guardar cambios  </button>
+              <script>
+                document.write('<button id="mod" class="btn btn-success btn-lg">Guardar cambios </button>');
+              </script>
+                
+                
             </div> <!-- form-group// -->      
                                                   
         </form>
-        </article>
         </div> <!-- card.// -->
         
         </div> 
@@ -245,18 +220,44 @@
           }
           
         </script>
-        <script>
-var urlObtenerCartel = "http://kelpa-api.herokuapp.com/profile/borja"
-  //Necesario para parsear el json
-      var jsonCartel = JSON.parse(httpGet(urlObtenerCartel));
-  //Darle una id al campo que obtienes para mostrarla en html 
-      //document.getElementById("descripcion").innerHTML = jsonCartel.place;
-</script>
+        
   <!-- Placed at the end of the document so the pages load faster -->
   <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
   <script src="../static/dist/js/bootstrap.min.js"></script>
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <script src="../static/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+  <script>
+      $( "#mod" ).click(function (){
+          console.log("hola")
+          var params={
+            "id": jsonUserLog.id,
+            "nick": jsonUserLog.nick,
+            "first_name": document.getElementById('nick').value,
+            "last_name": document.getElementById('last_name').value,
+            "mail": document.getElementById('mail').value,
+            "phone": document.getElementById('phone').value,
+            "desc": jsonUserLog.desc,
+            "is_mod": jsonUserLog.is_mod,
+            "ban_reason": jsonUserLog.ban_reason,
+            "points": jsonUserLog.points,
+            "avatar": jsonUserLog.avatar,
+            "fnac": document.getElementById('fnac'),
+            "dni": jsonUserLog.dni,
+            "place": document.getElementById('place').value,
+            "token": jsonUserLog.token
+          };
+          var urlUser = "http://kelpa-api.herokuapp.com/user"
+          put(urlUser,params,function(){
+            window.location = "index.html";
+            alert("Usuario modificado correctamente");
+          }, function(){
+            alert("No se pudo modificar el usuario");
+          });
+        });
+        
+      
+      </script>
 
      
         
