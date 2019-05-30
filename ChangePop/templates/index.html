@@ -304,12 +304,13 @@
 
                   function negociar(i){
                     var urlTrade="https://kelpa-api.herokuapp.com/trade";
+                    var vendedor = anuncios[i].user_id;
                     var params = {
-                      seller_id: anuncios[i].seller_id,
+                      seller_id: vendedor,
                       buyer_id: usuarioLog.id,
-                      product_id: anuncios[i].product_id
+                      product_id: anuncios[i].id
                     };
-                   
+                   console.log(i);
                     postCookies(urlTrade,params,function(){
                       window.location = "chat.html";
                     }, function(){
@@ -334,17 +335,21 @@
                           if(usuarioLog != "" && (usuarioLog.nick.localeCompare(anuncios[i].user_nick) != 0)  ){
                             document.write('<div class="row">');
                             document.write('<a class="glyphicon glyphicon-comment" href="#" role="button" onclick="negociar('+ i +')">Negociar </a> <a>&nbsp;</a>');
-                            document.write(' <a class="glyphicon glyphicon-heart" href="#" role="button" onclick="anadirFavoritos('+ anuncios[i].id + ')">Favoritos</a>');
+                            document.write(' <a class="glyphicon glyphicon-heart" href="#" role="button" onclick="anadirFavoritos('+ i + ')">Favoritos</a>');
                           
                           document.write('</div>');
                             if(anuncios[i].bid_date.localeCompare("None") != 0 ){
                               document.write('<div class="form-group"> <input type="number" class="form-control width100" id="precio" >' + 
                                                   '<span class="input-group-btn">' +
-                                                  '<button class="btn btn-primary" onclick="pujar('+ i +')">Pujar</button>'+
+                                                  '<button id=botonPujar class="btn btn-primary" onclick="pujar('+ i +')">Pujar</button>'+
                                                   '</span></div>');
                               puja = JSON.parse(httpGet("http://kelpa-api.herokuapp.com//bid/"+ anuncios[i].id ));                    
                               document.getElementById("precio").value=puja.max_bid+1;
                               document.getElementById("precio").min=puja.max_bid+1;
+                              if(usuarioLog.id == puja.max_bid_user){
+                                document.getElementById("botonPujar").innerHTML = "Pujado" ;
+                                document.getElementById("botonPujar").disabled = true ;
+                              }
                             }
                           }  
                           document.write('</div> </a>');
@@ -359,15 +364,13 @@
                        {
                                   document.write('</div>');
                        }
-                  
-                	function anadirFavoritos(id)
-			{
+       function anadirFavoritos(id){
 				
-				postLOL("https://kelpa-api.herokuapp.com/product/" + id + "/follow",null,function(){
-				    alert("añadido a los favoritos");
-				  }, function(){
-				    alert("No se ha podido añadir el producto a los favoritos");
-				  });
+          postCookies("https://kelpa-api.herokuapp.com/product/" + anuncios[i].id + "/follow",null,function(){
+              alert("añadido a los favoritos");
+            }, function(){
+              alert("Ya esta añadida a favoritos");
+            });
 			}
               
               </script>
