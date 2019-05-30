@@ -276,7 +276,7 @@ function conectarse(){
                   };
         </script>
         <script>
-          if(sessionStorage.getItem('usuarioLogeado') != null){
+          if(sessionStorage.getItem('usuarioLogeado') != null && usuarioLog.id != jsonProducto.user_id){
             document.write('<a id="refChat" href="chat.html" style="vertical-align: middle;  margin-top:2px; width: 100px; margin-left:40%;" type="submit" class="btn btn-success " onclick="negociar(jsonProducto.seller_id, jsonProducto.product_id)">Negociar</a>');
           }
         </script>
@@ -291,7 +291,7 @@ function conectarse(){
 		}
   </script>
   <script>
-    if(sessionStorage.getItem('usuarioLogeado') != null){
+    if(sessionStorage.getItem('usuarioLogeado') != null && usuarioLog.id != jsonProducto.user_id){
       document.write('<a style="vertical-align: middle;  margin-top:2px; width: 100px; margin-left:40%;" class="btn btn-danger " onclick="reportar();">Reportar </a>');
     }
   </script>

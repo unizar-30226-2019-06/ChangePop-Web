@@ -50,7 +50,7 @@
         remember : true
       }
 
-        postLOL(url,params,function(){
+        postCookies(url,params,function(){
           var urlUser = "https://kelpa-api.herokuapp.com/profile/"+document.getElementById("user").value;
           sessionStorage.setItem('usuarioLogeado', httpGet(urlUser) );
           window.location = "index.html";
@@ -80,7 +80,7 @@
                   <p>Contraseña</p>
                   <input type="password" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="pass" required>
                 </div>
-                  <button type="button" class="btn btn-success" onclick="conectarse();" >Connection</button>
+                  <button type="button" class="btn btn-success" onclick="conectarse();" >Conectarse</button>
               </div>
           </div>
           <div class="modal-footer">
@@ -115,10 +115,10 @@
                     <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="apellido" required>
 
                     <p>Usuario</p>
-                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="user" required>
+                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="user2" required>
 
                     <p>Contraseña</p>
-                    <input type="password" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="pass" required>
+                    <input type="password" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="pass2" required>
 
                     <p>DNI</p>
                     <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="dni" required>
@@ -142,8 +142,16 @@
             </div>
             <script>
               function registro(){
-                var data = JSON.stringify({"nick": document.getElementById("user").value, "first_name": document.getElementById("nombre").value, "last_name": document.getElementById("apellido").value, "mail": document.getElementById("mail").value, "pass": document.getElementById("pass").value, "phone": document.getElementById("tel").value, "fnac": document.getElementById("fnac").value, "dni": document.getElementById("dni").value, "place": document.getElementById("loc").value});
-              }
+                var data = {"nick": document.getElementById("user2").value, "first_name": document.getElementById("nombre").value, "last_name": document.getElementById("apellido").value, "mail": document.getElementById("mail").value, "pass": document.getElementById("pass2").value, "phone": document.getElementById("tel").value, "fnac": document.getElementById("fnac").value, "dni": document.getElementById("dni").value, "place": document.getElementById("loc").value};
+                console.log(data)
+                var urlRegistro = "https://kelpa-api.herokuapp.com/user";
+                postCookies(urlRegistro,data,function(){
+                      alert("Registro con exito");
+                    }, function(){
+                      alert("No se ha podido registrar");
+                    });
+                  };
+              
             </script>
           </div>
         </div>
@@ -339,16 +347,17 @@
                           
                           document.write('</div>');
                             if(anuncios[i].bid_date.localeCompare("None") != 0 ){
-                              document.write('<div class="form-group"> <input type="number" class="form-control width100" id="precio" >' + 
+                              document.write('<div class="form-group"> <input type="number" class="form-control width100" id="'+i+'p" >' + 
                                                   '<span class="input-group-btn">' +
-                                                  '<button id=botonPujar class="btn btn-primary" onclick="pujar('+ i +')">Pujar</button>'+
+                                                  '<button id='+i+'botonPujar class="btn btn-primary" onclick="pujar('+ i +')">Pujar</button>'+
                                                   '</span></div>');
-                              puja = JSON.parse(httpGet("http://kelpa-api.herokuapp.com//bid/"+ anuncios[i].id ));                    
-                              document.getElementById("precio").value=puja.max_bid+1;
-                              document.getElementById("precio").min=puja.max_bid+1;
+                              puja = JSON.parse(httpGet("http://kelpa-api.herokuapp.com/bid/"+ anuncios[i].id )); 
+                              
+                              document.getElementById(i+"p").value=puja.max_bid+1;
+                              document.getElementById(i+"p").min=puja.max_bid+1;
                               if(usuarioLog.id == puja.max_bid_user){
-                                document.getElementById("botonPujar").innerHTML = "Pujado" ;
-                                document.getElementById("botonPujar").disabled = true ;
+                                document.getElementById(i+"botonPujar").innerHTML = "Pujado" ;
+                                document.getElementById(i+"botonPujar").disabled = true ;
                               }
                             }
                           }  
@@ -364,7 +373,7 @@
                        {
                                   document.write('</div>');
                        }
-       function anadirFavoritos(id){
+       function anadirFavoritos(i){
 				
           postCookies("https://kelpa-api.herokuapp.com/product/" + anuncios[i].id + "/follow",null,function(){
               alert("añadido a los favoritos");

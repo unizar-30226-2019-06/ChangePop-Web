@@ -1,5 +1,5 @@
 var checkbox=[];
-var imagen=0;
+var imagen=1;
 var categories=[];
 
 function post(url,params,respuesta,respuesta2){
@@ -41,18 +41,16 @@ function validar_campos(names) {
 	/*var image = new image();
         image.src = document.getElementById("mostrar").src;*/
 	
-	var image = new XMLHttpRequest();
-	image.open('POST', document.getElementById("mostrar").src, false);
-	image.send(null);
+	
 	var urlImagenProduct="https://kelpa-api.herokuapp.com/upload";
-	console.log(image.responseText);
-        var dev = post(urlProduct,image.responseText,function(){
+
+        /*postLOL(urlImagenProduct,document.getElementById("imagen"),function(){
             alert("Nuevo articulo añadido");
           }, function(){
-            alert("No se ha podido añadir el articulo");
-          });
+            alert("Fallo al subir la imagen");
+          });*/
 	
-	var main_img = dev.list[0];
+	
 	//resto 
         var check = document.getElementById("subasta");
 
@@ -64,12 +62,12 @@ function validar_campos(names) {
         var place=document.getElementById("lugarRecogida").value;
         
         if(check.checked){
-            var data = JSON.stringify({"descript": descript, "price": price, "categories": categories, "title": title, "bid_date": bid_date, "main_img": main_img, "photo_urls": main_img, "place": place});
+            var data ={"descript": descript, "price": price, "categories": categories, "title": title, "bid_date": bid_date, "main_img": "https:/kelpa-api.herokuapp.com/uploads/picture.png", "photo_urls": ["https:/kelpa-api.herokuapp.com/uploads/picture.png"], "place": place};
         }else{
-            var data = JSON.stringify({"descript": descript, "price": price, "categories": categories, "title": title, "main_img": main_img, "photo_urls": main_img, "place": place});
+            var data = {"descript": descript, "price": price, "categories": categories, "title": title, "main_img": "https:/kelpa-api.herokuapp.com/uploads/picture.png", "photo_urls": ["https:/kelpa-api.herokuapp.com/uploads/picture.png"], "place": place};
         }
         var urlProduct="https://kelpa-api.herokuapp.com/product";
-        post(urlProduct,data,function(){
+        postCookies(urlProduct,data,function(){
             alert("Nuevo articulo añadido");
           }, function(){
             alert("No se ha podido añadir el articulo");

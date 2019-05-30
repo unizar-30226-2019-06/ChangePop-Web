@@ -35,6 +35,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script type="text/javascript" src="httpGet.js"></script> 
+    <script>
+      var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
+    </script>
   </head>
 
   <body>
@@ -119,15 +122,13 @@
     </nav>
 
     
-            <h1>MI CARRITO</h1>
     <div class="container">
 <script>
 	 var follow = 'http://kelpa-api.herokuapp.com/user/follows';
-	var jsonFollow = getCORS(follow, function(data){});
+  var jsonFollow = getCORS(follow, function(data){});
 </script>
-        <h2>SE VENDE</h2>
 	<script>
-	for(i in jsonFollow.list)
+	/*for(i in jsonFollow.list)
 	{
 		if(jsonFollow.list[i].bid_date == null)
 		{
@@ -143,7 +144,65 @@
 		document.write('<div class="row"><a href="anuncio.html?idAnuncio=' + jsonFollow.list[i].id + '" class="anuncio"><div class="col-md-3 " style="border: solid 2px white;"><h2>' + jsonFollow.list[i].title + '</h2><img src="' + jsonFollow.list[i].main_image + '" style="border: solid 2px white; width:250px; height:200px ">');
 		            document.write('</br><em>Precio <strong>' + jsonFollow.list[i].price + '€</strong> </em><p>' +  + '</p></div></a></div>');
 		}
-	}
+  }*/
+
+  function eliminar(i){
+				
+        postCookies("https://kelpa-api.herokuapp.com/product/" + jsonFollow.list[i].id + "/unfollow",null,function(){
+          window.location = "miCarrito.html";
+          }, function(){
+            alert("Error al eliminar");
+          });
+    }
+  
+                    var j =0;
+                      for (i in jsonFollow.list) {
+                          if(j%4==0)
+                          {
+                                   document.write('<div class="row" style="margin:0px; border: solid 2px white;">');
+                          }
+                          document.write('<a href="anuncio.html?idAnuncio=' + jsonFollow.list[i].id   + ' " class="anuncio">  <div class="col-md-3 " style="border-left: solid 2px white;  height:100%; "> '  );
+                          document.write('<h2>'+ jsonFollow.list[i].title + '</h2>'   );
+                          document.write('<img src="'+  jsonFollow.list[i].main_img  + '" style="border: solid 2px white; width:100%; max-width:250px; height:auto; ">');
+                          document.write('</br>');
+                          document.write(' <em>Precio <strong>' + jsonFollow.list[i].price   + '€</strong> - Fecha publicación:' +   jsonFollow.list[i].publish_date  + 
+                          '<span class="glyphicon glyphicon-map-marker " style="color:green;font-size: 20px" >'+ jsonFollow.list[i].place +'</span> </em>');
+                          document.write(' <p>'+ jsonFollow.list[i].descript  + '</p> ');
+                          
+                          if(usuarioLog != "" && (usuarioLog.nick.localeCompare(jsonFollow.list[i].user_nick) != 0)  ){
+                            document.write('<div class="row">');
+                            document.write('<a class="glyphicon glyphicon-comment" href="#" role="button" onclick="negociar('+ i +')">Negociar </a> <a>&nbsp;</a>');
+                            document.write(' <a class="glyphicon glyphicon-heart" href="#" role="button" onclick="eliminar('+ i + ')">Eliminar</a>');
+                          
+                          document.write('</div>');
+                            if(jsonFollow.list[i].bid_date.localeCompare("None") != 0 ){
+                              document.write('<div class="form-group"> <input type="number" class="form-control width100" id="precio" >' + 
+                                                  '<span class="input-group-btn">' +
+                                                  '<button id=botonPujar class="btn btn-primary" onclick="pujar('+ i +')">Pujar</button>'+
+                                                  '</span></div>');
+                              puja = JSON.parse(httpGet("http://kelpa-api.herokuapp.com/bid/"+ jsonFollow.list[i].id ));                    
+                              document.getElementById("precio").value=puja.max_bid+1;
+                              document.getElementById("precio").min=puja.max_bid+1;
+                              if(usuarioLog.id == puja.max_bid_user){
+                                document.getElementById("botonPujar").innerHTML = "Pujado" ;
+                                document.getElementById("botonPujar").disabled = true ;
+                              }
+                            }
+                          }  
+                          document.write('</div> </a>');
+                          
+                          if((j+1)%4==0)
+                          {
+                                   document.write('</div>');
+                          }
+                          j++;
+                       }          
+                       if((j-2)%4==0)
+                       {
+                                  document.write('</div>');
+                       }
+
+
 
   </script>   
   

@@ -27,6 +27,7 @@
     <script type="text/javascript" src="httpGet.js"></script> 
 
     <script>
+
         var nick = getParameterByName('nick');
         var urlObtenerUsuario = "http://kelpa-api.herokuapp.com/profile/" +nick;
         //Necesario para parsear el json
@@ -239,6 +240,14 @@
         <label class="control-label"style="font-size: 2em; border: Solid #0f0fef 2px; padding: 0.5em;">Anuncios del vendedor</label>
         <div class="row" style="margin-bottom:50px">
         <script>
+                function borrar(i){
+                  var urlDel = "http://kelpa-api.herokuapp.com/products/" + anuncios[i].id  ;
+                  del(urlDel,null,function(){ 
+                                        alert("Anuncio eliminado");
+                                        }, function(){
+                                        alert("No se pudo eliminar");
+                                    });
+                }
                 var urlObtenerAnuncios = "http://kelpa-api.herokuapp.com/products/" + jsonUsuario.id  ;
                 //Necesario para parsear el json              
                 var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios));
@@ -254,7 +263,7 @@
                     if(usuarioLog != null && jsonUsuario.id == usuarioLog.id ){
                         document.write('<div class="row">');
                         document.write('<h3 id=a'+ i  + '><a  href="editarAnuncio.html?idAnuncio=' + anuncios[i].id   + '">Editar <span class="glyphicon glyphicon-edit "></span></a>');
-                        document.write(' <a href="perfil_vendedor.html">Borrar <span class="glyphicon glyphicon-remove"></span></a></h3>');
+                        
                         document.write('</div>');
                     }
                     
@@ -274,12 +283,12 @@
         <label class="control-label"style="font-size: 2em; border: Solid #0f0fef 2px; padding: 0.5em;">Comentarios</label>
         <div  style="margin-bottom:50px">
             <script>
-                var urlObtenerComentarios = "http://kelpa-api.herokuapp.com/comment/" + jsonUsuario.id;
+                var urlObtenerComentarios = "http://kelpa-api.herokuapp.com/comments/" + jsonUsuario.id;
                 //Necesario para parsear el json              
                 var jsonComentarios = JSON.parse(httpGet(urlObtenerComentarios));
-                for(i in jsonComentarios){
+                for(i in jsonComentarios.list){
                     document.write(' <div class="container_chat darker">');
-                    document.write('<label class="col-md-3 control-label"style="vertical-align: middle;font-size: 1.5em;">'+jsonComentarios.list[i].user+'</label></a> ');
+                    document.write('<label class="col-md-3 control-label"style="vertical-align: middle;font-size: 1.5em;">'+jsonComentarios.list[i].nick+'</label></a> ');
                     document.write('<p class="text-left">'+jsonComentarios.list[i].body+'</p>');
                     document.write('</div>');
                 }
@@ -303,9 +312,9 @@
                                         "points": document.getElementById('val').value
                                     };
 
-                                    var urlNewComent = "http://kelpa-api.herokuapp.com/profile/" + jsonUsuario.id;
-
-                                    post(urlNewComent,params,function(){ 
+                                    var urlNewComent = "http://kelpa-api.herokuapp.com/comment/" + jsonUsuario.id;
+                                    console.log(params)
+                                    postCookies(urlNewComent,params,function(){ 
                                         alert("Comentario añadido correctamente");
                                         }, function(){
                                         alert("No se pudo añadir el comentario");
