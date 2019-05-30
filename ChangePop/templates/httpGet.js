@@ -72,7 +72,6 @@
       headers:{    
          'Accept': 'application/json',
         'Content-Type': 'application/json',
-
         'Access-Control-Allow-Origin': '*' 
       }, 
       async: false,
@@ -110,4 +109,31 @@ function postLOL(url,params,respuesta,respuesta2) {
 
   });
     }
+
+    function postCookies(url,params,respuesta,respuesta2) {
+      $.ajax({
+       type: 'post',
+       url: url,
+       crossDomain: true,
+       xhrFields: {
+        withCredentials: true
+       },
+       headers:{    
+          'Accept': 'application/json',
+         'Access-Control-Allow-Origin': '*' ,
+         'Content-Type': 'application/json',
+ 
+         },
+       data: JSON.stringify(params),          
+       success: function (data) {
+          respuesta(data);
+         
+       },
+       error: function(data){
+         respuesta2();
+       }
+ 
+ 
+   });
+     }
 

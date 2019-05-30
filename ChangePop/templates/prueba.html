@@ -31,8 +31,9 @@
             },
             success: function (data) {
                console.log("Exito en la operacion 2");
-               //data devuelve JSON luego lo parseas
                console.log(data);
+               //data devuelve JSON luego lo parseas
+               alert(JSON.stringify(data));
             }
 
         });
@@ -54,17 +55,42 @@
               },
             data: JSON.stringify(params),          
             success: function (data) {
+              alert("Conectado");
                console.log("Exito en la operacionn");
-               
-               conectar("http://kelpa-api.herokuapp.com/user");
-              
+                postCookies("https://kelpa-api.herokuapp.com/trade",);
+                 
             }
 
-
+            
         });
           }
 
+          function postCookies(url,params) {
+           $.ajax({
+            type: 'post',
+            url: url,
+            crossDomain: true,
+            xhrFields: {
+            withCredentials: true
+          },
+            headers:{    
+               'Accept': 'application/json',
+              'Access-Control-Allow-Origin': '*' ,
+              'Content-Type': 'application/json'
+              },
+            data: JSON.stringify(params),          
+            success: function (data) {
+              alert("Conectado");
+               console.log("Exito en la operacionn");
+                conectar("http://kelpa-api.herokuapp.com/user");
+                 
+            }
 
+            
+        });
+          }
+          postLOL(url,params);
+          
         
 
 

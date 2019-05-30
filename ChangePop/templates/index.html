@@ -30,6 +30,14 @@
 
     <script>
       var urlObtenerAnuncios = "http://kelpa-api.herokuapp.com/products"
+      var usuarioLog = "";
+      if(sessionStorage.getItem('usuarioLogeado') == null){
+          usuarioLog = "";
+      }
+      else{
+          var usuarioLog = JSON.parse(sessionStorage.getItem('usuarioLogeado'));
+      }
+
       //Necesario para parsear el json
       var jsonAnuncios = JSON.parse(httpGet(urlObtenerAnuncios));
       var anuncios = jsonAnuncios.list;
@@ -282,31 +290,32 @@
           <div class="row">
   
               <script>
-                function pujar(id){
+                function pujar(i){
                   var params = {
-                    "bid": document.getElementById("precio").value
+                    bid: document.getElementById("precio").value
                   };
-                  var urlBid="https://kelpa-api.herokuapp.com/bid/"+id;
-                  postLOL(urlBid,params,function(){
+                  var urlBid="https://kelpa-api.herokuapp.com/bid/"+anuncios[i].id;
+                  postCookies(urlBid,params,function(){
                       alert("Pujar porocesada con exito");
                     }, function(){
                       alert("No se ha podido realizar la puja");
                     });
                   };
 
-                  function negociar(seller_id, product_id){
+                  function negociar(i){
                     var urlTrade="https://kelpa-api.herokuapp.com/trade";
                     var params = {
-                      "seller_id": seller_id,
-                      "buyer_id": usuarioLog.id,
-                      "product_id": product_id
+                      seller_id: anuncios[i].seller_id,
+                      buyer_id: usuarioLog.id,
+                      product_id: anuncios[i].product_id
                     };
-                    postLOL(urlTrade,params,function(){
+                   
+                    postCookies(urlTrade,params,function(){
                       window.location = "chat.html";
                     }, function(){
                       alert("No se ha podido reslizar la operacion");
                     });
-                  };
+                  }
                 
                      var j =0;
                       for (i in anuncios) {
@@ -321,20 +330,23 @@
                           document.write(' <em>Precio <strong>' + anuncios[i].price   + '€</strong> - Fecha publicación:' +   anuncios[i].publish_date  + 
                           '<span class="glyphicon glyphicon-map-marker " style="color:green;font-size: 20px" >'+ anuncios[i].place +'</span> </em>');
                           document.write(' <p>'+ anuncios[i].descript  + '</p> ');
-                          document.write('<div class="row">');
-                          if(sessionStorage.getItem('usuarioLogeado') != null){
-                            document.write('<a class="glyphicon glyphicon-comment" href="#" role="button" onclick="negociar()">Negociar </a> <a>&nbsp;</a>');
+                          
+                          if(usuarioLog != "" && (usuarioLog.nick.localeCompare(anuncios[i].user_nick) != 0)  ){
+                            document.write('<div class="row">');
+                            document.write('<a class="glyphicon glyphicon-comment" href="#" role="button" onclick="negociar('+ i +')">Negociar </a> <a>&nbsp;</a>');
                             document.write(' <a class="glyphicon glyphicon-heart" href="#" role="button" onclick="anadirFavoritos('+ anuncios[i].id + ')">Favoritos</a>');
-                          }
+                          
                           document.write('</div>');
-                          if(anuncios[i].bid_date.localeCompare("None") != 0 && sessionStorage.getItem('usuarioLogeado') != null){
-                            document.write('<div class="form-group"> <input type="number" class="form-control width100" id="precio" >' + 
-                                                '<span class="input-group-btn">' +
-                                                '<button class="btn btn-primary" onclick="pujar(anuncios[i].id)">Pujar</button>'+
-                                                '</span></div>');
-                            document.getElementById("precio").value=anuncios[i].price+1;
-                            document.getElementById("precio").min=anuncios[i].price+1;
-                          }    
+                            if(anuncios[i].bid_date.localeCompare("None") != 0 ){
+                              document.write('<div class="form-group"> <input type="number" class="form-control width100" id="precio" >' + 
+                                                  '<span class="input-group-btn">' +
+                                                  '<button class="btn btn-primary" onclick="pujar('+ i +')">Pujar</button>'+
+                                                  '</span></div>');
+                              puja = JSON.parse(httpGet("http://kelpa-api.herokuapp.com//bid/"+ anuncios[i].id ));                    
+                              document.getElementById("precio").value=puja.max_bid+1;
+                              document.getElementById("precio").min=puja.max_bid+1;
+                            }
+                          }  
                           document.write('</div> </a>');
                           
                           if((j+1)%4==0)
@@ -364,7 +376,7 @@
   
       </div> <!-- /container -->
       <script>
-        if(sessionStorage.getItem('usuarioLogeado') == null){
+        if(usuarioLog == ""){
           document.getElementById("no_reg_var").style.display='block';
           document.getElementById("reg_var").style.display='none';
         }else{
