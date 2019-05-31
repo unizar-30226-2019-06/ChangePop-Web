@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-   <!-- <link rel="icon" href="../../favicon.ico">-->
+    <!-- <link rel="icon" href="../../favicon.ico">-->
 
     <title>Perfil vendedor</title>
 
@@ -20,12 +21,12 @@
     <!-- Custom styles for this template -->
     <link href="../static/style.css" rel="stylesheet">
 
+    <script type="text/javascript" src="httpGet.js"></script> 
+
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../static/assets/js/ie-emulation-modes-warning.js"></script>
-    
-    <script type="text/javascript" src="httpGet.js"></script> 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
 
         var nick = getParameterByName('nick');
@@ -98,57 +99,64 @@
       </div>
   
       <div id="Registro" class="modal fade">
-          <div class="modal-dialog" style="height:40% top bottom">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                  aria-label="Close">&times;</button>
-                <h4 class="modal-title">Bienvenido!</h4>
-              </div>
-              <div class="modal-body">
-                  <div class="input-append">
-                    <div>
-                      <p>Nombre</p>
-                      <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="nombre" required>
-    
-                      <p>Apellidos</p>
-                      <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="apellido" required>
-  
-                      <p>Usuario</p>
-                      <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="user" required>
-  
-                      <p>Contraseña</p>
-                      <input type="password" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="pass" required>
-  
-                      <p>DNI</p>
-                      <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="dni" required>
-    
-                      <p>Localidad</p>
-                      <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="loc" required>
-  
-                      <p>Teléfono</p>
-                      <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="tel" required>
-    
-                      <p>Mail</p>
-                      <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="mail" required>
-  
-                      <p>Fecha de nacimiento</p>
-                      <input type="date" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="fnac" required>
-                    </div>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-success" onclick="registro()">Registrarse</button>
-              </div>
-              <script>
-                function registro(){
-                  var data = JSON.stringify({"nick": document.getElementById("user").value, "first_name": document.getElementById("nombre").value, "last_name": document.getElementById("apellido").value, "mail": document.getElementById("mail").value, "pass": document.getElementById("pass").value, "phone": document.getElementById("tel").value, "fnac": document.getElementById("fnac").value, "dni": document.getElementById("dni").value, "place": document.getElementById("loc").value});
-                  console.log(data);
-                }
-              </script>
+        <div class="modal-dialog" style="height:40% top bottom">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                aria-label="Close">&times;</button>
+              <h4 class="modal-title">Bienvenido!</h4>
             </div>
+            <div class="modal-body">
+                <div class="input-append">
+                  <div>
+                    <p>Nombre</p>
+                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="nombre" required>
+  
+                    <p>Apellidos</p>
+                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="apellido" required>
+
+                    <p>Usuario</p>
+                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="user2" required>
+
+                    <p>Contraseña</p>
+                    <input type="password" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="pass2" required>
+
+                    <p>DNI</p>
+                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="dni" required>
+  
+                    <p>Localidad</p>
+                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="loc" required>
+
+                    <p>Teléfono</p>
+                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="tel" required>
+  
+                    <p>Mail</p>
+                    <input type="text" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="mail" required>
+
+                    <p>Fecha de nacimiento</p>
+                    <input type="date" class="span2 search-query top bottom"style="width: 70%; margin-bottom: 5%" id="fnac" required>
+                  </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" onclick="registro()">Registrarse</button>
+            </div>
+            <script>
+              function registro(){
+                var data = {"nick": document.getElementById("user2").value, "first_name": document.getElementById("nombre").value, "last_name": document.getElementById("apellido").value, "mail": document.getElementById("mail").value, "pass": document.getElementById("pass2").value, "phone": document.getElementById("tel").value, "fnac": document.getElementById("fnac").value, "dni": document.getElementById("dni").value, "place": document.getElementById("loc").value};
+                console.log(data)
+                var urlRegistro = "https://kelpa-api.herokuapp.com/user";
+                postCookies(urlRegistro,data,function(){
+                      alert("Registro con exito");
+                    }, function(){
+                      alert("No se ha podido registrar");
+                    });
+                  };
+              
+            </script>
           </div>
         </div>
+      </div>
   
     <nav class="navbar navbar-inverse navbar-fixed-top" style="display: none" id="no_reg_var">
         <div class="container-fluid">
